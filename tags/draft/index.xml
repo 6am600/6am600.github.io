@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>所有文章 - My New Hugo Site</title>
-    <link>https://example.org/posts/</link>
+    <title>Draft - 标签 - My New Hugo Site</title>
+    <link>https://example.org/tags/draft/</link>
     <description>My New Hugo Site</description>
     <generator>Hugo 0.139.3 &amp; FixIt v0.3.16</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Dec 2024 15:52:05 +0800</lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/draft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test</title>
       <link>https://example.org/posts/10efd1f/</link>
