@@ -7,5 +7,5 @@
 ---
 
 > 作者:   
-> URL: https://example.org/posts/10efd1f/  
+> URL: https://6am600.github.io/posts/10efd1f/  
 
