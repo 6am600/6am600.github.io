@@ -14,6 +14,6 @@ find . -type f -name &#39;*.ko&#39; -exec rm -rf {} \;
 
 ---
 
-> 作者:   
+> 作者: [扳布](https://6am600.github.io)  
 > URL: https://6am600.github.io/posts/%E5%91%BD%E4%BB%A4/  
 
