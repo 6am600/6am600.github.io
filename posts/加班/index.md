@@ -9,6 +9,6 @@
 
 ---
 
-> 作者:   
+> 作者: [扳布](https://6am600.github.io)  
 > URL: https://6am600.github.io/posts/%E5%8A%A0%E7%8F%AD/  
 
