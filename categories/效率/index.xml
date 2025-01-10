@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>效率 - 分类 - Bamboo</title>
+    <link>https://6am600.github.io/categories/%E6%95%88%E7%8E%87/</link>
+    <description>Le vent se lève, il faut tenter de vivre.</description>
+    <generator>Hugo 0.140.1 &amp; FixIt v0.3.16</generator>
+    <language>zh</language>
+    <managingEditor>wh18720283974@163.com (Bamboo)</managingEditor>
+    <webMaster>wh18720283974@163.com (Bamboo)</webMaster>
+    <lastBuildDate>Fri, 10 Jan 2025 17:53:07 +0800</lastBuildDate>
+    <atom:link href="https://6am600.github.io/categories/%E6%95%88%E7%8E%87/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>好用的工具</title>
+      <link>https://6am600.github.io/posts/tool/</link>
+      <pubDate>Fri, 10 Jan 2025 17:53:07 +0800</pubDate>
+      <guid>https://6am600.github.io/posts/tool/</guid>
+      <category domain="https://6am600.github.io/categories/%E6%95%88%E7%8E%87/">效率</category>
+      <description>好用的工具</description>
+    </item>
+  </channel>
+</rss>
