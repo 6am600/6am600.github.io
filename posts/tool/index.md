@@ -8,6 +8,6 @@
 
 ---
 
-> 作者:   
+> 作者: [扳布](https://6am600.github.io)  
 > URL: https://6am600.github.io/posts/tool/  
 
