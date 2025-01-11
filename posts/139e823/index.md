@@ -2,7 +2,8 @@
 
 
 &lt;!--more--&gt;
-https://www.jianshu.com/p/386bbb5fa29a
+[Android卡顿掉帧问题分析之原理篇](https://www.jianshu.com/p/386bbb5fa29a)
+
 
 ---
 
