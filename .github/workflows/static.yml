@@ -41,3 +41,18 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+  generate:
+    permissions: 
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            images/github-contribution-grid-snake.svg
+            images/github-contribution-grid-snake-dark.svg?palette=github-dark
