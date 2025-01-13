@@ -5,7 +5,7 @@
     background-position: center;
 }
 
-.home-avatar img {
+.home .home-profile .home-avatar img  {
     width: 150px;
     height: 150px;
 }
