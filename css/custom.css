@@ -1,0 +1,28 @@
+/** 添加网格背景 */
+.single {
+    .single-subtitle {
+      color: #57606a;
+    }
+  
+    .content {
+      background-image: linear-gradient(90deg, rgba(60, 10, 30, .04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, .04) 3%, transparent 0);
+      background-size: 20px 20px;
+      background-position: center;
+    
+      [data-theme='dark'] & {
+        background-image: linear-gradient(90deg, rgba(195, 245, 215, .04) 3%, transparent 0), linear-gradient(1turn, rgba(195, 245, 215, .04) 3%, transparent 0);
+      }
+    }
+  }
+/* 设置git提交贪吃蛇 */
+.home-profile {
+    background-image: url(https://raw.githubusercontent.com/6am600/6am600.github.io/output/github-contribution-grid-snake.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* 设置头像大小 */
+.home .home-profile .home-avatar img  {
+    width: 150px;
+    height: 150px;
+}
