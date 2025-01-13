@@ -1,9 +1,9 @@
 /* 添加背景 SVG */
-.header {
+.home-avatar {
     position: relative;
   }
   
-  .header::after {
+.home::after {
     content: '';
     position: absolute;
     top: 0;
@@ -14,4 +14,4 @@
     background-size: cover;
     background-position: center;
     z-index: -1; /* 确保背景在头像后面 */
-  }
+}
