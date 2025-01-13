@@ -4,3 +4,7 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.home-avatar img {
+    width: 8rem;
+}
