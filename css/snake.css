@@ -1,7 +1,4 @@
 .home.posts .home-profile {
-    padding: 2rem 0;
-    width: 100%;
-    height: 100%;
     background-image: url(https://raw.githubusercontent.com/6am600/6am600.github.io/output/github-contribution-grid-snake.svg);
     background-size: contain;
     background-repeat: no-repeat;
