@@ -20,3 +20,7 @@ function autSetTitle(){
       }
     });
   }
+
+  window.onload = function(){
+    autSetTitle();
+  }
