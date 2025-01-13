@@ -1,17 +1,9 @@
-/* 添加背景 SVG */
-.home-avatar {
-    position: relative;
-  }
-  
-.home::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.home.posts .home-profile {
     width: 100%;
     height: 100%;
     background-image: url(https://raw.githubusercontent.com/6am600/6am600.github.io/output/github-contribution-grid-snake.svg);
-    background-size: cover;
-    background-position: center;
-    z-index: -1; /* 确保背景在头像后面 */
+    background-size: contain;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    z-index: -1;
 }
