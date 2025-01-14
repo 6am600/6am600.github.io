@@ -73,7 +73,7 @@ generate:
         custom = &#34;/css/custom.css&#34;
 ```
 
-然后执行hugo，将代码提交就好了
+然后执行hugo，将代码提交就好了 .
 
 
 
