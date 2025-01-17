@@ -28,7 +28,7 @@ const RENDERER = {
           //$('[rel="icon"]').attr('href', "/failure.ico");
           //$('[rel="shortcut icon"]').attr('href', "/failure.ico");
           //document.title = '喔唷，崩溃啦！';
-          document.title = ' 😂去哪里了！';
+          document.title = ' 😭你不要走！';
           clearTimeout(titleTime);
         } else {
           //$('[rel="icon"]').attr('href', "/favicon-32x32.ico");
