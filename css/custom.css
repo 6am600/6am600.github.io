@@ -49,7 +49,7 @@
 }
 
 .checklist li.completed::before {
-  content: "[✔] ";
+  content: "[🎷] ";
   color: #008000;
 }
 
@@ -58,10 +58,6 @@
   color: #f7797d;
   padding: 5px 10px;
   border-radius: 5px;
-}
-
-.checklist li.uncompleted {
-  color: #c6ffdd;
 }
 
 .checklist h2 {
