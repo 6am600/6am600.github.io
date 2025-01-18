@@ -21,7 +21,7 @@
 &lt;ul class=&#34;checklist&#34;&gt;
   &lt;li class=&#34;uncompleted&#34;&gt;组装自己喜欢的客制化键盘（虽然现在已经有了，但是太花哨）&lt;/li&gt;
   &lt;li class=&#34;uncompleted&#34;&gt;每周至少跑步三次，总距离 &gt;= 10KM&lt;/li&gt;
-  &lt;li class=&#34;uncompleted&#34;&gt;更新羽毛球装备（有拍有包有鞋，没运动服，主要还是不喜欢穿，不自在）&lt;/li&gt;
+  &lt;li class=&#34;completed&#34;&gt;更新羽毛球装备（有拍有包有鞋，没运动服，主要还是不喜欢穿，不自在）&lt;/li&gt;
   &lt;li class=&#34;uncompleted&#34;&gt;去一个想去但没去过的地方&lt;/li&gt;
 &lt;/ul&gt;
 {{&lt; /admonition &gt;}}

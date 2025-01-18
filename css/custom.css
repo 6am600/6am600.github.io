@@ -45,7 +45,7 @@
   content: "[❌] ";
   font-weight: bold;
   margin-right: 10px;
-  color: #c6ffdd;
+  color: #555;
 }
 
 .checklist li.completed::before {
@@ -58,6 +58,10 @@
   color: #f7797d;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+.checklist li.uncompleted {
+  color: #c6ffdd;
 }
 
 .checklist h2 {
