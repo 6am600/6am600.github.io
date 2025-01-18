@@ -42,14 +42,14 @@
 }
 
 .checklist li::before {
-  content: "[ ] ";
+  content: "[❌] ";
   font-weight: bold;
   margin-right: 10px;
   color: #555;
 }
 
 .checklist li.completed::before {
-  content: "[x] ";
+  content: "[✔] ";
   color: #008000;
 }
 
