@@ -26,3 +26,43 @@
     width: 150px;
     height: 150px;
 }
+
+/* 待办事项页面 */
+/* checklist.css */
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checklist li::before {
+  content: "[ ] ";
+  font-weight: bold;
+  margin-right: 10px;
+  color: #555;
+}
+
+.checklist li.completed::before {
+  content: "[x] ";
+  color: #008000;
+}
+
+.checklist li.completed {
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.checklist h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.5em;
+}
