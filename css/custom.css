@@ -45,7 +45,7 @@
   content: "[❌] ";
   font-weight: bold;
   margin-right: 10px;
-  color: #555;
+  color: #c6ffdd;
 }
 
 .checklist li.completed::before {
