@@ -3,7 +3,6 @@
 
 ## 待办事项清单
 
-```markdown
 {{&lt; admonition type=todo title=&#34;2025年必须要完成的事🧁&#34; open=true &gt;}}
 &lt;ul class=&#34;checklist&#34;&gt;
   &lt;li&gt;学习英语口语&lt;/li&gt;
@@ -12,7 +11,6 @@
   &lt;li&gt;学习一项技能（PS、剪辑、摄影 ...）&lt;/li&gt;
 &lt;/ul&gt;
 {{&lt; /admonition &gt;}}
-```
 
 
 ## 完成事项
