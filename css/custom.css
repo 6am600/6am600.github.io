@@ -41,7 +41,7 @@
   margin-bottom: 10px;
 }
 
-.checklist li::before {
+.checklist li.uncompleted::before {
   content: "[❌] ";
   font-weight: bold;
   margin-right: 10px;
@@ -55,7 +55,7 @@
 
 .checklist li.completed {
   background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
-  color: #fff;
+  color: #f7797d;
   padding: 5px 10px;
   border-radius: 5px;
 }
