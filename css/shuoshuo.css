@@ -1,3 +1,4 @@
+/* 默认为桌面端的两列瀑布流布局 */
 .shuoshuo-grid {
   column-count: 2; /* 设置为两列 */
   column-gap: 20px; /* 设置列之间的间距 */
@@ -43,4 +44,11 @@
   margin-top: 5px;
   border-top: 1px solid #eee;
   padding-top: 10px;
+}
+
+/* 手机端（小屏幕）下的单列布局 */
+@media (max-width: 767px) {
+  .shuoshuo-grid {
+    column-count: 1; /* 在小屏幕上设置为一列 */
+  }
 }
