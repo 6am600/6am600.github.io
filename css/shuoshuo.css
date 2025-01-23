@@ -1,6 +1,7 @@
-.shuoshuo-columns {
-  column-count: 2; /* 每行显示两列 */
-  column-gap: 20px; /* 列间距 */
+.shuoshuo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 每行两列，每列宽度自适应 */
+  gap: 20px; /* 设置行和列的间距 */
   margin: 20px 0;
 }
 
@@ -9,9 +10,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 15px;
-  margin-bottom: 20px; /* 每个item之间的间距 */
   transition: border-color 0.3s ease;
-  break-inside: avoid; /* 防止内容被拆分到两列 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 
