@@ -6,6 +6,7 @@
 }
 
 .shuoshuo-item {
+  height: auto;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
