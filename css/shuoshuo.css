@@ -1,0 +1,22 @@
+.shuoshuo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .shuoshuo-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .shuoshuo-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .shuoshuo-item time {
+    display: block;
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 5px;
+  }
