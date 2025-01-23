@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>说说 - Bamboo</title>
+    <title>闲言碎语 - Bamboo</title>
     <link>https://6am600.github.io/shuoshuo/</link>
     <description>Le vent se lève, il faut tenter de vivre.</description>
     <generator>Hugo 0.140.1 &amp; FixIt v0.3.16</generator>
     <language>zh-CN</language>
     <managingEditor>wh18720283974@163.com (Bamboo)</managingEditor>
     <webMaster>wh18720283974@163.com (Bamboo)</webMaster>
-    <lastBuildDate>Thu, 23 Jan 2025 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate></lastBuildDate>
     <atom:link href="https://6am600.github.io/shuoshuo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>https://6am600.github.io/shuoshuo/2025-01-23/</link>
-      <pubDate>Thu, 23 Jan 2025 12:00:00 +0800</pubDate><author>wh18720283974@163.com (Bamboo)</author>
-      <guid>https://6am600.github.io/shuoshuo/2025-01-23/</guid>
-      <description>&lt;p&gt;今天天气不错，适合出去走走。&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>
