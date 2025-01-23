@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Android - 标签 - Bamboo</title>
-    <link>https://6am600.github.io/tags/android/</link>
+    <title>优质 - 分类 - Bamboo</title>
+    <link>https://6am600.github.io/categories/%E4%BC%98%E8%B4%A8/</link>
     <description>Le vent se lève, il faut tenter de vivre.</description>
     <generator>Hugo 0.140.1 &amp; FixIt v0.3.16</generator>
     <language>zh-CN</language>
     <managingEditor>wh18720283974@163.com (Bamboo)</managingEditor>
     <webMaster>wh18720283974@163.com (Bamboo)</webMaster>
-    <lastBuildDate>Fri, 10 Jan 2025 11:23:00 +0800</lastBuildDate>
-    <atom:link href="https://6am600.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>笔记 - Android</title>
-      <link>https://6am600.github.io/posts/%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Fri, 10 Jan 2025 11:23:00 +0800</pubDate><author>wh18720283974@163.com (扳布)</author>
-      <guid>https://6am600.github.io/posts/%E7%AC%94%E8%AE%B0/</guid>
-      <category domain="https://6am600.github.io/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
-      <description>笔记 - Android</description>
-    </item>
+    <lastBuildDate>Mon, 06 Jan 2025 17:52:10 +0800</lastBuildDate>
+    <atom:link href="https://6am600.github.io/categories/%E4%BC%98%E8%B4%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>优秀文章 Android</title>
       <link>https://6am600.github.io/posts/139e823/</link>
