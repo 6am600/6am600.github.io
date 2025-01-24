@@ -7,13 +7,13 @@
   background-color: #F7F9FE;
 }
 
-.shuoshuo-grid {
+.essay-grid {
   column-count: 3; /* 设置为三列 */
   column-gap: 20px; /* 设置列之间的间距 */
   margin: 20px 0;
 }
 
-.shuoshuo-item {
+.essay-item {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -24,29 +24,29 @@
   break-inside: avoid; /* 防止项目被拆分到两列中 */
 }
 
-.shuoshuo-item:hover {
+.essay-item:hover {
   border-color: #007bff;
 }
 
-.shuoshuo-header {
+.essay-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.shuoshuo-username {
+.essay-username {
   font-weight: bold;
   color: #333;
   font-size: 1.1em;
 }
 
-.shuoshuo-datetime {
+.essay-datetime {
   font-size: 0.9em;
   color: #888;
 }
 
-.shuoshuo-content {
+.essay-content {
   font-size: 1em;
   color: #555;
   margin-top: 5px;
@@ -56,21 +56,21 @@
 
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
-  .shuoshuo-grid {
+  .essay-grid {
     column-count: 3; /* 设置为三列 */
   }
 }
 
 /* 平板端（中等屏幕）下的两列布局 */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .shuoshuo-grid {
+  .essay-grid {
     column-count: 2; /* 设置为两列 */
   }
 }
 
 /* 手机端（小屏幕）下的单列布局 */
 @media (max-width: 767px) {
-  .shuoshuo-grid {
+  .essay-grid {
     column-count: 1; /* 设置为一列 */
   }
 }
