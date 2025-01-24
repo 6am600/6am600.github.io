@@ -3,10 +3,6 @@
   width: 85% !important;
 }
 
-.container,#header-desktop {
-  background-color: #F7F9FE;
-}
-
 .essay-grid {
   column-count: 3; /* 设置为三列 */
   column-gap: 20px; /* 设置列之间的间距 */
