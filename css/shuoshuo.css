@@ -1,6 +1,6 @@
 /* 默认为桌面端的两列瀑布流布局 */
 .page {
-  width: 80% !important;
+  width: 85% !important;
 }
 
 .container,#header-desktop {
@@ -8,7 +8,7 @@
 }
 
 .shuoshuo-grid {
-  column-count: 3; /* 设置为两列 */
+  column-count: 3; /* 设置为三列 */
   column-gap: 20px; /* 设置列之间的间距 */
   margin: 20px 0;
 }
