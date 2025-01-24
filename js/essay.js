@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         mask.removeEventListener('click', clickFunc)
                     }, 300)
                 }
-            }, 50)
+            }, 10)
         }
         // 添加图片
         changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`])
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const winCenterPoint = { x: winWidth / 2, y: winHeight / 2 }
         const offsetDistance = { left: winCenterPoint.x - originalCenterPoint.x, top: winCenterPoint.y - originalCenterPoint.y }
         const diffs = { left: ((adaptScale() - 1) * offsetWidth) / 2, top: ((adaptScale() - 1) * offsetHeight) / 2 }
-        changeStyle(cloneEl, ['transition: all 0.3s', `width: ${offsetWidth * adaptScale() + 'px'}`, `transform: translate(${offsetDistance.left - diffs.left}px, ${offsetDistance.top - diffs.top}px)`])
+        changeStyle(cloneEl, ['transition: all 0.3s', `width: ${offsetWidth * adaptScale() + 'px'}`, `transform: translate(${offsetDistance.left - left - diffs.left}px, ${offsetDistance.top - top - diffs.top}px)`])
         // 消除偏差
         setTimeout(() => {
             changeStyle(cloneEl, ['transition: all 0s', `left: 0`, `top: 0`, `transform: translate(${offsetDistance.left - diffs.left}px, ${offsetDistance.top - diffs.top}px)`])
