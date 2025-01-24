@@ -64,6 +64,16 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.essay-image-zoom {
+  display: none; /* 默认隐藏 */
+  position: absolute;
+}
+
+.essay-image:hover + .essay-image-zoom {
+  width: 100%;
+  display: inline-block; /* 鼠标悬停时显示 */
+}
+
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
   .essay-grid {
