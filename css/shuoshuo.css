@@ -54,15 +54,23 @@
   padding-top: 10px;
 }
 
-/* 手机端（小屏幕）下的单列布局 */
-@media (max-width: 767px) {
+/* 桌面端（大屏幕）下的三列布局 */
+@media (min-width: 1024px) {
   .shuoshuo-grid {
-    column-count: 1; /* 在小屏幕上设置为一列 */
+    grid-template-columns: repeat(3, 1fr); /* 每行三列 */
   }
 }
 
-@media (max-width: 1400px) {
+/* 平板端（中等屏幕）下的两列布局 */
+@media (min-width: 768px) and (max-width: 1023px) {
   .shuoshuo-grid {
-    column-count: 2; /* 在小屏幕上设置为两列 */
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+  }
+}
+
+/* 手机端（小屏幕）下的单列布局 */
+@media (max-width: 767px) {
+  .shuoshuo-grid {
+    grid-template-columns: 1fr; /* 每行一列 */
   }
 }
