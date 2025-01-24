@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     overlay.addEventListener('click', function(event) {
       if (event.target === overlay) { // 确保点击的是遮罩层本身而不是图片
-        image.classList.remove('enlarged');
+        images.forEach(function(image) {
+          image.classList.remove('enlarged');
+        });
         overlay.style.display = 'none';
       }
     });
