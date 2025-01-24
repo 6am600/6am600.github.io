@@ -60,6 +60,7 @@
 
 .essay-image {
   transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: scale(1); /* 默认大小 */
   cursor: pointer;
   max-width: 20%; /* 图片宽度自适应 */
   height: auto;
@@ -69,16 +70,13 @@
 
 /* 定义放大的状态 */
 .enlarged {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important; /* 居中 */
   z-index: 1000;
-  max-width: none;
-  height: 80vh; /* 视口高度的80% */
-  width: auto; /* 宽度自动计算 */
-  object-fit: contain; /* 确保图片按照比例缩放 */
   opacity: 1;
+  position: fixed;
+  top: 10%; /* 确保顶部留有10%的空间 */
+  left: 50%;
+  transform-origin: top center; /* 放大时从顶部中间开始 */
+  transform: translateX(-50%) scale(1); /* 初始状态下居中 */
 }
 
 /* 背景遮罩层 */
