@@ -60,3 +60,9 @@
     column-count: 1; /* 在小屏幕上设置为一列 */
   }
 }
+
+@media (max-width: 1400px) {
+  .shuoshuo-grid {
+    column-count: 2; /* 在小屏幕上设置为两列 */
+  }
+}
