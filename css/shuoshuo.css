@@ -8,8 +8,8 @@
 }
 
 .shuoshuo-grid {
-  column-count: 3; /* 设置为三列 */
-  column-gap: 20px; /* 设置列之间的间距 */
+  display: grid;
+  gap: 20px; /* 设置行和列的间距 */
   margin: 20px 0;
 }
 
@@ -20,8 +20,6 @@
   padding: 15px;
   transition: border-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* 在每个item之间添加底部间距 */
-  break-inside: avoid; /* 防止项目被拆分到两列中 */
 }
 
 .shuoshuo-item:hover {
@@ -57,20 +55,20 @@
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
   .shuoshuo-grid {
-    column-count: 3; /* 设置为三列 */
+    grid-template-columns: repeat(3, 1fr); /* 每行三列 */
   }
 }
 
 /* 平板端（中等屏幕）下的两列布局 */
 @media (min-width: 768px) and (max-width: 1023px) {
   .shuoshuo-grid {
-    column-count: 2; /* 设置为两列 */
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
   }
 }
 
 /* 手机端（小屏幕）下的单列布局 */
 @media (max-width: 767px) {
   .shuoshuo-grid {
-    column-count: 1; /* 设置为一列 */
+    grid-template-columns: 1fr; /* 每行一列 */
   }
 }
