@@ -80,6 +80,18 @@
   opacity: 1;
 }
 
+/* 背景遮罩层 */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
 
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
