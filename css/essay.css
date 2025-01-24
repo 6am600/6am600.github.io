@@ -1,0 +1,74 @@
+/* 默认为桌面端的两列瀑布流布局 */
+.page {
+  width: 85% !important;
+}
+
+.container,#header-desktop {
+  background-color: #F7F9FE;
+}
+
+.shuoshuo-grid {
+  display: grid;
+  gap: 20px; /* 设置行和列的间距 */
+  margin: 20px 0;
+}
+
+.shuoshuo-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shuoshuo-item:hover {
+  border-color: #007bff;
+}
+
+.shuoshuo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.shuoshuo-username {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.shuoshuo-datetime {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.shuoshuo-content {
+  font-size: 1em;
+  color: #555;
+  margin-top: 5px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+/* 桌面端（大屏幕）下的三列布局 */
+@media (min-width: 1024px) {
+  .shuoshuo-grid {
+    grid-template-columns: repeat(3, 1fr); /* 每行三列 */
+  }
+}
+
+/* 平板端（中等屏幕）下的两列布局 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .shuoshuo-grid {
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+  }
+}
+
+/* 手机端（小屏幕）下的单列布局 */
+@media (max-width: 767px) {
+  .shuoshuo-grid {
+    grid-template-columns: 1fr; /* 每行一列 */
+  }
+}
