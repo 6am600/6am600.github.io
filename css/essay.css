@@ -51,13 +51,15 @@
 }
 
 .essay-images {
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 10px; /* 图片之间的间距 */
   margin-top: 10px;
 }
 
 .essay-image {
-  max-width: 100%;
+  max-width: 20%; /* 图片宽度自适应 */
   height: auto;
-  margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
