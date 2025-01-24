@@ -57,20 +57,20 @@
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
   .shuoshuo-grid {
-    grid-template-columns: repeat(3, 1fr); /* 每行三列 */
+    column-count: 3; /* 设置为三列 */
   }
 }
 
 /* 平板端（中等屏幕）下的两列布局 */
 @media (min-width: 768px) and (max-width: 1023px) {
   .shuoshuo-grid {
-    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+    column-count: 2; /* 设置为两列 */
   }
 }
 
 /* 手机端（小屏幕）下的单列布局 */
 @media (max-width: 767px) {
   .shuoshuo-grid {
-    grid-template-columns: 1fr; /* 每行一列 */
+    column-count: 1; /* 设置为一列 */
   }
 }
