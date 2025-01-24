@@ -67,10 +67,25 @@
 .essay-image-zoom {
   display: none; /* 默认隐藏 */
   position: absolute;
+  width: 30%;
+  height: auto;
 }
 
-.essay-image:hover + .essay-image-zoom {
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.essay-image:hover + .essay-image-zoom,.lightbox {
   display: inline-block; /* 鼠标悬停时显示 */
 }
 
