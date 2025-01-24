@@ -50,6 +50,18 @@
   padding-top: 10px;
 }
 
+.essay-images {
+  margin-top: 10px;
+}
+
+.essay-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
   .essay-grid {
