@@ -51,6 +51,7 @@
 }
 
 .essay-images {
+  position: relative;
   display: flex; /* 使用 Flexbox 布局 */
   flex-wrap: wrap; /* 允许换行 */
   gap: 10px; /* 图片之间的间距 */
@@ -58,30 +59,27 @@
 }
 
 .essay-image {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  cursor: pointer;
   max-width: 20%; /* 图片宽度自适应 */
   height: auto;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.essay-image-zoom {
-  display: none; /* 默认隐藏 */
-  position: absolute;
-  width: 30%;
+/* 定义放大的状态 */
+.enlarged {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(2) !important; /* 放大两倍并居中 */
+  z-index: 1000;
+  max-width: none;
   height: auto;
+  width: auto;
+  opacity: 1;
 }
 
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
 /* 桌面端（大屏幕）下的三列布局 */
 @media (min-width: 1024px) {
