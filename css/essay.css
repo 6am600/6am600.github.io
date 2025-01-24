@@ -72,11 +72,12 @@
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
-  transform: translate(-50%, -50%) scale(2) !important; /* 放大两倍并居中 */
+  transform: translate(-50%, -50%) !important; /* 居中 */
   z-index: 1000;
   max-width: none;
-  height: auto;
-  width: auto;
+  height: 80vh; /* 视口高度的80% */
+  width: auto; /* 宽度自动计算 */
+  object-fit: contain; /* 确保图片按照比例缩放 */
   opacity: 1;
 }
 
