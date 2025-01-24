@@ -6,32 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // 添加遮罩层到DOM中
     document.body.appendChild(overlay);
   
-    images.forEach(function(img) {
-        img.addEventListener('click', function(event) {
-            img.classList.toggle('enlarged');
+    images.forEach(function(image) {
+        image.addEventListener('click', function(event) {
+            image.classList.toggle('enlarged');
             overlay.style.display = 'block';
-            if (!img.classList.contains('enlarged')) {
-                const screenHeight = window.innerHeight * 0.8; // 获取80%的屏幕高度
-                const imgHeight = img.offsetHeight; // 获取图片原始高度
-                const scaleRatio = screenHeight / imgHeight; // 计算缩放比例
-                
-                requestAnimationFrame(() => {
-                  img.style.transform = `translateX(-50%) scale(${scaleRatio})`; // 应用缩放比例
-                  img.classList.add('enlarged');
-                });
-              } else {
-                requestAnimationFrame(() => {
-                  img.classList.remove('enlarged');
-                  setTimeout(() => {
-                    img.style.transform = 'translateX(-50%) scale(1)'; // 恢复初始状态
-                  }, 500); // 等待动画结束
-                });
-              }
         });
       });
   
     overlay.addEventListener('click', function(event) {
-      if (event.target === overlay) {
+      if (event.target === overlay) { // 确保点击的是遮罩层本身而不是图片
+        images.forEach(function(image) {
+          image.classList.remove('enlarged');
+        });
         overlay.style.display = 'none';
       }
     });
