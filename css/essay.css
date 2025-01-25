@@ -24,30 +24,43 @@
   border-color: #007bff;
 }
 
-.essay-header {
+.essay-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 10px;
 }
 
-.essay-username {
+.essay-description {
+  font-weight: 600;
+  font-size: 14px;
+  /* font-family: 'Times New Roman', serif; 设置字体 */
+}
+
+#footer-item { 
+  font-size: 0.7em;
+  font-weight: 100;
+  color: black;
+  background-color: #EEEEEE;
+  border-radius: 13px; /* 增加圆角半径 */
+  padding: 1px 7px;
+}
+
+/* .essay-username {
   font-weight: bold;
   color: #333;
   font-size: 1.1em;
-}
+} */
 
-.essay-datetime {
-  font-size: 0.9em;
-  color: #888;
-}
+/* .essay-datetime , .essay-username{
+  font-size: 0.8em;
+  color: black;
+} */
 
-.essay-content {
-  font-size: 1em;
+.essay-separate{
   color: #555;
-  margin-top: 5px;
-  border-top: 1px solid #eee;
-  padding-top: 10px;
+  margin: 12px 0 15px 0;
+  border-top: 2px dashed #eee;
 }
 
 .essay-images {
