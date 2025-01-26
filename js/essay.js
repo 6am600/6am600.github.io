@@ -1,206 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let scale = 1;
-    let offset = { left: 0, top: 0 };
-    let origin = 'center';
-    let initialData = { offset: {}, origin: 'center', scale: 1 };
-    let startPoint = { x: 0, y: 0 };
-    let isTouching = false;
-    let isMove = false;
-    let touches = new Map();
-    let lastDistance = 0;
-    let lastScale = 1;
-    let scaleOrigin = { x: 0, y: 0 };
-
-    const { innerWidth: winWidth, innerHeight: winHeight } = window;
-    let cloneEl = null;
-    let originalEl = null;
-
-    document.querySelectorAll('.essay-image').forEach(function (image) {
-        image.addEventListener('click', function (e) {
-            e.preventDefault();
-            originalEl = e.target;
-            cloneEl = originalEl.cloneNode(true);
-            // originalEl.style.opacity = 0;
-            openPreview();
+    const images = document.querySelectorAll('.essay-image');
+    const overlay = document.createElement('div'); // 创建蒙层
+    let twiceOffsetX = 0;
+    let twiceOffsetY = 0;
+    overlay.classList.add('overlay');
+    document.body.appendChild(overlay); // 将蒙层添加到页面
+  
+    // 遍历所有图片
+    images.forEach(image => {
+        // 点击图片放大
+        image.addEventListener('click', function (event) {
+            event.stopPropagation(); // 阻止事件冒泡
+  
+            if (!image.classList.contains('zoomed')) {
+                // 第一次放大：放大 2 倍
+                const rect = image.getBoundingClientRect();
+                const offsetX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
+                const offsetY = (window.innerHeight / 2) - (rect.top + rect.height / 2);
+                twiceOffsetX = offsetX;
+                twiceOffsetY = offsetY;
+                image.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(4)`;
+                image.style.zIndex = 100; // 设置最高层级
+                image.classList.add('zoomed');
+                overlay.classList.add('active');
+            } else if (!image.classList.contains('zoomed-again')) {
+                // 第二次放大：在 2 倍基础上再放大 1.5 倍
+                image.style.transform = `translate(${twiceOffsetX}px, ${twiceOffsetY}px) scale(5)`;
+                image.style.zIndex = 100; // 设置最高层级
+                image.classList.add('zoomed-again');
+            } else {
+                // 恢复到初始状态
+                overlay.classList.remove('active');
+                image.style.zIndex = 1; // 恢复初始层级
+                image.style.transform = 'translate(0, 0) scale(1)';
+                image.classList.remove('zoomed', 'zoomed-again');
+            }
         });
     });
+  
+    // 点击蒙层或屏幕任意位置缩小
+    overlay.addEventListener('click', function () {
+        const zoomedImage = document.querySelector('.essay-image.zoomed');
+      if (zoomedImage) {
+          // 恢复到初始位置
+          zoomedImage.style.transform = 'translate(0, 0) scale(1)';
+          zoomedImage.style.zIndex = 1; // 恢复初始层级
+          zoomedImage.classList.remove('zoomed', 'zoomed-again');
+      }
 
-    function openPreview() {
-        scale = 1;
-        const { offsetWidth, offsetHeight } = originalEl;
-        const { top, left } = originalEl.getBoundingClientRect();
-        // 创建蒙层
-        const mask = document.createElement('div');
-        mask.classList.add('modal');
-        // 添加在body下
-        document.body.appendChild(mask);
-        // 注册事件
-        mask.addEventListener("click", clickFunc);
-        mask.addEventListener('mousewheel', zoom, { passive: false });
-        // 遮罩点击事件
-        function clickFunc() {
-            setTimeout(() => {
-                if (isMove) {
-                    isMove = false;
-                } else {
-                    changeStyle(cloneEl, ['transition: all .3s', `left: ${left}px`, `top: ${top}px`, `transform: translate(0,0)`, `width: ${offsetWidth}px`]);
-                    setTimeout(() => {
-                        document.body.removeChild(mask);
-                        originalEl.style.opacity = 1;
-                        mask.removeEventListener('click', clickFunc);
-                    }, 300);
-                }
-            }, 10);
-        }
-        // 添加图片
-        changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`]);
-        mask.appendChild(cloneEl);
-        // 移动图片到屏幕中心位置
-        const originalCenterPoint = { x: offsetWidth / 2 + left, y: offsetHeight / 2 + top };
-        const winCenterPoint = { x: winWidth / 2, y: winHeight / 2 };
-        const offsetDistance = { left: winCenterPoint.x - originalCenterPoint.x + left, top: winCenterPoint.y - originalCenterPoint.y + top + 40};
-        const diffs = { left: ((adaptScale() - 1) * offsetWidth) / 2, top: ((adaptScale() - 1) * offsetHeight) / 2 };
-        changeStyle(cloneEl, ['transition: all 0.3s', `width: ${offsetWidth * adaptScale() + 'px'}`, `transform: translate(${offsetDistance.left - left - diffs.left}px, ${offsetDistance.top - top - diffs.top}px)`]);
-        // 消除偏差
-        setTimeout(() => {
-            changeStyle(cloneEl, ['transition: all 0s', `left: 0`, `top: 0`, `transform: translate(${offsetDistance.left - diffs.left}px, ${offsetDistance.top - diffs.top}px)`]);
-            offset = { left: offsetDistance.left - diffs.left, top: offsetDistance.top - diffs.top }; // 记录值
-            record();
-        }, 300);
-    }
-
-    // 滚轮缩放
-    const zoom = (event) => {
-        if (!event.deltaY) {
-            return;
-        }
-        event.preventDefault();
-        origin = `${event.offsetX}px ${event.offsetY}px`;
-        // 缩放执行
-        if (event.deltaY < 0) {
-            scale += 0.1; // 放大
-        } else if (event.deltaY > 0) {
-            scale >= 0.2 && (scale -= 0.1); // 缩小
-        }
-        if (scale < initialData.scale) {
-            reduction();
-        }
-        offset = getOffsetCorrection(event.offsetX, event.offsetY);
-        changeStyle(cloneEl, ['transition: all .15s', `transform-origin: ${origin}`, `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`]);
-    };
-
-    // 获取中心改变的偏差
-    function getOffsetCorrection(x = 0, y = 0) {
-        const touchArr = Array.from(touches);
-        if (touchArr.length === 2) {
-            const start = touchArr[0][1];
-            const end = touchArr[1][1];
-            x = (start.offsetX + end.offsetX) / 2;
-            y = (start.offsetY + end.offsetY) / 2;
-        }
-        origin = `${x}px ${y}px`;
-        const offsetLeft = (scale - 1) * (x - scaleOrigin.x) + offset.left;
-        const offsetTop = (scale - 1) * (y - scaleOrigin.y) + offset.top;
-        scaleOrigin = { x, y };
-        return { left: offsetLeft, top: offsetTop };
-    }
-
-    // 操作事件
-    window.addEventListener('pointerdown', function (e) {
-        e.preventDefault();
-        touches.set(e.pointerId, e); // TODO: 点击存入触摸点
-        isTouching = true;
-        startPoint = { x: e.clientX, y: e.clientY };
-        if (touches.size === 2) { // TODO: 判断双指触摸，并立即记录初始数据
-            lastDistance = getDistance();
-            lastScale = scale;
-        }
+      // 隐藏蒙层
+      overlay.classList.remove('active');
     });
-    window.addEventListener('pointerup', function (e) {
-        touches.delete(e.pointerId); // TODO: 抬起移除触摸点
-        if (touches.size <= 0) {
-            isTouching = false;
-        } else {
-            const touchArr = Array.from(touches);
-            // 更新点位
-            startPoint = { x: touchArr[0][1].clientX, y: touchArr[0][1].clientY };
-        }
-        setTimeout(() => {
-            isMove = false;
-        }, 300);
-    });
-    window.addEventListener('pointermove', (e) => {
-        e.preventDefault();
-        if (isTouching) {
-            isMove = true;
-            if (touches.size < 2) { // 单指滑动
-                offset = {
-                    left: offset.left + (e.clientX - startPoint.x),
-                    top: offset.top + (e.clientY - startPoint.y),
-                };
-                changeStyle(cloneEl, ['transition: all 0s', `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`, `transform-origin: ${origin}`]);
-                // 更新点位
-                startPoint = { x: e.clientX, y: e.clientY };
-            } else {
-                // 双指缩放
-                touches.set(e.pointerId, e);
-                const ratio = getDistance() / lastDistance;
-                scale = ratio * lastScale;
-                offset = getOffsetCorrection();
-                if (scale < initialData.scale) {
-                    reduction();
-                }
-                changeStyle(cloneEl, ['transition: all 0s', `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`, `transform-origin: ${origin}`]);
-            }
-        }
-    });
-    window.addEventListener('pointercancel', function (e) {
-        touches.clear(); // 可能存在特定事件导致中断，真机操作时 pointerup 在某些边界情况下不会生效，所以需要清空
-    });
-
-    // 修改样式，减少回流重绘
-    function changeStyle(el, arr) {
-        const original = el.style.cssText.split(';');
-        original.pop();
-        el.style.cssText = original.concat(arr).join(';') + ';';
-    }
-
-    // 计算自适应屏幕的缩放值
-    function adaptScale() {
-        const { offsetWidth: w, offsetHeight: h } = originalEl;
-        let scale = 0;
-        scale = winWidth / w;
-        if (h * scale > winHeight - 80) {
-            scale = (winHeight - 80) / h;
-        }
-        return scale;
-    }
-
-    // 获取距离
-    function getDistance() {
-        const touchArr = Array.from(touches);
-        if (touchArr.length < 2) {
-            return 0;
-        }
-        const start = touchArr[0][1];
-        const end = touchArr[1][1];
-        return Math.hypot(end.x - start.x, end.y - start.y);
-    }
-
-    // 记录初始化数据
-    function record() {
-        initialData = Object.assign({}, { offset, origin, scale });
-    }
-
-    // 还原记录，用于边界处理
-    let timer = null;
-    function reduction() {
-        timer && clearTimeout(timer);
-        timer = setTimeout(() => {
-            offset = initialData.offset;
-            origin = initialData.origin;
-            scale = initialData.scale;
-            changeStyle(cloneEl, [`transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`, `transform-origin: ${origin}`]);
-        }, 300);
-    }
-});
+  });
