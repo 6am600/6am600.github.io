@@ -72,74 +72,14 @@
 }
 
 .essay-image {
-  display: block;
-  width: 20%;
+  width: calc(20% - 10px); 
   margin: 8px 0;
   cursor: pointer;
-  max-width: 20%;
-  /* 图片宽度自适应 */
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* 图片宽度自适应 */
-  height: auto;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.5s ease;
-  transform-origin: center center; /* 确保缩放从中心开始 */
-  z-index: 1; /* 初始层级 */
 }
 
-/* 放大后的图片层级 */
-.essay-image.zoomed {
-  z-index: 100; /* 确保图片在蒙层上方 */
-}
-
-/* 再次放大后的图片层级 */
-.essay-image.zoomed-again {
-  z-index: 100; /* 确保图片在蒙层上方 */
-}
-
-/* 蒙层样式 */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
-  z-index: 50; /* 蒙层级 */
-  opacity: 0; /* 默认透明 */
-  visibility: hidden; /* 默认隐藏 */
-  transition: opacity 0.5s ease, visibility 0.5s ease; /* 过渡效果 */
-}
-
-/* 蒙层显示时的样式 */
-.overlay.active {
-  opacity: 1; /* 完全不透明 */
-  visibility: visible; /* 显示 */
-}
-
-/* 图片预览
-.modal {
-  touch-action: none;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  user-select: none;
-}
-
-.modal>img {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  /* transition: all var(--delay_time); */
-  /* transform: translateZ(0);
-} */
 
 
 /* 桌面端（大屏幕）下的三列布局 */
