@@ -46,6 +46,14 @@
   padding: 1px 7px;
 }
 
+#footer-item {
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+#footer-item:hover {
+  background-color: #F8A64E;
+  color: #FFF;
+}
 /* .essay-username {
   font-weight: bold;
   color: #333;
