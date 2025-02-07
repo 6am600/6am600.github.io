@@ -34,7 +34,17 @@
 .essay-description {
   font-weight: 600;
   font-size: 14px;
-  /* font-family: 'Times New Roman', serif; 设置字体 */
+}
+
+@font-face {
+  font-family: 'xiangfengyizuishiqianyuan';
+  src: url('../fonts/xiangfengyizuishiqianyuan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'xiangfengyizuishiqianyuan', sans-serif;
 }
 
 #footer-item { 
