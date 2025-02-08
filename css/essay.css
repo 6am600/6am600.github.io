@@ -32,19 +32,7 @@
 }
 
 .essay-description {
-  font-weight: 600;
   font-size: 14px;
-}
-
-@font-face {
-  font-family: 'xiangfengyizuishiqianyuan';
-  src: url('../fonts/xiangfengyizuishiqianyuan.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-body {
-  font-family: 'xiangfengyizuishiqianyuan', sans-serif;
 }
 
 #footer-item { 
