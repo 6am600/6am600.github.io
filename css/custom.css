@@ -1,3 +1,11 @@
+body, .article-content {
+  font-family: 'Long Cang', cursive;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-family: 'Noto Serif SC', serif;
+  font-family: 'Zhi Mang Xing', cursive;
+}
+
 /** 添加网格背景 */
 .single {
     .single-subtitle {
@@ -212,7 +220,7 @@
   align-items: center;
   justify-content: center;
   transform: translate(0, -4px);
-  /* padding: 1px 8px; */
+  padding: 8px 8px;
   background: #fff;
   border: 1px solid #e3e8f7;
   border-radius: 40px;
