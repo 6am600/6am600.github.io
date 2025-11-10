@@ -20,18 +20,18 @@
   <title>Teacher Forcing - 扳布屋</title>
 
   
-    <meta name="description" content="对Transformer的整体认知">
+    <meta name="description" content="由于Pytorch中张量索引操作较多, 有时会在连续的网络层变化中迷失, 所以对常见操作进行一些归纳, 时不时巩固">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Teacher Forcing">
 <meta property="og:url" content="https://climbingmouse.github.io/2024/01/01/teacher_forcing/">
 <meta property="og:site_name" content="扳布屋">
-<meta property="og:description" content="对Transformer的整体认知">
+<meta property="og:description" content="由于Pytorch中张量索引操作较多, 有时会在连续的网络层变化中迷失, 所以对常见操作进行一些归纳, 时不时巩固">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg">
 <meta property="article:published_time" content="2023-12-31T18:38:58.000Z">
 <meta property="article:modified_time" content="2023-12-31T18:38:58.000Z">
 <meta property="article:author" content="Bamboo">
-<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="优化">
 <meta property="article:tag" content="架构">
 <meta property="article:tag" content="模型">
 <meta name="twitter:card" content="summary_large_image">
@@ -39,7 +39,7 @@
   
   
   
-  <meta name="keywords" content="人工智能,架构,模型">
+  <meta name="keywords" content="优化,架构,模型">
 
   <!-- feed -->
   
@@ -53,7 +53,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"dateCreated":"2024-01-01T02:38:58+08:00","dateModified":"2024-01-01T02:38:58+08:00","datePublished":"2024-01-01T02:38:58+08:00","description":"","headline":"Teacher Forcing","mainEntityOfPage":{"@type":"WebPage","@id":"https://climbingmouse.github.io/2024/01/01/teacher_forcing/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"}},"url":"https://climbingmouse.github.io/2024/01/01/teacher_forcing/","keywords":"人工智能, 架构, 模型","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/transformer.png","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"dateCreated":"2024-01-01T02:38:58+08:00","dateModified":"2024-01-01T02:38:58+08:00","datePublished":"2024-01-01T02:38:58+08:00","description":"","headline":"Teacher Forcing","mainEntityOfPage":{"@type":"WebPage","@id":"https://climbingmouse.github.io/2024/01/01/teacher_forcing/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"}},"url":"https://climbingmouse.github.io/2024/01/01/teacher_forcing/","keywords":"优化, 架构, 模型","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20250212225553111.png","image":1}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" />
 </head>
 <body>
@@ -72,7 +72,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/10/dailynews/"><span class="title">【每日早报】</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/10/22/changekey/"><span class="title">修改键盘F9为Home键</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2024/12/21/someskills/"><span class="title">小技巧</span></a><a class="item title" href="/2025/03/01/justrecord/"><span class="title">有用的小知识</span></a><a class="item title" href="/2024/05/21/front_matter/"><span class="title">完整front-matter字段</span></a><a class="item title" href="/2024/02/21/%E5%BC%A0%E9%87%8F%E7%B4%A2%E5%BC%95%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C/"><span class="title">张量索引切片操作</span></a><a class="item title" href="/2024/01/01/teacher_forcing/"><span class="title">Teacher Forcing</span></a><a class="item title" href="/2023/04/21/hexodeploy/"><span class="title">HEXO部署方案</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/10/dailynews/"><span class="title">每日早报</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2024/12/21/someskills/"><span class="title">小技巧</span></a><a class="item title" href="/2025/03/01/justrecord/"><span class="title">有用的小知识</span></a><a class="item title" href="/2024/10/22/changekey/"><span class="title">修改键盘F9为Home键</span></a><a class="item title" href="/2024/05/21/front_matter/"><span class="title">完整front-matter字段</span></a><a class="item title" href="/2024/02/21/tensor/"><span class="title">张量索引切片操作</span></a><a class="item title" href="/2024/01/01/teacher_forcing/"><span class="title">Teacher Forcing</span></a><a class="item title" href="/2023/04/21/hexodeploy/"><span class="title">HEXO部署方案</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -81,10 +81,10 @@
 
 
 
-<div class="article banner top">
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/tensor.png">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a></div>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div>
 <div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2023-12-31T18:38:58.000Z">2024-01-01</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2023-12-31T18:38:58.000Z">2024-01-01</time></span></div></div></div>
     
     <div class="bottom only-title">
@@ -110,7 +110,7 @@
       <div class="header"><span>分享文章</span></div>
       <div class="body">
         <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://climbingmouse.github.io/2024/01/01/teacher_forcing/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://climbingmouse.github.io/2024/01/01/teacher_forcing/&title=Teacher Forcing - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/transformer.png&summary=对Transformer的整体认知"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=Teacher Forcing - 扳布屋&amp;body=https://climbingmouse.github.io/2024/01/01/teacher_forcing/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://climbingmouse.github.io/2024/01/01/teacher_forcing/&title=Teacher Forcing - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20250212225553111.png&summary=由于Pytorch中张量索引操作较多, 有时会在连续的网络层变化中迷失, 所以对常见操作进行一些归纳, 时不时巩固"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=Teacher Forcing - 扳布屋&amp;body=https://climbingmouse.github.io/2024/01/01/teacher_forcing/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
         
         <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://climbingmouse.github.io/2024/01/01/teacher_forcing/"/>
@@ -860,7 +860,59 @@
     }
   });
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
 <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "auto" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
   document.addEventListener('DOMContentLoaded', function () {
     window.codeElements = document.querySelectorAll('.code');
     if (window.codeElements.length > 0) {
