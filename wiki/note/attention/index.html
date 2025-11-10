@@ -17,28 +17,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>有用的小知识 - 扳布屋</title>
+  <title>Transformer：Self Attention - 扳布屋</title>
 
   
-    <meta name="description" content="记录一些有用的小知识，包含但不限于健康类">
-<meta property="og:type" content="article">
-<meta property="og:title" content="有用的小知识">
-<meta property="og:url" content="https://climbingmouse.github.io/2025/03/01/justrecord/">
+    <meta name="description" content="Transformer中的自注意力机制">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Self Attention">
+<meta property="og:url" content="https://climbingmouse.github.io/wiki/note/attention/">
 <meta property="og:site_name" content="扳布屋">
-<meta property="og:description" content="记录一些有用的小知识，包含但不限于健康类">
+<meta property="og:description" content="Transformer中的自注意力机制">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg">
-<meta property="article:published_time" content="2025-03-01T01:53:07.000Z">
-<meta property="article:modified_time" content="2025-03-09T13:33:00.162Z">
+<meta property="article:published_time" content="2023-09-12T19:38:58.000Z">
+<meta property="article:modified_time" content="2023-09-12T19:38:58.000Z">
 <meta property="article:author" content="Bamboo">
-<meta property="article:tag" content="健康">
-<meta property="article:tag" content="随手一记">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="注意力机制">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg">
   
   
   
-  <meta name="keywords" content="随手一记,健康">
+  <meta name="keywords" content=",">
 
   <!-- feed -->
   
@@ -52,26 +52,29 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"dateCreated":"2025-03-01T09:53:07+08:00","dateModified":"2025-03-09T21:33:00+08:00","datePublished":"2025-03-01T09:53:07+08:00","description":"","headline":"有用的小知识","mainEntityOfPage":{"@type":"WebPage","@id":"https://climbingmouse.github.io/2025/03/01/justrecord/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"}},"url":"https://climbingmouse.github.io/2025/03/01/justrecord/","keywords":"随手一记, 健康","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/useful.webp","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://climbingmouse.github.io/wiki/note/attention","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"name":"Self Attention","description":"Transformer中的自注意力机制","url":"https://climbingmouse.github.io/wiki/note/attention"}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" />
 </head>
 <body>
 
-<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://res.xaox.cc/gh/cdn-x/wiki@main/stellar/icon.svg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/note/"><div class="main">Transformer</div><div class="sub normal cap">大模型的无限动力马达</div><div class="sub hover cap" style="opacity:0"> Let's know it</div></a></div></header>
 
 <div class="nav-area">
 
-<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a></nav>
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item active" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a></nav>
 </div>
 <div class="widgets">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/note/" placeholder="在知识库中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
+<widget class="widget-wrapper doc-tree post-list"><div class="widget-header dis-select"><span class="name">关键认知</span></div><div class="widget-body fs14"><a class="link" href="/wiki/note/#start"><span class="toc-text">追星Transformer</span></a><a class="link active" href="/wiki/note/attention/"><span class="toc-text">Self Attention</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/note/posencoding/"><span class="toc-text">Positional Encoding</span></a></div><div class="widget-header dis-select"><span class="name">核心架构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/note/transformer-encoder/"><span class="toc-text">编码器</span></a><a class="link" href="/wiki/note/transformer-decoder/"><span class="toc-text">解码器</span></a></div></widget>
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/10/dailynews/"><span class="title">每日早报</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2023/11/10/formatimage/"><span class="title">一键更换所有图片格式</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2024/12/21/someskills/"><span class="title">小技巧</span></a><a class="item title" href="/2025/03/01/justrecord/"><span class="title">有用的小知识</span></a><a class="item title" href="/2024/10/22/changekey/"><span class="title">修改键盘F9为Home键</span></a><a class="item title" href="/2024/05/21/front_matter/"><span class="title">完整front-matter字段</span></a><a class="item title" href="/2024/02/21/tensor/"><span class="title">张量索引切片操作</span></a><a class="item title" href="/2024/01/01/teacher_forcing/"><span class="title">Teacher Forcing</span></a></div></widget>
+
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -80,104 +83,129 @@
 
 
 
-<div class="article banner top">
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110171921611.png">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-03-01T01:53:07.000Z">2025-03-01</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-03-09T13:33:00.162Z">2025-03-09</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/note/">Transformer</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2023-09-12T19:38:58.000Z">2023-09-13</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>有用的小知识</span></h1>
+        <h1 class="text title"><span>Self Attention</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="银屑病一些好用的药物"><a href="#银屑病一些好用的药物" class="headerlink" title="银屑病一些好用的药物"></a>银屑病一些好用的药物</h2><p>他克莫司</p>
-<h2 id="补钙"><a href="#补钙" class="headerlink" title="补钙"></a>补钙</h2><p>人体越越钙，吸收率越高，一般20% ~ 30%，缺钙的话可能提高到60 ~ 70，不缺钙可能会下降到10%左右（这是在正常摄入钙的情况下）</p>
-<p>柠檬酸钙（较贵）<br>碳酸钙（同样可以）<br>每天补充 700mg 以上</p>
-<p>补充氨基酸可以促进钙的吸收</p>
-<p>所以，有复合产品 —— 氨基酸螯合钙等</p>
-<p>钙补充多了会便秘（吸收率有限），多做运动保证吸收的钙能有效利用</p>
-<p>多补充维生素D！！！</p>
-<h2 id="最让人舒服的11种颜色RGB值和十六进制值"><a href="#最让人舒服的11种颜色RGB值和十六进制值" class="headerlink" title="最让人舒服的11种颜色RGB值和十六进制值"></a>最让人舒服的11种颜色RGB值和十六进制值</h2><table>
-<thead>
-<tr>
-<th>序号</th>
-<th align="left">名称</th>
-<th align="left">RGB</th>
-<th align="left">十六进制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td align="left">豆沙绿</td>
-<td align="left">(199, 237, 204)</td>
-<td align="left">#C7EDCC</td>
-</tr>
-<tr>
-<td>2</td>
-<td align="left">银河白</td>
-<td align="left">(255, 255, 255)</td>
-<td align="left">#FFFFFF</td>
-</tr>
-<tr>
-<td>3</td>
-<td align="left">杏仁黄</td>
-<td align="left">(250, 249, 222)</td>
-<td align="left">#FAF9DE</td>
-</tr>
-<tr>
-<td>4</td>
-<td align="left">秋叶褐</td>
-<td align="left">(255, 242, 226)</td>
-<td align="left">#FFF2E2</td>
-</tr>
-<tr>
-<td>5</td>
-<td align="left">胭脂红</td>
-<td align="left">(253, 230, 224)</td>
-<td align="left">#FDE6E0</td>
-</tr>
-<tr>
-<td>6</td>
-<td align="left">青草绿</td>
-<td align="left">(227, 237, 205)</td>
-<td align="left">#E3EDCD</td>
-</tr>
-<tr>
-<td>7</td>
-<td align="left">海天蓝</td>
-<td align="left">(220, 226, 241)</td>
-<td align="left">#DCE2F1</td>
-</tr>
-<tr>
-<td>8</td>
-<td align="left">葛巾紫</td>
-<td align="left">(233, 235, 254)</td>
-<td align="left">#E9EBFE</td>
-</tr>
-<tr>
-<td>9</td>
-<td align="left">极光灰</td>
-<td align="left">(234, 234, 239)</td>
-<td align="left">#EAEAEF</td>
-</tr>
-<tr>
-<td>10</td>
-<td align="left">苹果绿</td>
-<td align="left">(183, 232, 189)</td>
-<td align="left">#B7E8BD</td>
-</tr>
-<tr>
-<td>11</td>
-<td align="left">豆沙绿-略暗</td>
-<td align="left">(204, 232, 207)</td>
-<td align="left">#CCE8CF</td>
-</tr>
-</tbody></table>
+  </div><article class="md-text content"><div class="tag-plugin quot p"><p class="content"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg><span class="text">为什么需要注意力机制</span><span class="empty"></span></p></div>
+
+<p>Transformer出现之前, 对于NLP任务的主力模型是:</p>
+<p>RNN</p>
+<p>LSTM&#x2F;GRU</p>
+<p>这些模型都承担着一个艰难任务：</p>
+<blockquote>
+<p><strong>在一个长序列中，理解词与词之间的关系，尤其是远距离的关系。</strong></p>
+</blockquote>
+<p>但它们有一个共同的致命限制：</p>
+<ul>
+<li>不能让每个词看到全局</li>
+<li>信息被压得太狠，丢失严重</li>
+<li>训练难以并行，效率低下</li>
+</ul>
+<p><code>注意力机制</code>正是为了解决这些根本性问题而诞生的。</p>
+<h2 id="为什么RNN-LSTM处理不好全局依赖"><a href="#为什么RNN-LSTM处理不好全局依赖" class="headerlink" title="为什么RNN&#x2F;LSTM处理不好全局依赖"></a>为什么RNN&#x2F;LSTM处理不好全局依赖</h2><h3 id="单向传递信息"><a href="#单向传递信息" class="headerlink" title="单向传递信息"></a>单向传递信息</h3><p>RNN&#x2F;LSTM 的信息流是链式的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 → x2 → x3 → x4 → ...</span><br></pre></td></tr></table></figure>
+
+<p>这意味着：</p>
+<ul>
+<li>x5 想知道 x1 的信息，要经过 x2 → x3 → x4 的层层传递</li>
+<li>一旦中间丢失，就再也补不回来</li>
+<li>越远的关系，越容易消失</li>
+</ul>
+<p>所以像这种句子对它们非常困难：</p>
+<blockquote>
+<p>“我昨天看了一部电影，电影主角是….剧情非常的跌宕起伏,….它非常好看。”</p>
+</blockquote>
+<p><strong>“它”</strong> 与 <strong>“电影”</strong> 的距离太远，RNN 容易“忘”。</p>
+<h3 id="梯度消失-梯度爆炸"><a href="#梯度消失-梯度爆炸" class="headerlink" title="梯度消失&#x2F;梯度爆炸"></a>梯度消失&#x2F;梯度爆炸</h3><p>链式结构导致反向传播也需要一层层回传。</p>
+<p>传统 RNN 的隐藏状态更新公式：</p>
+<p>$$ht&#x3D;tanh(Wht−1+Uxt)$$</p>
+<p>反向传播时梯度会不断乘以权重矩阵 WWW 和 tanh 的导数</p>
+<p>$$Dn&#x3D;σ′(z1)w1⋅σ′(z2)w2⋅⋯⋅σ′(zn)wn$$</p>
+<p>不难发现, 梯度的计算呈<strong>连乘</strong>形式</p>
+<p>当序列很长时：</p>
+<ul>
+<li>梯度不断变小 → 消失</li>
+<li>或不断变大 → 爆炸</li>
+</ul>
+<p>这让模型学不到长期关系。</p>
+<p>当然,LSTM&#x2F;GRU 在梯度消失&#x2F;爆炸问题已经做了优化, 通过门控机制控制信息流, 使一部分状态以近似线性方式在序列中传播，从而避免梯度在时间维度上的指数级衰减或爆炸，解决传统 RNN 的长期依赖问题</p>
+<h3 id="串行计算"><a href="#串行计算" class="headerlink" title="串行计算"></a>串行计算</h3><p>RNN系列模型的特点:</p>
+<blockquote>
+<p>当前时间步必须等上一时间步走完才能开始</p>
+</blockquote>
+<p>因此, 训练速度很慢</p>
+<p>而 Attention 可以并行计算, 一次矩阵乘法全部计算出来, 并行计算, 充分利用GPU</p>
+<h4 id="为什么不用CNN"><a href="#为什么不用CNN" class="headerlink" title="为什么不用CNN"></a>为什么不用CNN</h4><p>CNN 虽然可以并行，但存在一个无法突破的问题：</p>
+<p><strong>CNN 的感受野是局部的。</strong></p>
+<p>想让 CNN 跨越长距离依赖，需要不断叠加卷积层扩展感受野。</p>
+<ul>
+<li>5层感受野可能只有几十个词</li>
+<li>要覆盖整个句子需要几十层甚至更多</li>
+</ul>
+<p>训练难度非常大。</p>
+<h3 id="隐藏状态是对信息的强压缩"><a href="#隐藏状态是对信息的强压缩" class="headerlink" title="隐藏状态是对信息的强压缩"></a><strong>隐藏状态是对信息的强压缩</strong></h3><p>RNN 把之前所有词的信息压进一个固定维度的张量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h_t = f(x_t, h_&#123;t-1&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>无论你前面说了 100 个词，还是 1000 个词，最终信息都必须塞进一个固定长度的 h。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110192132166.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110192132166.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+
+<p>上图是seq2seq架构处理翻译任务, seq2seq架构包括三部分, encoder(编码器), decoder(解码器), 中间语义张量c</p>
+<p>对于图中的案例, 编码器首先处理中文输入 “欢迎 来 北京”, 通过GRU模型获得每个时间步的输出张量, 最后将它们拼接成一个中间语义张量c, 接着解码器将使用这个中间语义张量c以及每一个时间步的隐层张量, 逐个生成对应的翻译语言</p>
+<p>decoder只能依赖固定长度的中间语义张量c</p>
+<p>也就是说, 无论句子多长, 多复杂, 都要压缩成一个固定维度张量</p>
+<p>结果就是:</p>
+<ul>
+<li>信息丢失严重</li>
+<li>长序列问题效果差</li>
+</ul>
+<h2 id="注意力机制如何解决这些痛点"><a href="#注意力机制如何解决这些痛点" class="headerlink" title="注意力机制如何解决这些痛点"></a>注意力机制如何解决这些痛点</h2><h3 id="每个词直接看到所有词"><a href="#每个词直接看到所有词" class="headerlink" title="每个词直接看到所有词"></a>每个词直接看到所有词</h3><p>在注意力里，一个词无需通过第 2、3、4、5 个词才能知道第 1 个词的信息。</p>
+<p>它可以直接算：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相关性 = Query(当前词) · Key(所有词)</span><br></pre></td></tr></table></figure>
+
+<p>这是 <strong>完全平等的全局视野</strong>。</p>
+<h3 id="不存在梯度消失问题"><a href="#不存在梯度消失问题" class="headerlink" title="不存在梯度消失问题"></a>不存在梯度消失问题</h3><p>因为注意力不依赖链式结构，反向传播只会经过几层矩阵运算，梯度非常稳定。</p>
+<h3 id="完全可并行化（压倒-RNN-的关键优势）"><a href="#完全可并行化（压倒-RNN-的关键优势）" class="headerlink" title="完全可并行化（压倒 RNN 的关键优势）"></a>完全可并行化（压倒 RNN 的关键优势）</h3><p>RNN 每一步都依赖上一部 ⇒ 只能串行<br> Attention 所有词之间的关系都可同时计算 ⇒ 一次矩阵乘法</p>
+<p>速度差几十倍甚至上百倍。</p>
+<p>这是 Transformer 能训练巨型模型的根本原因。</p>
+<h2 id="注意力机制如何计算"><a href="#注意力机制如何计算" class="headerlink" title="注意力机制如何计算"></a>注意力机制如何计算</h2><blockquote>
+<p>这里简要概括, 详细过程推荐知乎猛猿的一篇文章, 这里给出链接</p>
+</blockquote>
+<div class="tag-plugin link dis-select"><a class="link-card plain" title="Transformer学习笔记二：Self-Attention（自注意力机制）" href="https://zhuanlan.zhihu.com/p/455399791" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="icon"><div class="left"><span class="title">Transformer学习笔记二：Self-Attention（自注意力机制）</span><span class="cap link footnote">https://zhuanlan.zhihu.com/p/455399791</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
+
+<p>Transformer 使用的是<strong>缩放点积注意力(Scaled Dot-Prodcut Attention)</strong></p>
+<p>对于每个token, 产生三个矩阵 Query, Key, Value(下文简称 Q, K, V)</p>
+<ul>
+<li><strong>Q（Query）</strong>：我想找什么？</li>
+<li><strong>K（Key）</strong>：我有哪些信息？</li>
+<li><strong>V（Value）</strong>：对应的信息内容</li>
+</ul>
+<p>$$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right) V$$</p>
+<h3 id="1-Q-与-K-做点积：计算“匹配程度”"><a href="#1-Q-与-K-做点积：计算“匹配程度”" class="headerlink" title="(1) Q 与 K 做点积：计算“匹配程度”"></a>(1) Q 与 K 做点积：计算“匹配程度”</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = Q • Kᵀ</span><br></pre></td></tr></table></figure>
+
+<p>相似度越高 → 代表 Query 认为这个 Key 更相关。</p>
+<h3 id="2-缩放（除以-√d）防止数值过大"><a href="#2-缩放（除以-√d）防止数值过大" class="headerlink" title="(2) 缩放（除以 √d）防止数值过大"></a>(2) 缩放（除以 √d）防止数值过大</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = score / √d</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Softmax-→-转成概率分布（注意力权重）"><a href="#3-Softmax-→-转成概率分布（注意力权重）" class="headerlink" title="(3) Softmax → 转成概率分布（注意力权重）"></a>(3) Softmax → 转成概率分布（注意力权重）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attention_weights = softmax(score)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-用权重加权求和-Value，得到最终输出"><a href="#4-用权重加权求和-Value，得到最终输出" class="headerlink" title="(4) 用权重加权求和 Value，得到最终输出"></a>(4) 用权重加权求和 Value，得到最终输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output = attention_weights × V</span><br></pre></td></tr></table></figure>
+
+<h3 id="自注意力机制"><a href="#自注意力机制" class="headerlink" title="自注意力机制"></a>自注意力机制</h3><p>对于一般情况下, Query来自decoder, Key, Value来自encoder</p>
+<p>自注意力则是一种特殊情况, Query, Key, Value均来自同一个序列, 即</p>
+<p>$$Q&#x3D;XW^Q,K&#x3D;XW^K,V&#x3D;XW^V$$</p>
+<h2 id="多头注意力机制"><a href="#多头注意力机制" class="headerlink" title="多头注意力机制"></a>多头注意力机制</h2><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110200610317.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110200610317.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+
 </article>
 <div class="article-footer">
     <section id="license">
@@ -187,24 +215,9 @@
     </section>
     
 
+</div>
 
-    <section id="share">
-      <div class="header"><span>分享文章</span></div>
-      <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://climbingmouse.github.io/2025/03/01/justrecord/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://climbingmouse.github.io/2025/03/01/justrecord/&title=有用的小知识 - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/useful.webp&summary=记录一些有用的小知识，包含但不限于健康类"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=有用的小知识 - 扳布屋&amp;body=https://climbingmouse.github.io/2025/03/01/justrecord/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
-        
-        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://climbingmouse.github.io/2025/03/01/justrecord/"/>
-        </div>
-        
-      </div>
-    </section>
-    </div>
-
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/03/27/decodeapk/">反编译 APK</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/12/21/someskills/">小技巧</a></div></section></div>
-
-
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/note/">追星Transformer</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/note/posencoding/">Positional Encoding</a></div></section></div>
 
 
   <div class="related-wrap md-text" id="comments">
@@ -229,7 +242,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%B6%E5%B1%91%E7%97%85%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E8%8D%AF%E7%89%A9"><span class="toc-text">银屑病一些好用的药物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E9%92%99"><span class="toc-text">补钙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E8%AE%A9%E4%BA%BA%E8%88%92%E6%9C%8D%E7%9A%8411%E7%A7%8D%E9%A2%9C%E8%89%B2RGB%E5%80%BC%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E5%80%BC"><span class="toc-text">最让人舒服的11种颜色RGB值和十六进制值</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88RNN-LSTM%E5%A4%84%E7%90%86%E4%B8%8D%E5%A5%BD%E5%85%A8%E5%B1%80%E4%BE%9D%E8%B5%96"><span class="toc-text">为什么RNN&#x2F;LSTM处理不好全局依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%90%91%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF"><span class="toc-text">单向传递信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1-%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="toc-text">梯度消失&#x2F;梯度爆炸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E8%AE%A1%E7%AE%97"><span class="toc-text">串行计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8CNN"><span class="toc-text">为什么不用CNN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%8A%B6%E6%80%81%E6%98%AF%E5%AF%B9%E4%BF%A1%E6%81%AF%E7%9A%84%E5%BC%BA%E5%8E%8B%E7%BC%A9"><span class="toc-text">隐藏状态是对信息的强压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%BF%99%E4%BA%9B%E7%97%9B%E7%82%B9"><span class="toc-text">注意力机制如何解决这些痛点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E8%AF%8D%E7%9B%B4%E6%8E%A5%E7%9C%8B%E5%88%B0%E6%89%80%E6%9C%89%E8%AF%8D"><span class="toc-text">每个词直接看到所有词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%AD%98%E5%9C%A8%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E9%97%AE%E9%A2%98"><span class="toc-text">不存在梯度消失问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E5%8F%AF%E5%B9%B6%E8%A1%8C%E5%8C%96%EF%BC%88%E5%8E%8B%E5%80%92-RNN-%E7%9A%84%E5%85%B3%E9%94%AE%E4%BC%98%E5%8A%BF%EF%BC%89"><span class="toc-text">完全可并行化（压倒 RNN 的关键优势）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97"><span class="toc-text">注意力机制如何计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Q-%E4%B8%8E-K-%E5%81%9A%E7%82%B9%E7%A7%AF%EF%BC%9A%E8%AE%A1%E7%AE%97%E2%80%9C%E5%8C%B9%E9%85%8D%E7%A8%8B%E5%BA%A6%E2%80%9D"><span class="toc-text">(1) Q 与 K 做点积：计算“匹配程度”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%A9%E6%94%BE%EF%BC%88%E9%99%A4%E4%BB%A5-%E2%88%9Ad%EF%BC%89%E9%98%B2%E6%AD%A2%E6%95%B0%E5%80%BC%E8%BF%87%E5%A4%A7"><span class="toc-text">(2) 缩放（除以 √d）防止数值过大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Softmax-%E2%86%92-%E8%BD%AC%E6%88%90%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%88%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9D%83%E9%87%8D%EF%BC%89"><span class="toc-text">(3) Softmax → 转成概率分布（注意力权重）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%94%A8%E6%9D%83%E9%87%8D%E5%8A%A0%E6%9D%83%E6%B1%82%E5%92%8C-Value%EF%BC%8C%E5%BE%97%E5%88%B0%E6%9C%80%E7%BB%88%E8%BE%93%E5%87%BA"><span class="toc-text">(4) 用权重加权求和 Value，得到最终输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">自注意力机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">多头注意力机制</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
@@ -947,7 +960,59 @@
     }
   });
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
 <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "auto" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
   document.addEventListener('DOMContentLoaded', function () {
     window.codeElements = document.querySelectorAll('.code');
     if (window.codeElements.length > 0) {

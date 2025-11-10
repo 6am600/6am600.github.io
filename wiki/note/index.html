@@ -20,16 +20,16 @@
   <title>Transformer：追星Transformer - 扳布屋</title>
 
   
-    <meta name="description" content="Transformer模型1 Transformer背景模型被提出时间： 12017年提出，2018年google发表了BERT模型，使得Transformer架构流行起来，BERT在许多NLP任务上，取得了Soat的成就。  模型优势： 121、能够实现并行计算，提高模型训练效率2、更好的特征提取能力  2 Transformer的模型架构架构图展示：    2.1 整体架构主要组成部分 123">
+    <meta name="description" content="Transformer：深度学习时代的分水岭过去十年，深度学习几乎重塑了整个人工智能领域。从图像识别到语音识别，再到自然语言处理（NLP），我们见证了一个又一个模型的进化。而在 NLP 领域，真正改变游戏规则的模型，毫无疑问是 Transformer。 这篇文章将带你从零理解 Transformer： 它为什么出现？解决了什么问题？内部结构如何运作？为什么它能成为 GPT、BERT 等大模型的基础">
 <meta property="og:type" content="website">
 <meta property="og:title" content="追星Transformer">
 <meta property="og:url" content="https://climbingmouse.github.io/wiki/note/">
 <meta property="og:site_name" content="扳布屋">
-<meta property="og:description" content="Transformer模型1 Transformer背景模型被提出时间： 12017年提出，2018年google发表了BERT模型，使得Transformer架构流行起来，BERT在许多NLP任务上，取得了Soat的成就。  模型优势： 121、能够实现并行计算，提高模型训练效率2、更好的特征提取能力  2 Transformer的模型架构架构图展示：    2.1 整体架构主要组成部分 123">
+<meta property="og:description" content="Transformer：深度学习时代的分水岭过去十年，深度学习几乎重塑了整个人工智能领域。从图像识别到语音识别，再到自然语言处理（NLP），我们见证了一个又一个模型的进化。而在 NLP 领域，真正改变游戏规则的模型，毫无疑问是 Transformer。 这篇文章将带你从零理解 Transformer： 它为什么出现？解决了什么问题？内部结构如何运作？为什么它能成为 GPT、BERT 等大模型的基础">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg">
-<meta property="article:published_time" content="2025-11-07T12:17:53.186Z">
-<meta property="article:modified_time" content="2025-11-07T12:17:53.186Z">
+<meta property="article:published_time" content="2024-02-10T19:38:58.000Z">
+<meta property="article:modified_time" content="2025-03-10T19:38:58.000Z">
 <meta property="article:author" content="Bamboo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg">
@@ -50,7 +50,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://climbingmouse.github.io/wiki/note/","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"name":"追星Transformer","description":"Transformer模型1 Transformer背景模型被提出时间：\n12017年提出，2018年google发表了BERT模型，使得Transformer架构流行起来，BERT在许多NLP任务上，取得了Soat的成就。\n\n模型优势：\n121、能够实现并行计算，提高模型训练效率2、更好的特征提取能力\n\n2 Transformer的模型架构架构图展示：\n\n\n\n2.1 整体架构主要组成部分\n...","url":"https://climbingmouse.github.io/wiki/note/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://climbingmouse.github.io/wiki/note/","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bamboo.jpg"},"name":"追星Transformer","description":"Transformer：深度学习时代的分水岭过去十年，深度学习几乎重塑了整个人工智能领域。从图像识别到语音识别，再到自然语言处理（NLP），我们见证了一个又一个模型的进化。而在 NLP 领域，真正改变游戏规则的模型，毫无疑问是 Transformer。\n这篇文章将带你从零理解 Transformer： 它为什么出现？解决了什么问题？内部结构如何运作？为什么它能成为 GPT、BERT 等大模型...","url":"https://climbingmouse.github.io/wiki/note/"}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" />
 </head>
 <body>
@@ -67,10 +67,10 @@
 <nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item active" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a></nav>
 </div>
 <div class="widgets">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/note/" placeholder="搜索Transformer相关..."></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/note/" placeholder="在知识库中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
-<widget class="widget-wrapper doc-tree post-list"><div class="widget-body fs14"><a class="link active" href="/wiki/note/#start"><span class="toc-text">追星Transformer</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/note/posencoding/"><span class="toc-text">位置编码</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/note/weight_decay/"><span class="toc-text">权重衰减</span></a></div></widget>
+<widget class="widget-wrapper doc-tree post-list"><div class="widget-header dis-select"><span class="name">关键认知</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/note/#start"><span class="toc-text">追星Transformer</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/note/attention/"><span class="toc-text">Self Attention</span></a><a class="link" href="/wiki/note/posencoding/"><span class="toc-text">Positional Encoding</span></a></div><div class="widget-header dis-select"><span class="name">核心架构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/note/transformer-encoder/"><span class="toc-text">编码器</span></a><a class="link" href="/wiki/note/transformer-decoder/"><span class="toc-text">解码器</span></a></div></widget>
 
 
 </div>
@@ -81,11 +81,11 @@
 
 
 
-<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/transformer-cover.png">
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110171921611.png">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/note/">Transformer</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-11-07T12:17:53.186Z">2025-11-07</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-03-10T19:38:58.000Z">2025-03-11</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -96,27 +96,138 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="Transformer模型"><a href="#Transformer模型" class="headerlink" title="Transformer模型"></a>Transformer模型</h1><h3 id="1-Transformer背景"><a href="#1-Transformer背景" class="headerlink" title="1 Transformer背景"></a>1 Transformer背景</h3><p>模型被提出时间：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">2017年提出，2018年google发表了BERT模型，使得Transformer架构流行起来，BERT在许多NLP任务上，取得了Soat的成就。</span></span><br></pre></td></tr></table></figure>
+  </div><article class="md-text content"><h1 id="Transformer：深度学习时代的分水岭"><a href="#Transformer：深度学习时代的分水岭" class="headerlink" title="Transformer：深度学习时代的分水岭"></a><strong>Transformer：深度学习时代的分水岭</strong></h1><p>过去十年，深度学习几乎重塑了整个人工智能领域。从图像识别到语音识别，再到自然语言处理（NLP），我们见证了一个又一个模型的进化。而在 NLP 领域，真正改变游戏规则的模型，毫无疑问是 <strong>Transformer</strong>。</p>
+<p>这篇文章将带你从零理解 Transformer：<br> <strong>它为什么出现？解决了什么问题？内部结构如何运作？为什么它能成为 GPT、BERT 等大模型的基础？</strong></p>
+<hr>
+<h2 id="一、Transformer-的出现：时代的需要"><a href="#一、Transformer-的出现：时代的需要" class="headerlink" title="一、Transformer 的出现：时代的需要"></a>一、Transformer 的出现：时代的需要</h2><p>在 Transformer 出现之前，NLP 的主流模型是：</p>
+<ul>
+<li><strong>RNN（循环神经网络）</strong></li>
+<li><strong>LSTM &#x2F; GRU（改进版 RNN）</strong></li>
+<li><strong>CNN 文本卷积模型</strong></li>
+</ul>
+<p>虽然这些模型在当时取得了不错的效果，但也遭遇了多个根本性瓶颈：</p>
+<h3 id="1-序列依赖太强，难以并行"><a href="#1-序列依赖太强，难以并行" class="headerlink" title="1. 序列依赖太强，难以并行"></a><strong>1. 序列依赖太强，难以并行</strong></h3><p>RNN 每一步都依赖前一步：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(t) -&gt; h(t+1) -&gt; h(t+2) ...</span><br></pre></td></tr></table></figure>
 
-<p>模型优势：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1、能够实现并行计算，提高模型训练效率</span></span><br><span class="line"><span class="attr">2、更好的特征提取能力</span></span><br></pre></td></tr></table></figure>
+<p>这意味着：</p>
+<ul>
+<li><strong>训练无法并行化</strong></li>
+<li>速度慢</li>
+<li>对长序列不友好（梯度消失&#x2F;爆炸问题）</li>
+</ul>
+<h3 id="2-长距离依赖难以建模"><a href="#2-长距离依赖难以建模" class="headerlink" title="2. 长距离依赖难以建模"></a><strong>2. 长距离依赖难以建模</strong></h3><p>例如句子：</p>
+<blockquote>
+<p>“我昨天看了一部电影，我觉得它非常好看。”</p>
+</blockquote>
+<p>这里“它”指代“电影”，人类很自然，但 RNN 需要跨越很多词才能关联，效果不稳定。</p>
+<h3 id="3-CNN-虽可并行，但感受野有限"><a href="#3-CNN-虽可并行，但感受野有限" class="headerlink" title="3. CNN 虽可并行，但感受野有限"></a><strong>3. CNN 虽可并行，但感受野有限</strong></h3><p>必须堆叠很多层卷积才能覆盖长距离上下文，效率仍然不高。</p>
+<hr>
+<h2 id="二、Transformer：新的范式从此诞生"><a href="#二、Transformer：新的范式从此诞生" class="headerlink" title="二、Transformer：新的范式从此诞生"></a>二、Transformer：新的范式从此诞生</h2><p>2017 年，Google 在论文 <strong>《Attention Is All You Need》</strong> 中提出：</p>
+<blockquote>
+<p>“序列建模根本不需要 RNN，也不需要 CNN，只需要 Attention（注意力）。”</p>
+</blockquote>
+<p>这是一个革命性的观点。</p>
+<p>Transformer 完全抛弃 RNN 的递归结构，转而只使用：</p>
+<h3 id="→-Self-Attention（自注意力机制）"><a href="#→-Self-Attention（自注意力机制）" class="headerlink" title="→ Self-Attention（自注意力机制）"></a><strong>→ Self-Attention（自注意力机制）</strong></h3><h3 id="→-Position-Encoding（位置编码）"><a href="#→-Position-Encoding（位置编码）" class="headerlink" title="→ Position Encoding（位置编码）"></a><strong>→ Position Encoding（位置编码）</strong></h3><h3 id="→-多头注意力、多层堆叠（Multi-Head-Stacked-Layers）"><a href="#→-多头注意力、多层堆叠（Multi-Head-Stacked-Layers）" class="headerlink" title="→ 多头注意力、多层堆叠（Multi-Head, Stacked Layers）"></a><strong>→ 多头注意力、多层堆叠（Multi-Head, Stacked Layers）</strong></h3><p>最核心的思想是：</p>
+<blockquote>
+<p>“在序列中，每个词都能直接和其他所有词建立联系，并根据相关性动态分配权重。”</p>
+</blockquote>
+<p>这彻底解决了 RNN 的所有历史问题。</p>
+<hr>
+<h2 id="三、Transformer-为什么如此强大？"><a href="#三、Transformer-为什么如此强大？" class="headerlink" title="三、Transformer 为什么如此强大？"></a>三、Transformer 为什么如此强大？</h2><p>总结它的优势可以一句话概括：</p>
+<blockquote>
+<p><strong>更快、更准、能看全局。</strong></p>
+</blockquote>
+<p>下面逐点解释。</p>
+<hr>
+<h2 id="1-训练可以完全并行化（突破性进步）"><a href="#1-训练可以完全并行化（突破性进步）" class="headerlink" title="1. 训练可以完全并行化（突破性进步）"></a><strong>1. 训练可以完全并行化（突破性进步）</strong></h2><p>自注意力机制让所有词之间的关系可以一次性计算：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">所有词 ↔ 所有词</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-Transformer的模型架构"><a href="#2-Transformer的模型架构" class="headerlink" title="2 Transformer的模型架构"></a>2 Transformer的模型架构</h3><p>架构图展示：</p>
-<div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1426/1500;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p>不再像 RNN 一步步传递。</p>
+<p>这带来：</p>
+<ul>
+<li><strong>训练速度巨大提升</strong></li>
+<li>能利用 GPU 的矩阵计算优势</li>
+<li>能训练更大的模型</li>
+</ul>
+<hr>
+<h2 id="2-天然具备“全局视野”"><a href="#2-天然具备“全局视野”" class="headerlink" title="2. 天然具备“全局视野”"></a><strong>2. 天然具备“全局视野”</strong></h2><p>自注意力机制计算每个词对所有词的重要性，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Attention(&quot;它&quot;, &quot;电影&quot;) → 高权重</span><br><span class="line">Attention(&quot;它&quot;, &quot;昨天&quot;) → 低权重</span><br></pre></td></tr></table></figure>
 
+<p>模型能自动找到长距离依赖关系。</p>
+<hr>
+<h2 id="3-表达能力更强"><a href="#3-表达能力更强" class="headerlink" title="3. 表达能力更强"></a><strong>3. 表达能力更强</strong></h2><p>Transformer 使用 <strong>多头注意力（Multi-Head Attention）</strong>：</p>
+<ul>
+<li>一个头关注语义信息</li>
+<li>一个头关注句法结构</li>
+<li>一个头关注代词关系<br> ……</li>
+</ul>
+<p>模型可以从多个角度“看”句子，让表示更加丰富。</p>
+<hr>
+<h2 id="4-更容易扩展、堆叠和并行"><a href="#4-更容易扩展、堆叠和并行" class="headerlink" title="4. 更容易扩展、堆叠和并行"></a><strong>4. 更容易扩展、堆叠和并行</strong></h2><p>Transformer 模块化结构清晰，可以堆叠几十层甚至上百层。</p>
+<p>这为后续的模型奠定了基础：</p>
+<ul>
+<li>BERT（2018）</li>
+<li>GPT 系列（2018 – 2024）</li>
+<li>ViT 图像 Transformer（2021）</li>
+<li>ChatGPT、Claude、Gemini 等顶级大模型</li>
+</ul>
+<p>都源自 Transformer。</p>
+<hr>
+<h1 id="四、Transformer-内部结构概览"><a href="#四、Transformer-内部结构概览" class="headerlink" title="四、Transformer 内部结构概览"></a>四、Transformer 内部结构概览</h1><div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1426/1500;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
 
-<h4 id="2-1-整体架构"><a href="#2-1-整体架构" class="headerlink" title="2.1 整体架构"></a>2.1 整体架构</h4><p>主要组成部分</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1、输入部分</span></span><br><span class="line"><span class="attr">2、编码器部分</span></span><br><span class="line"><span class="attr">3、解码器部分</span></span><br><span class="line"><span class="attr">4、输出部分</span></span><br></pre></td></tr></table></figure>
+<p>Transformer 包含 <strong>Encoder（编码器）</strong> 和 <strong>Decoder（解码器）</strong> 两个部分，但现代大多数模型只使用其中一部分：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>使用结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BERT</td>
+<td>Encoder-only</td>
+</tr>
+<tr>
+<td>GPT</td>
+<td>Decoder-only</td>
+</tr>
+<tr>
+<td>T5 &#x2F; FLAN</td>
+<td>Encoder-Decoder</td>
+</tr>
+</tbody></table>
+<p>原始架构中，一个 Transformer 层包含：</p>
+<hr>
+<h2 id="1-Multi-Head-Self-Attention（多头自注意力）"><a href="#1-Multi-Head-Self-Attention（多头自注意力）" class="headerlink" title="1. Multi-Head Self-Attention（多头自注意力）"></a><strong>1. Multi-Head Self-Attention（多头自注意力）</strong></h2><p>核心计算公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Attention(Q, K, V) = softmax(QKᵀ / sqrt(d_k)) V</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-输入部分"><a href="#2-2-输入部分" class="headerlink" title="2.2 输入部分"></a>2.2 输入部分</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">word</span> <span class="string">Embeddding + Positional Encoding</span></span><br><span class="line"><span class="attr">词嵌入层+位置编码器层</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-输出部分"><a href="#2-3-输出部分" class="headerlink" title="2.3 输出部分"></a>2.3 输出部分</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1、Linear层</span></span><br><span class="line"><span class="attr">2、softmax层</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-编码器部分"><a href="#2-4-编码器部分" class="headerlink" title="2.4 编码器部分"></a>2.4 编码器部分</h4><p>结构图：</p>
-<p>组成部分：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1、N个编码器层堆叠而成</span></span><br><span class="line"><span class="attr">2、每个编码器有两个子层连接结构构成</span></span><br><span class="line"><span class="attr">3、第一个子层连接结构：多头自注意力层+规范化层+残差连接层</span></span><br><span class="line"><span class="attr">4、第二个子层连接结构：前馈全连接层+规范化层+残差连接层</span></span><br></pre></td></tr></table></figure>
-
+<p>实现“词与词之间相关性”的计算。</p>
+<hr>
+<h2 id="2-Feed-Forward-Network（位置前馈网络）"><a href="#2-Feed-Forward-Network（位置前馈网络）" class="headerlink" title="2. Feed Forward Network（位置前馈网络）"></a><strong>2. Feed Forward Network（位置前馈网络）</strong></h2><p>对每个词的表示做非线性变换，提升表达能力。</p>
+<hr>
+<h2 id="3-Add-Norm（残差连接-LayerNorm）"><a href="#3-Add-Norm（残差连接-LayerNorm）" class="headerlink" title="3. Add &amp; Norm（残差连接 + LayerNorm）"></a><strong>3. Add &amp; Norm（残差连接 + LayerNorm）</strong></h2><p>为了解决深层网络训练困难问题。</p>
+<hr>
+<h2 id="4-Position-Encoding（位置编码）"><a href="#4-Position-Encoding（位置编码）" class="headerlink" title="4. Position Encoding（位置编码）"></a><strong>4. Position Encoding（位置编码）</strong></h2><p>因为 Transformer 不再使用 RNN&#x2F;CNN，序列没有位置顺序，因此需要位置编码告诉模型：</p>
+<ul>
+<li>谁是第一个词</li>
+<li>谁是第二个词</li>
+<li>谁更靠后</li>
+</ul>
+<p>位置编码通常用正弦余弦函数构造。</p>
+<hr>
+<h1 id="五、Transformer-之后：新时代的大模型浪潮"><a href="#五、Transformer-之后：新时代的大模型浪潮" class="headerlink" title="五、Transformer 之后：新时代的大模型浪潮"></a>五、Transformer 之后：新时代的大模型浪潮</h1><p>Transformer 诞生后，NLP 领域彻底变天。</p>
+<h3 id="2018：BERT-出现"><a href="#2018：BERT-出现" class="headerlink" title="2018：BERT 出现"></a><strong>2018：BERT 出现</strong></h3><ul>
+<li>彻底改变 NLP 预训练范式</li>
+<li>情感分析、命名实体识别等任务效果暴涨</li>
+</ul>
+<h3 id="2018-2020：GPT-系列"><a href="#2018-2020：GPT-系列" class="headerlink" title="2018~2020：GPT 系列"></a><strong>2018~2020：GPT 系列</strong></h3><ul>
+<li>GPT-1 → GPT-2 → GPT-3</li>
+<li>语言生成能力大幅提升</li>
+<li>LLM（大语言模型）时代开启</li>
+</ul>
+<h3 id="2021：Vision-Transformer（ViT）"><a href="#2021：Vision-Transformer（ViT）" class="headerlink" title="2021：Vision Transformer（ViT）"></a><strong>2021：Vision Transformer（ViT）</strong></h3><p>Transformer 模型跨界视觉，效果强于 CNN</p>
+<h3 id="2022-2025：ChatGPT-时代"><a href="#2022-2025：ChatGPT-时代" class="headerlink" title="2022~2025：ChatGPT 时代"></a><strong>2022~2025：ChatGPT 时代</strong></h3><p>Transformer 模型成为 AGI 的基础框架<br> 世界开始感受 AI 的力量</p>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -128,7 +239,7 @@
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/note/posencoding/">位置编码</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/note/attention/">Self Attention</a></div></section></div>
 
 
   <div class="related-wrap md-text" id="comments">
@@ -153,7 +264,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformer%E6%A8%A1%E5%9E%8B"><span class="toc-text">Transformer模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Transformer%E8%83%8C%E6%99%AF"><span class="toc-text">1 Transformer背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Transformer%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-text">2 Transformer的模型架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">2.1 整体架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E8%BE%93%E5%85%A5%E9%83%A8%E5%88%86"><span class="toc-text">2.2 输入部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E8%BE%93%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-text">2.3 输出部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E7%BC%96%E7%A0%81%E5%99%A8%E9%83%A8%E5%88%86"><span class="toc-text">2.4 编码器部分</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformer%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%97%B6%E4%BB%A3%E7%9A%84%E5%88%86%E6%B0%B4%E5%B2%AD"><span class="toc-text">Transformer：深度学习时代的分水岭</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Transformer-%E7%9A%84%E5%87%BA%E7%8E%B0%EF%BC%9A%E6%97%B6%E4%BB%A3%E7%9A%84%E9%9C%80%E8%A6%81"><span class="toc-text">一、Transformer 的出现：时代的需要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F%E5%88%97%E4%BE%9D%E8%B5%96%E5%A4%AA%E5%BC%BA%EF%BC%8C%E9%9A%BE%E4%BB%A5%E5%B9%B6%E8%A1%8C"><span class="toc-text">1. 序列依赖太强，难以并行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%95%BF%E8%B7%9D%E7%A6%BB%E4%BE%9D%E8%B5%96%E9%9A%BE%E4%BB%A5%E5%BB%BA%E6%A8%A1"><span class="toc-text">2. 长距离依赖难以建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-CNN-%E8%99%BD%E5%8F%AF%E5%B9%B6%E8%A1%8C%EF%BC%8C%E4%BD%86%E6%84%9F%E5%8F%97%E9%87%8E%E6%9C%89%E9%99%90"><span class="toc-text">3. CNN 虽可并行，但感受野有限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Transformer%EF%BC%9A%E6%96%B0%E7%9A%84%E8%8C%83%E5%BC%8F%E4%BB%8E%E6%AD%A4%E8%AF%9E%E7%94%9F"><span class="toc-text">二、Transformer：新的范式从此诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%86%92-Self-Attention%EF%BC%88%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%89"><span class="toc-text">→ Self-Attention（自注意力机制）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%86%92-Position-Encoding%EF%BC%88%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-text">→ Position Encoding（位置编码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%86%92-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E3%80%81%E5%A4%9A%E5%B1%82%E5%A0%86%E5%8F%A0%EF%BC%88Multi-Head-Stacked-Layers%EF%BC%89"><span class="toc-text">→ 多头注意力、多层堆叠（Multi-Head, Stacked Layers）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Transformer-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A6%82%E6%AD%A4%E5%BC%BA%E5%A4%A7%EF%BC%9F"><span class="toc-text">三、Transformer 为什么如此强大？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%AD%E7%BB%83%E5%8F%AF%E4%BB%A5%E5%AE%8C%E5%85%A8%E5%B9%B6%E8%A1%8C%E5%8C%96%EF%BC%88%E7%AA%81%E7%A0%B4%E6%80%A7%E8%BF%9B%E6%AD%A5%EF%BC%89"><span class="toc-text">1. 训练可以完全并行化（突破性进步）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A4%A9%E7%84%B6%E5%85%B7%E5%A4%87%E2%80%9C%E5%85%A8%E5%B1%80%E8%A7%86%E9%87%8E%E2%80%9D"><span class="toc-text">2. 天然具备“全局视野”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%A1%A8%E8%BE%BE%E8%83%BD%E5%8A%9B%E6%9B%B4%E5%BC%BA"><span class="toc-text">3. 表达能力更强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9B%B4%E5%AE%B9%E6%98%93%E6%89%A9%E5%B1%95%E3%80%81%E5%A0%86%E5%8F%A0%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="toc-text">4. 更容易扩展、堆叠和并行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Transformer-%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">四、Transformer 内部结构概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Multi-Head-Self-Attention%EF%BC%88%E5%A4%9A%E5%A4%B4%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%EF%BC%89"><span class="toc-text">1. Multi-Head Self-Attention（多头自注意力）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Feed-Forward-Network%EF%BC%88%E4%BD%8D%E7%BD%AE%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-text">2. Feed Forward Network（位置前馈网络）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Add-Norm%EF%BC%88%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5-LayerNorm%EF%BC%89"><span class="toc-text">3. Add &amp; Norm（残差连接 + LayerNorm）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Position-Encoding%EF%BC%88%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-text">4. Position Encoding（位置编码）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81Transformer-%E4%B9%8B%E5%90%8E%EF%BC%9A%E6%96%B0%E6%97%B6%E4%BB%A3%E7%9A%84%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%B5%AA%E6%BD%AE"><span class="toc-text">五、Transformer 之后：新时代的大模型浪潮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2018%EF%BC%9ABERT-%E5%87%BA%E7%8E%B0"><span class="toc-text">2018：BERT 出现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2018-2020%EF%BC%9AGPT-%E7%B3%BB%E5%88%97"><span class="toc-text">2018~2020：GPT 系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2021%EF%BC%9AVision-Transformer%EF%BC%88ViT%EF%BC%89"><span class="toc-text">2021：Vision Transformer（ViT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2022-2025%EF%BC%9AChatGPT-%E6%97%B6%E4%BB%A3"><span class="toc-text">2022~2025：ChatGPT 时代</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>

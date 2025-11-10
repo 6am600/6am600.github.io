@@ -1879,8 +1879,8 @@ html {
   height: 100%;
   width: 100%;
   overflow-y: scroll;
-  font-family: "LXGW WenKai Lite", sans-serif, system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
-  font-size: 16px;
+  font-family: "LXGW WenKai Lite", sans-serif;
+  font-size: 18px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   scroll-padding-top: 8px;
@@ -7098,7 +7098,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 .search-wrapper .search-input {
   width: 100%;
   box-sizing: border-box;
-  font-family: "LXGW WenKai Lite", sans-serif, system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
+  font-family: "LXGW WenKai Lite", sans-serif !important;
   font-size: 0.875rem;
   padding: 12px 0;
   color: var(--text);
