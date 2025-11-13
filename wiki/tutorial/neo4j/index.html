@@ -119,13 +119,15 @@
 
   <div class="related-wrap md-text" id="comments">
     <section class='header cmt-title cap theme'>
-      <p>快来参与讨论吧~</p>
+      <p>评论区仅供交流，有问题请邮件反馈。</p>
 
     </section>
-    <section class='body cmt-body waline'>
+    <section class='body cmt-body giscus'>
       
 
-<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="ClimbingMouse/comment-giscus" data-repo-id="R_kgDOOJtEjA" data-category="General" data-category-id="DIC_kwDOOJtEjM4CoHju" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
 
     </section>
   </div>
@@ -631,23 +633,25 @@
 <!-- optional -->
 
   <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+  const el = document.querySelector('#comments #giscus');
+  util.viewportLazyload(el, load_discus, false);
 
-  const el = document.getElementById('waline_container');
-  util.viewportLazyload(el, load_waline, false);
-
-  function load_waline(){
+  function load_discus() {
     if (!el) return;
-
-    utils.css('https://unpkg.com/@waline/client@v3/dist/waline.css');
-    utils.css('https://gcore.jsdelivr.net/npm/@waline/client@3.1/dist/waline-meta.css');
-
-    const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
-    const waline = init(Object.assign({"js":"https://unpkg.com/@waline/client@v3/dist/waline.js","css":"https://unpkg.com/@waline/client@v3/dist/waline.css","meta_css":"https://gcore.jsdelivr.net/npm/@waline/client@3.1/dist/waline-meta.css","serverURL":"https://waline-comment-blue.vercel.app","commentCount":true,"pageview":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"locale":{"placeholder":"来都来了,确定不说两句吗😁"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs"]}, {
-      el: '#waline_container',
-      path: path,
-      
-    }));
+    try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      const script = document.createElement('script');
+      script.async = true;
+      for (const key of Object.keys(el.attributes)) {
+        const attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
   }
 </script>
 
