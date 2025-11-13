@@ -16,6 +16,7 @@ OSTheme.addListener(e => {
 const ThemeChange = (theme) => {
     if (theme === 'light' || (theme === 'Moss' && !OSTheme.matches)) {
         console.log("light mode");
+        document.querySelector("html").id = "ZYLight";
         document.querySelector("html").setAttribute("data-theme", "light");
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(4)").style.filter= 'grayscale(0%)';
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(3)").style.filter= 'grayscale(100%)';
