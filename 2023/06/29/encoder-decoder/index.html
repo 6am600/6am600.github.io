@@ -58,7 +58,7 @@
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/hint.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css">
 </head>
 <body>
 
@@ -100,7 +100,7 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><blockquote>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><blockquote>
 <p>encoder-decoder模型同时使用编码器和解码器. 它将每个task视作序列到序列的转换&#x2F;生成（比如，文本到文本，文本到图像或者图像到文本的多模态任务）.Encoder-decoder模型通常用于需要内容理解和生成的任务，比如机器翻译</p>
 </blockquote>
 <h3 id="代表模型T5"><a href="#代表模型T5" class="headerlink" title="代表模型T5"></a>代表模型T5</h3><p>T5模型结构与原始的Transformer基本一致,除了做了以下几点改动</p>
@@ -140,11 +140,8 @@
 </tbody></table>
 <h3 id="大模型主流架构"><a href="#大模型主流架构" class="headerlink" title="大模型主流架构"></a>大模型主流架构</h3><p><strong>Decoder-only</strong></p>
 <ul>
-<li><p>LLM之所以主要都用Decoder-only架构，除了训练效率和工程实现上的优势外，在理论上是因为Encoder的双向注意力会存在</p>
-，这可能会削弱模型表达能力，就生成任务而言，引入双向注意力并无实质好处
-</li>
-<li><p>而Encoder-Decoder架构之所以能够在某些场景下表现更好，大概只是因为它多了一倍参数。所以，在同等参数量、同等推理成本下，Decoder-only架构就是最优选择了</p>
-</li>
+<li>LLM之所以主要都用Decoder-only架构，除了训练效率和工程实现上的优势外，在理论上是因为Encoder的双向注意力会存在<span class="hint--info hint--rounded hint--top" data-hint="数据或模型的本质维度不足，导致信息冗余、矩阵退化、表达能力下降、训练不稳定" ontouchstart>低秩问题</span>，这可能会削弱模型表达能力，就生成任务而言，引入双向注意力并无实质好处</li>
+<li>而Encoder-Decoder架构之所以能够在某些场景下表现更好，大概只是因为它多了一倍参数。所以，在同等参数量、同等推理成本下，Decoder-only架构就是最优选择了</li>
 </ul>
 </article>
 <div class="article-footer">
@@ -976,5 +973,5 @@
 
 
 <!-- inject -->
-<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/hint.js"></script>
+<script type="text/javascript" src="/custom/js/BBDark.js"></script>
 </div></body></html>

@@ -59,7 +59,7 @@
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/hint.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css">
 </head>
 <body>
 
@@ -101,14 +101,15 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
 <p>想象一下，你在教一个孩子造句，最直接的方法是你说一个词，让他跟读一个词，而不是让他从头猜到尾。</p>
 <p>这种老师引导的思想就是Teacher Forcing。</p>
 </blockquote>
 <p><strong>Teacher Forcing</strong>  是训练自回归序列模型（比如RNN、LSTM、GRU、seq2seq、transformer 的自回归解码器等）时常用的一种训练策略</p>
 <p><strong>核心思想：</strong></p>
 <ul>
-<li>在训练时，模型每次不使用上一个state的输出作为下一个state的输入，而是直接使用训练数据的标准答案(ground truth)的对应上一项作为下一个state的输入。换句话说，训练时给模型看老师提供的正确前文，而不是模型自己预测的前文。这里的真实答案我们一般称作 </li>
+<li>在训练时，模型每次不使用上一个state的输出作为下一个state的输入，而是直接使用训练数据的标准答案(ground truth)的对应上一项作为下一个state的输入。换句话说，训练时给模型看老师提供的正确前文，而不是模型自己预测的前文。这里的真实答案我们一般称作<span class="hint--info hint--rounded hint--top" data-hint="地面实况：
+通过直接观察获得的信息，而不是通过推断获得的信息。" ontouchstart>ground truth</span></li>
 </ul>
 <p><strong>用机器翻译任务简单举例：</strong></p>
 <ul>
@@ -986,5 +987,5 @@
 
 
 <!-- inject -->
-<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/hint.js"></script>
+<script type="text/javascript" src="/custom/js/BBDark.js"></script>
 </div></body></html>
