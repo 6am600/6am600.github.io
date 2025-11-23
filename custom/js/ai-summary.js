@@ -4,8 +4,8 @@ function typeTextMachineStyle(text, targetSelector, options = {}) {
         delay = 50,
         startDelay = 2000,
         onComplete = null,
-        clearBefore = true,
-        eraseBefore = true, // 新增：是否以打字机方式清除原文本
+        clearBefore = false,
+        eraseBefore = false, // 新增：是否以打字机方式清除原文本
         eraseDelay = 30,    // 新增：删除每个字符的间隔
     } = options;
 
