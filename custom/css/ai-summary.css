@@ -1,0 +1,84 @@
+.ai-summary {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 26px 30px;
+    margin: 30px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* 顶部区域 */
+.ai-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ai-head-left {
+    display: inline-flex;
+    align-items: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+}
+
+.ai-head-left::before {
+    content: ' ';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fd6458;
+    box-shadow: 20px 0 0 #ffbf2b, 40px 0 0 #24cc3d;
+}
+
+/* 右上角按钮 */
+.ai-about {
+    background: #3074d8;
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: 0.2s;
+}
+.ai-about:hover {
+    background: #1768e0;
+}
+
+/* 正文 */
+.ai-explanation {
+    margin-top: 10px;
+    color: #444;
+}
+
+/* 标题栏 */
+.ai-title {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-title-left {
+    display: flex;
+    align-items: center;
+}
+
+.ai-title-left svg {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    color: #2d82ff;
+}
+
+/* 底部模型标签 */
+.ai-tag {
+    color: #9da3ae;
+    font-size: 13px;
+}
