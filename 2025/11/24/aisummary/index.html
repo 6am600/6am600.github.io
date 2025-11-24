@@ -1,0 +1,1100 @@
+
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 8.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>文章添加AI摘要 - 扳布屋</title>
+
+  
+    <meta name="description" content="看到很多博主给自己文章添加了AI摘要，对于来访的朋友确实比较友好，索性也加上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文章添加AI摘要">
+<meta property="og:url" content="https://bambooo.top/2025/11/24/aisummary/">
+<meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="看到很多博主给自己文章添加了AI摘要，对于来访的朋友确实比较友好，索性也加上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta property="article:published_time" content="2025-11-24T00:23:58.000Z">
+<meta property="article:modified_time" content="2025-11-24T00:23:58.000Z">
+<meta property="article:author" content="Bamboo">
+<meta property="article:tag" content="功能">
+<meta property="article:tag" content="美化">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+  
+  
+  
+  <meta name="keywords" content="功能,美化">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+    <link rel="shortcut icon" href="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/sun.png">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"dateCreated":"2025-11-24T08:23:58+08:00","dateModified":"2025-11-24T08:23:58+08:00","datePublished":"2025-11-24T08:23:58+08:00","description":"","headline":"文章添加AI摘要","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2025/11/24/aisummary/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"}},"url":"https://bambooo.top/2025/11/24/aisummary/","keywords":"功能, 美化","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251124083035339.png","image":1}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
+  if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.querySelector("html").id = "ZYDark";
+  }
+</script>
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css">
+</head>
+<body>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2024/03/01/justrecord/"><span class="title">有用的小知识</span></a><a class="item title" href="/2025/11/23/github-weekly/"><span class="title">GitHub 每周热门项目 (2025.11.17 - 2025.11.23)</span></a><a class="item title" href="/2023/11/10/formatimage/"><span class="title">一键更换所有图片格式</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/03/01/weightdecay/"><span class="title">权重衰减</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2024/08/01/ner/"><span class="title">命名实体识别</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251124083035339.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Stellar/">Stellar</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/Stellar/%E5%8D%9A%E5%AE%A2/">博客</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-11-24T00:23:58.000Z">2025-11-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-11-24T00:23:58.000Z">2025-11-24</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>文章添加AI摘要</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="ai-summary">
+    <div class="ai-summary-header">
+        <div class="ai-head-left">
+        </div>
+        <a class="ai-about" href="/2025/11/24/aisummary/">关于AI</a>
+    </div>
+
+    <div class="ai-explanation" style="display: block;" data-summary="这里是扳布AI，这篇文章直接提供适配到Stellar主题的教程，方法源自清羽大佬。文章开篇即进入主题，没有多余铺垫，重点在于将清羽大佬的原有方法经过调整和优化，使其能够完美适用于Stellar主题。教程内容简洁明了，步骤清晰，旨在帮助用户快速掌握如何在Stellar主题下实现相关功能或效果。通过该教程，用户可以省去自行摸索和适配的麻烦，直接应用经过验证的解决方案，提高操作效率，确保在Stellar主题中也能顺利实现预期目标，是针对该主题用户的一篇实用指南。">
+        这里是扳布AI，这篇文章直接提供适配到Stellar主题的教程，方法源自清羽大佬。文章开篇即进入主题，没有多余铺垫，重点在于将清羽大佬的原有方法经过调整和优化，使其能够完美适用于Stellar主题。教程内容简洁明了，步骤清晰，旨在帮助用户快速掌握如何在Stellar主题下实现相关功能或效果。通过该教程，用户可以省去自行摸索和适配的麻烦，直接应用经过验证的解决方案，提高操作效率，确保在Stellar主题中也能顺利实现预期目标，是针对该主题用户的一篇实用指南。
+    </div>
+
+    <div class="ai-title">
+        <div class="ai-title-left">
+            <!-- 图标已替换为你要求的 Hexo icon 插件写法 -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg>
+            <div class="ai-title-text">
+                扳布的AI摘要
+            </div>
+        </div>
+
+        <div class="ai-tag" id="ai-tag">
+            HunYuan-turbos
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><blockquote>
+<p>废话不多说，直接给出教程，方法来自清羽大佬，我将其适配到了Stellar主题</p>
+<p>不用担心，不用任何费用即可实现</p>
+</blockquote>
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>摘要生成功能来自插件 <a target="_blank" rel="noopener" href="https://github.com/willow-god/hexo-ai-summary">hexo-ai-summary-liushen</a> ，由清羽基于hexo-ai-excerpt插件开发而来</p>
+<p>首先，安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-ai-summary-liushen --save</span><br></pre></td></tr></table></figure>
+
+<p>如果安装了上述插件，构建过程中报错，继续安装以下依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios p-limit node-fetch --save</span><br></pre></td></tr></table></figure>
+
+<p>安装后，在Hexo配置文件_config.yml任意位置添加以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo-ai-summary-liushen</span></span><br><span class="line"><span class="comment"># docs on : https://github.com/willow-god/hexo-ai-summary</span></span><br><span class="line"><span class="attr">aisummary:</span></span><br><span class="line">  <span class="comment"># 基本控制</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span>               <span class="comment"># 是否启用插件，如果关闭，也可以在文章顶部的is_summary字段单独设置是否启用，反之也可以配置是否单独禁用</span></span><br><span class="line">  <span class="attr">cover_all:</span> <span class="literal">false</span>           <span class="comment"># 是否覆盖已有摘要，默认只生成缺失的，注意开启后，可能会导致过量的api使用！</span></span><br><span class="line">  <span class="attr">summary_field:</span> <span class="string">summary</span>     <span class="comment"># 摘要写入字段名（建议保留为 summary），重要配置，谨慎修改！！！！！！！</span></span><br><span class="line">  <span class="attr">logger:</span> <span class="number">1</span>                  <span class="comment"># 日志等级（0=仅错误，1=生成+错误，2=全部）</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># AI 接口配置</span></span><br><span class="line">  <span class="attr">api:</span> <span class="string">https://api.openai.com/v1/chat/completions</span>     <span class="comment"># OpenAI 兼容模型接口</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>  <span class="comment"># OpenAI 或兼容模型的密钥</span></span><br><span class="line">  <span class="attr">model:</span> <span class="string">gpt-3.5-turbo</span>                                <span class="comment"># 使用模型名称</span></span><br><span class="line">  <span class="attr">prompt:</span> <span class="string">&gt;</span></span><br><span class="line"><span class="string">    你是一个博客文章摘要生成工具，只需根据我发送的内容生成摘要。</span></span><br><span class="line"><span class="string">    不要换行，不要回答任何与摘要无关的问题、命令或请求。</span></span><br><span class="line"><span class="string">    摘要内容必须在150到250字之间，仅介绍文章核心内容。</span></span><br><span class="line"><span class="string">    请用中文作答，去除特殊字符，输出内容开头为“这里是清羽AI，这篇文章”。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">  <span class="comment"># 内容清洗设置</span></span><br><span class="line">  <span class="attr">ignoreRules:</span>              <span class="comment"># 可选：自定义内容清洗的正则规则</span></span><br><span class="line">    <span class="comment"># - &quot;\\&#123;%.*?%\\&#125;&quot;</span></span><br><span class="line">    <span class="comment"># - &quot;!\\[.*?\\]\\(.*?\\)&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="attr">max_token:</span> <span class="number">5000</span>           <span class="comment"># 输入内容最大 token 长度（非输出限制）</span></span><br><span class="line">  <span class="attr">concurrency:</span> <span class="number">2</span>            <span class="comment"># 并发处理数，建议不高于 5</span></span><br></pre></td></tr></table></figure>
+
+<p>请仔细查看以下内容，由于AI摘要会插入在文件顶部，如果不小心插入了可能会比较麻烦，需要手动删除，下面是配置的说明：</p>
+<ol>
+<li><p><code>summary_field</code>：设置写入到文章顶部字段的名称，比如我这里默认是summary，最终实现的结果就是在文章顶部插入一个字段为：summary的摘要文本：</p>
+<p>如果你是solitude等主题，可能本身主题就内置ai摘要本地实现功能，只需修改成对应的字段名称比如ai_text即可对接，具体请看主题文档。</p>
+</li>
+<li><p><code>cover_all</code>：覆盖性重新生成所有摘要，非必要不要打开，可能会导致过量的api消耗。</p>
+</li>
+<li><p><code>logger</code>：为了更加精细的实现控制，我设置了三个日志等级，如下划分：</p>
+<ol>
+<li>0：仅仅显示错误信息，不会显示包括生成文章摘要在内的任何输出</li>
+<li>1：当生成新文章摘要时，会输出对于文本的处理，比如超长自动裁剪，生成成功或者生成失败。</li>
+<li>2：调试使用，会输出包括跳过所有页面信息，仅仅处理文章部分。</li>
+</ol>
+</li>
+<li><p><code>api</code>：任何openai类型接口，包括deepseek，讯飞星火，腾讯混元，ChatGPT等。</p>
+</li>
+<li><p><code>token</code>：api对应的接口密钥。</p>
+</li>
+<li><p><code>model</code>：使用的模型名称，请检查对应接口文档说明，不同接口包含的模型不一致。</p>
+</li>
+<li><p><code>prompt</code>：提示词，请自行定制，建议详细一些，但是不要太废话，以我写的为例。</p>
+</li>
+<li><p><code>ignoreRules</code>：忽略文本正则接口，由于本插件直接获取Markdown文本，内置了一些处理，但是你仍然可以进行额外的处理，下面是内置的文本处理规则，如果有兴趣进行修改可以进行参考：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. 清理内容</span></span><br><span class="line">  content = content</span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/```[\s\S]*?```/g</span>, <span class="string">&#x27;&#x27;</span>)           <span class="comment">// 代码块</span></span><br><span class="line">    <span class="comment">// .replace(/`[^`\n]+`/g, &#x27;&#x27;)                // 行内代码</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/&#123;%[^%]*%&#125;/g</span>, <span class="string">&#x27;&#x27;</span>)                <span class="comment">// Hexo 标签</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/^\|.*?\|.*$/gm</span>, <span class="string">&#x27;&#x27;</span>)             <span class="comment">// 表格行</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/!\[.*?\]\(.*?\)/g</span>, <span class="string">&#x27;&#x27;</span>)          <span class="comment">// 图片</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/\[(.*?)\]\(.*?\)/g</span>, <span class="string">&#x27;$1&#x27;</span>)       <span class="comment">// 超链接文本</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">&#x27;&#x27;</span>)                  <span class="comment">// HTML 标签</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/&amp;nbsp;/g</span>, <span class="string">&#x27; &#x27;</span>)                  <span class="comment">// 空格实体</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/\n&#123;2,&#125;/g</span>, <span class="string">&#x27;\n&#x27;</span>)                 <span class="comment">// 多重换行压缩</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/^\s+|\s+$/gm</span>, <span class="string">&#x27;&#x27;</span>)               <span class="comment">// 行首尾空格</span></span><br><span class="line">    .<span class="title function_">replace</span>(<span class="regexp">/[ \t]+/g</span>, <span class="string">&#x27; &#x27;</span>)                  <span class="comment">// 多空格压缩</span></span><br><span class="line">    .<span class="title function_">trim</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3. 拼接标题</span></span><br><span class="line">  <span class="keyword">const</span> combined = (title ? title.<span class="title function_">trim</span>() + <span class="string">&#x27;\n\n&#x27;</span> : <span class="string">&#x27;&#x27;</span>) + content;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>max_token</code>：限制模型输入的最大字数，用字符串的slice进行截断，如果超出模型接受范围，可能会造成下文覆盖上文导致prompt丢失，内容混乱，所以请按照模型承受能力进行灵活配置。</p>
+</li>
+<li><p><code>concurrency</code>：很多模型会限制并发，所以这里我利用p-limit插件实现了并发限制，降低失败请求的概率，经过调查，p-limit应该是hexo内已经有的一些包，所以也不需要担心需要重新安装之类的，直接使用即可。</p>
+</li>
+</ol>
+<h3 id="尝试运行"><a href="#尝试运行" class="headerlink" title="尝试运行"></a>尝试运行</h3><div class="tag-plugin colorful note" color="green"><div class="body"><p>注意备份。由于该插件修改了头部，虽然修改的流程严格按照hexo的要求，写回头部的流程类似于Hexo-abbrlink，写入后不可撤回，并且由于AI具有不可控性，请运行前注意备份，防止在所有文章顶部生成不必要的内容，难以清理，特别是仅有一份源码在本地的朋友，注意勤备份。</p></div></div>
+
+<p>由于利用了hexo自带的钩子，所以，摘要数据可能会被缓存，如果直接执行hexo server，并没有任何效果，请尝试先执行hexo cl清理缓存，hexo cl不会删除任何已经生成了的摘要内容。</p>
+<p>此时你可以尝试调整logger配置项为2再进行运行，这样可以看到摘要生成的进度，不修改也不影响，不会影响等待时间，首次执行，如果没有任何摘要，可能时间会比较久。</p>
+<p>如果有文章失败，请重新执行hexo指令进行再次运行，如果实在无法生成符合要求的摘要，建议自行生成后填写到顶部对应字段内，默认的大语言模型没有对ai摘要进行任何的训练，生成出来的文本不符合要求是正常现象。</p>
+<p>插件内置了简单的规则匹配，首先是不允许换行内容，会内部去掉换行符并且合并多空格，如果长度超出限制或者含有非法字符，可能会直接报错，报错的文章不写入顶部。</p>
+<p>如果一切正常，应该可以在每篇文章的顶部看到对应的摘要文段。</p>
+<h3 id="API推荐"><a href="#API推荐" class="headerlink" title="API推荐"></a>API推荐</h3><p>以下是可以申请免费API的接口：</p>
+<table>
+<thead>
+<tr>
+<th>接口名称</th>
+<th>优势</th>
+<th>劣势</th>
+<th>字符上限</th>
+<th>模型类型</th>
+<th>稳定性</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>腾讯混元 Lite</td>
+<td>- 官方支持，性能稳定<br>- 计划支持高达256K字符输入输出<br>- 免费使用，无需付费</td>
+<td>- 需腾讯云账号及实名认证<br>- 当前可能仍处于4K字符限制阶段，256K支持尚未全面上线</td>
+<td>计划支持256K字符（当前可能为4K）</td>
+<td>自研大模型，具备多模态能力</td>
+<td>高</td>
+<td>腾讯自研的混元大模型，支持多轮对话、逻辑推理、内容创作等，计划全面支持256K字符输入输出，适用于多种应用场景。</td>
+</tr>
+<tr>
+<td>讯飞星火 Lite</td>
+<td>- 轻量级模型，响应速度快<br>- 永久免费使用<br>- 适合办公助手等场景</td>
+<td>- 功能相对基础<br>- 不支持联网搜索等高级功能</td>
+<td>输入：8K字符<br>输出：4K字符</td>
+<td>自研大模型，适用于轻量级应用</td>
+<td>高</td>
+<td>科大讯飞推出的轻量级大模型，适合对性能和响应速度有较高要求的业务场景，永久免费使用。</td>
+</tr>
+<tr>
+<td>ChatAnywhere GPT_API_free</td>
+<td>- 支持多种主流模型（GPT-4o、DeepSeek等）<br>- 免费使用，无需代理<br>- 接口兼容OpenAI标准，接入便捷</td>
+<td>- 免费调用次数有限制（如GPT-4o每日5次）<br>- 可能存在使用高峰时段资源紧张的情况</td>
+<td>取决于所选模型（如GPT-4o支持128K tokens）</td>
+<td>多种主流大模型（GPT-4o、DeepSeek等）</td>
+<td>中</td>
+<td>提供多种主流大模型的免费API接口，支持国内直连，适合开发者测试和学习使用。</td>
+</tr>
+<tr>
+<td>QWQ.aigpu.cn</td>
+<td>- 完全免费，无需注册<br>- 基于分布式算力，支持高性能模型<br>- 支持本地运行和共享算力</td>
+<td>- 高峰时段可能需要排队<br>- 依赖社区贡献的算力，稳定性可能受影响</td>
+<td>未明确限制，具体取决于模型和算力资源</td>
+<td>QwQ 32B大语言模型</td>
+<td>中等（受算力资源影响）</td>
+<td>基于分布式家用显卡算力的平台，提供免费的大语言模型API，支持本地运行和共享算力，适合开发者和爱好者使用。</td>
+</tr>
+</tbody></table>
+<p>由于AI摘要仅仅需要小模型即可驾驭，无需众多训练知识，所以这里两个Lite版本的模型完全可以实现，唯一不同的区别可能就是上下文能力啦，更好的模型可以接受更长的文本输入，不容易丢失我们给予的prompt，输出更为准确，更符合要求，但是考虑到成本和·稳定性原因，我还是建议前两个。</p>
+<p>注意各家都有自有api接口和OpenAI类型接口，我们这里选择OpenAI接口，输入完整的地址如混元的兼容接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.hunyuan.cloud.tencent.com/v1/chat/completions</span><br></pre></td></tr></table></figure>
+
+<p>申请token后正常使用即可。</p>
+<h3 id="Hexo适配"><a href="#Hexo适配" class="headerlink" title="Hexo适配"></a>Hexo适配</h3><div class="tag-plugin colorful note" color="green"><div class="body"><p>说在前面。有些主题已经有静态ai摘要的功能了，可以无需下面的步骤，使用插件向文件插入对应的字符串即可，下面的教程适用于butterfly或者类butterfly主题，如果是其他主题可能需要自行适配。</p></div></div>
+
+<h4 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h4><p>目前我们已经自动化了从AI中，喂我们的文章给AI，再生成摘要，再写到文件顶部的过程，下面我们开始进行从文件顶部渲染到网站页面上。</p>
+<p>首先在主题配置文件_config.stellar.yml文件中写入配置，方便我们进行控制摘要是否开启：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文章AI摘要是否开启，会自动检索文章色summary字段，若没有则不显示</span></span><br><span class="line"><span class="attr">ai_summary:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">扳布的AI摘要</span></span><br><span class="line">  <span class="attr">loadingText:</span> <span class="string">扳布AI正在绞尽脑汁想思路ING···</span></span><br><span class="line">  <span class="attr">modelName:</span> <span class="string">HunYuan-turbos</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的内容均为装饰性内容，除了enable选项，其他没有任何控制效果，都是装饰，所以无需担心，可以先按照我的写，后面再根据效果修改。</p>
+<h4 id="添加模板"><a href="#添加模板" class="headerlink" title="添加模板"></a>添加模板</h4><div class="tag-plugin blockquote" indent="undefined"><p>在这之前，配置均与主题无关，都是统一配置，后面的内容都是根据Stellar适配</p></div>
+
+<p>找到主题文件下的<code>themes\stellar\layout\page.ejs</code>，添加三行内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">el += `<span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;$&#123;articleClass()&#125;&quot;</span>&gt;</span>`</span><br><span class="line">if (page.content &amp;&amp; page.content.length &gt; 0) &#123;</span><br><span class="line">  if (page.summary &amp;&amp; theme.ai_summary.enable) &#123;</span><br><span class="line">    el += partial(&#x27;_partial/main/article/post-summary&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  el += page.content</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1350/560;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251124085705377.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251124085705377.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+
+<p>贴出截图，方便定位代码位置</p>
+<p>下面添加组件，创建文件&#96;&#96;themes\stellar\layout_partial\main\article\post-summary.ejs，写入以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-summary&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-summary-header&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-head-left&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;ai-about&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>关于AI<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-explanation&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: block;&quot;</span> <span class="attr">data-summary</span>=<span class="string">&quot;&lt;%= page.summary %&gt;&quot;</span>&gt;</span></span><br><span class="line">        &lt;%= page.summary %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-title-left&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 图标已替换为你要求的 Hexo icon 插件写法 --&gt;</span></span><br><span class="line">            &lt;%- icon(&#x27;solar:planet-bold-duotone&#x27;) %&gt;</span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-title-text&quot;</span>&gt;</span></span><br><span class="line">                &lt;%= theme.ai_summary.title %&gt;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ai-tag&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ai-tag&quot;</span>&gt;</span></span><br><span class="line">            &lt;%= theme.ai_summary.modelName %&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h4><p>这样，html部分就实现好了！下面我们添加样式部分，创建文件<code>source\custom\css\ai-summary.css</code>文件，该文件在博客根目录下，不是主题根目录，写入：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ai-summary</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--ai-bg-color, <span class="number">#ffffff</span>);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">30px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="built_in">var</span>(--ai-shadow, </span><br><span class="line">        <span class="number">0</span> <span class="number">4px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.08</span>),</span><br><span class="line">        <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.9</span>)</span><br><span class="line">    );</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.8</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--ai-text-color, <span class="number">#333</span>);</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">0.3s</span> ease;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 亮暗模式变量 */</span></span><br><span class="line"><span class="selector-class">.ai-summary</span> &#123;</span><br><span class="line">    <span class="comment">/* 亮色模式默认值 */</span></span><br><span class="line">    <span class="attr">--ai-bg-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attr">--ai-text-color</span>: <span class="number">#333</span>;</span><br><span class="line">    <span class="attr">--ai-secondary-text</span>: <span class="number">#666</span>;</span><br><span class="line">    <span class="attr">--ai-shadow</span>: <span class="number">0</span> <span class="number">4px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.08</span>), <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.9</span>);</span><br><span class="line">    <span class="attr">--ai-glow-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">30px</span> <span class="built_in">rgba</span>(<span class="number">74</span>, <span class="number">138</span>, <span class="number">240</span>, <span class="number">0.15</span>);</span><br><span class="line">    <span class="attr">--ai-tag-bg</span>: <span class="number">#f8fafc</span>;</span><br><span class="line">    <span class="attr">--ai-tag-text</span>: <span class="number">#64748b</span>;</span><br><span class="line">    <span class="attr">--ai-button-bg</span>: <span class="number">#3074d8</span>;</span><br><span class="line">    <span class="attr">--ai-button-hover</span>: <span class="number">#1768e0</span>;</span><br><span class="line">    <span class="attr">--ai-dot-red</span>: <span class="number">#fd6458</span>;</span><br><span class="line">    <span class="attr">--ai-dot-yellow</span>: <span class="number">#ffbf2b</span>;</span><br><span class="line">    <span class="attr">--ai-dot-green</span>: <span class="number">#24cc3d</span>;</span><br><span class="line">    <span class="attr">--ai-icon-color</span>: <span class="number">#2d82ff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 暗色模式适配 */</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">    <span class="selector-class">.ai-summary</span> &#123;</span><br><span class="line">        <span class="attr">--ai-bg-color</span>: <span class="number">#1e293b</span>;</span><br><span class="line">        <span class="attr">--ai-text-color</span>: <span class="number">#e2e8f0</span>;</span><br><span class="line">        <span class="attr">--ai-secondary-text</span>: <span class="number">#94a3b8</span>;</span><br><span class="line">        <span class="attr">--ai-shadow</span>: <span class="number">0</span> <span class="number">4px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>), <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.05</span>);</span><br><span class="line">        <span class="attr">--ai-glow-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">30px</span> <span class="built_in">rgba</span>(<span class="number">74</span>, <span class="number">138</span>, <span class="number">240</span>, <span class="number">0.2</span>);</span><br><span class="line">        <span class="attr">--ai-tag-bg</span>: <span class="number">#334155</span>;</span><br><span class="line">        <span class="attr">--ai-tag-text</span>: <span class="number">#cbd5e1</span>;</span><br><span class="line">        <span class="attr">--ai-button-bg</span>: <span class="number">#4a8af0</span>;</span><br><span class="line">        <span class="attr">--ai-button-hover</span>: <span class="number">#3a7ae0</span>;</span><br><span class="line">        <span class="attr">--ai-dot-red</span>: <span class="number">#ff6b6b</span>;</span><br><span class="line">        <span class="attr">--ai-dot-yellow</span>: <span class="number">#ffd93d</span>;</span><br><span class="line">        <span class="attr">--ai-dot-green</span>: <span class="number">#6bcf7f</span>;</span><br><span class="line">        <span class="attr">--ai-icon-color</span>: <span class="number">#60a5fa</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 如果Hexo主题有特定的暗色模式类，也加上 */</span></span><br><span class="line"><span class="selector-class">.hexo-theme-dark</span> <span class="selector-class">.ai-summary</span>,</span><br><span class="line"><span class="selector-class">.dark-mode</span> <span class="selector-class">.ai-summary</span>,</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.ai-summary</span> &#123;</span><br><span class="line">    <span class="attr">--ai-bg-color</span>: <span class="number">#1e293b</span>;</span><br><span class="line">    <span class="attr">--ai-text-color</span>: <span class="number">#e2e8f0</span>;</span><br><span class="line">    <span class="attr">--ai-secondary-text</span>: <span class="number">#94a3b8</span>;</span><br><span class="line">    <span class="attr">--ai-shadow</span>: <span class="number">0</span> <span class="number">4px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>), <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.05</span>);</span><br><span class="line">    <span class="attr">--ai-glow-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">30px</span> <span class="built_in">rgba</span>(<span class="number">74</span>, <span class="number">138</span>, <span class="number">240</span>, <span class="number">0.2</span>);</span><br><span class="line">    <span class="attr">--ai-tag-bg</span>: <span class="number">#334155</span>;</span><br><span class="line">    <span class="attr">--ai-tag-text</span>: <span class="number">#cbd5e1</span>;</span><br><span class="line">    <span class="attr">--ai-button-bg</span>: <span class="number">#4a8af0</span>;</span><br><span class="line">    <span class="attr">--ai-button-hover</span>: <span class="number">#3a7ae0</span>;</span><br><span class="line">    <span class="attr">--ai-dot-red</span>: <span class="number">#ff6b6b</span>;</span><br><span class="line">    <span class="attr">--ai-dot-yellow</span>: <span class="number">#ffd93d</span>;</span><br><span class="line">    <span class="attr">--ai-dot-green</span>: <span class="number">#6bcf7f</span>;</span><br><span class="line">    <span class="attr">--ai-icon-color</span>: <span class="number">#60a5fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加悬停发光效果 */</span></span><br><span class="line"><span class="comment">/* .ai-summary:hover &#123;</span></span><br><span class="line"><span class="comment">    box-shadow: var(--ai-shadow), var(--ai-glow-shadow);</span></span><br><span class="line"><span class="comment">    transform: translateY(-1px);</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 顶部区域 */</span></span><br><span class="line"><span class="selector-class">.ai-summary-header</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ai-head-left</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ai-head-left</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--ai-dot-red);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">0</span> <span class="built_in">var</span>(--ai-dot-yellow), <span class="number">40px</span> <span class="number">0</span> <span class="number">0</span> <span class="built_in">var</span>(--ai-dot-green);</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">brightness</span>(<span class="number">1.1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 右上角按钮 */</span></span><br><span class="line"><span class="selector-class">.ai-about</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--ai-button-bg);</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">3px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">0.3s</span> ease;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">8px</span> <span class="built_in">rgba</span>(<span class="number">48</span>, <span class="number">116</span>, <span class="number">216</span>, <span class="number">0.3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ai-about</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--ai-button-hover);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">4px</span> <span class="number">12px</span> <span class="built_in">rgba</span>(<span class="number">48</span>, <span class="number">116</span>, <span class="number">216</span>, <span class="number">0.4</span>);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">1px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 正文 */</span></span><br><span class="line"><span class="selector-class">.ai-explanation</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--ai-text-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 标题栏 */</span></span><br><span class="line"><span class="selector-class">.ai-title</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ai-title-left</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ai-title-left</span> <span class="selector-tag">svg</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--ai-icon-color);</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">drop-shadow</span>(<span class="number">0</span> <span class="number">2px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(<span class="number">45</span>, <span class="number">130</span>, <span class="number">255</span>, <span class="number">0.2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 底部模型标签 */</span></span><br><span class="line"><span class="selector-class">.ai-tag</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--ai-tag-text);</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--ai-tag-bg);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">4px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 响应式设计 */</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">    <span class="selector-class">.ai-summary</span> &#123;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">8px</span> <span class="number">16px</span>;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">        <span class="attribute">box-shadow</span>: <span class="built_in">var</span>(--ai-shadow);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.ai-head-left</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">        <span class="attribute">box-shadow</span>: <span class="number">16px</span> <span class="number">0</span> <span class="number">0</span> <span class="built_in">var</span>(--ai-dot-yellow), <span class="number">32px</span> <span class="number">0</span> <span class="number">0</span> <span class="built_in">var</span>(--ai-dot-green);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* .ai-summary:hover &#123;</span></span><br><span class="line"><span class="comment">        transform: none;</span></span><br><span class="line"><span class="comment">        box-shadow: var(--ai-shadow);</span></span><br><span class="line"><span class="comment">    &#125; */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>样式也实现啦！目前就差将我们的摘要插入到我们的网站就大功告成啦，为了实现的更加逼真，清羽这里实现了两种样式一个是打字机效果，一个是平滑显示效果，可以按需引入：</p>
+<h4 id="添加核心JS"><a href="#添加核心JS" class="headerlink" title="添加核心JS"></a>添加核心JS</h4><p>文件路径<code>source\custom\js\ai-summary.js</code></p>
+<p>下面我会介绍两种动效，可以按照自己的需求在任意js文件中选择一个引入即可，两个的区别是，打字机效果更加的节省性能，而平滑显示，因为每个文本为一个span，所以会比较耗费性能。</p>
+<h5 id="打字机效果"><a href="#打字机效果" class="headerlink" title="打字机效果"></a>打字机效果</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打字机效果</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">typeTextMachineStyle</span>(<span class="params">text, targetSelector, options = &#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        delay = <span class="number">50</span>,</span><br><span class="line">        startDelay = <span class="number">2000</span>,</span><br><span class="line">        onComplete = <span class="literal">null</span>,</span><br><span class="line">        clearBefore = <span class="literal">true</span>,</span><br><span class="line">        eraseBefore = <span class="literal">true</span>, <span class="comment">// 新增：是否以打字机方式清除原文本</span></span><br><span class="line">        eraseDelay = <span class="number">30</span>,    <span class="comment">// 新增：删除每个字符的间隔</span></span><br><span class="line">    &#125; = options;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(targetSelector);</span><br><span class="line">    <span class="keyword">if</span> (!el || <span class="keyword">typeof</span> text !== <span class="string">&quot;string&quot;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="title function_">startTyping</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">function</span> <span class="title function_">renderChar</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (index &lt;= text.<span class="property">length</span>) &#123;</span><br><span class="line">                    el.<span class="property">textContent</span> = text.<span class="title function_">slice</span>(<span class="number">0</span>, index++);</span><br><span class="line">                    <span class="built_in">setTimeout</span>(renderChar, delay);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    onComplete &amp;&amp; <span class="title function_">onComplete</span>(el);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">renderChar</span>();</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (clearBefore) &#123;</span><br><span class="line">            <span class="keyword">if</span> (eraseBefore &amp;&amp; el.<span class="property">textContent</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">let</span> currentText = el.<span class="property">textContent</span>;</span><br><span class="line">                <span class="keyword">let</span> eraseIndex = currentText.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">function</span> <span class="title function_">eraseChar</span>(<span class="params"></span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (eraseIndex &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        el.<span class="property">textContent</span> = currentText.<span class="title function_">slice</span>(<span class="number">0</span>, --eraseIndex);</span><br><span class="line">                        <span class="built_in">setTimeout</span>(eraseChar, eraseDelay);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="title function_">startTyping</span>(); <span class="comment">// 删除完毕后开始打字</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="title function_">eraseChar</span>();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                el.<span class="property">textContent</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="title function_">startTyping</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">startTyping</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, startDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">renderAISummary</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> summaryEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.ai-summary .ai-explanation&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!summaryEl) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> summaryText = summaryEl.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-summary&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (summaryText) &#123;</span><br><span class="line">        <span class="title function_">typeTextMachineStyle</span>(summaryText, <span class="string">&quot;.ai-summary .ai-explanation&quot;</span>); <span class="comment">// 如果需要切换，在这里调用另一个函数即可</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;pjax:complete&#x27;</span>, renderAISummary);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, renderAISummary);</span><br></pre></td></tr></table></figure>
+
+<p>本站使用的就是打字机效果，可以自行查看。</p>
+<h5 id="平滑显示效果"><a href="#平滑显示效果" class="headerlink" title="平滑显示效果"></a>平滑显示效果</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 平滑弹出效果</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">typeText</span>(<span class="params">text, targetSelector, options = &#123;&#125;</span>) &#123;</span><br><span class="line">     <span class="keyword">const</span> &#123;</span><br><span class="line">       delay = <span class="number">50</span>,          <span class="comment">// 每个字符之间的延迟（毫秒）</span></span><br><span class="line">       startDelay = <span class="number">2000</span>,   <span class="comment">// 开始打字前的延迟（默认 3 秒）</span></span><br><span class="line">       onComplete = <span class="literal">null</span>,   <span class="comment">// 动画完成后的回调</span></span><br><span class="line">       clearBefore = <span class="literal">true</span>   <span class="comment">// 是否在开始前清空原有内容</span></span><br><span class="line">     &#125; = options;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">const</span> targetEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(targetSelector);</span><br><span class="line">     <span class="keyword">if</span> (!targetEl || <span class="keyword">typeof</span> text !== <span class="string">&quot;string&quot;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// if (clearBefore) targetEl.textContent = &quot;&quot;;</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">let</span> frameId = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">function</span> <span class="title function_">renderChar</span>(<span class="params"></span>) &#123;</span><br><span class="line">       <span class="keyword">if</span> (index &lt; text.<span class="property">length</span>) &#123;</span><br><span class="line">         <span class="keyword">const</span> span = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line">         span.<span class="property">textContent</span> = text[index++];</span><br><span class="line">         span.<span class="property">className</span> = <span class="string">&quot;char&quot;</span>;</span><br><span class="line">         targetEl.<span class="title function_">appendChild</span>(span);</span><br><span class="line">         frameId = <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> <span class="built_in">setTimeout</span>(renderChar, delay));</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="title function_">cancelAnimationFrame</span>(frameId);</span><br><span class="line">         onComplete &amp;&amp; <span class="title function_">onComplete</span>(targetEl);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (clearBefore) targetEl.<span class="property">textContent</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">         <span class="title function_">renderChar</span>();</span><br><span class="line">     &#125;, startDelay);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">renderAISummary</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> summaryEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.ai-summary .ai-explanation&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!summaryEl) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> summaryText = summaryEl.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-summary&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (summaryText) &#123;</span><br><span class="line">        <span class="title function_">typeText</span>(summaryText, <span class="string">&quot;.ai-summary .ai-explanation&quot;</span>); <span class="comment">// 如果需要切换，在这里调用另一个函数即可</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;pjax:complete&#x27;</span>, renderAISummary);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, renderAISummary);</span><br></pre></td></tr></table></figure>
+
+<h4 id="引入css和js"><a href="#引入css和js" class="headerlink" title="引入css和js"></a>引入css和js</h4><p><code>_config.yml</code>中，添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/custom/css/ai-summary.css&quot;&gt;</span> <span class="comment"># 摘要生成</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">type=&quot;text/javascript&quot;</span> <span class="string">src=&quot;/custom/js/ai-summary.js&quot;&gt;&lt;/script&gt;</span> <span class="comment"># 摘要生成</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，平滑滚动部分的css，我默认注释掉了，请在样式文件中自行打开注释。</p>
+<p>这样，一个自己实现的AI摘要就完工啦！</p>
+<p>再次感谢清羽大佬提供的方法。</p>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://bambooo.top/2025/11/24/aisummary/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://bambooo.top/2025/11/24/aisummary/&title=文章添加AI摘要 - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251124083035339.png&summary=看到很多博主给自己文章添加了AI摘要，对于来访的朋友确实比较友好，索性也加上"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=文章添加AI摘要 - 扳布屋&amp;body=https://bambooo.top/2025/11/24/aisummary/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://bambooo.top/2025/11/24/aisummary/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/11/23/github-weekly/">GitHub 每周热门项目 (2025.11.17 - 2025.11.23)</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%99%E7%A8%8B"><span class="toc-text">教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="toc-text">尝试运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API%E6%8E%A8%E8%8D%90"><span class="toc-text">API推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo%E9%80%82%E9%85%8D"><span class="toc-text">Hexo适配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="toc-text">添加配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A8%A1%E6%9D%BF"><span class="toc-text">添加模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F"><span class="toc-text">添加样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A0%B8%E5%BF%83JS"><span class="toc-text">添加核心JS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C"><span class="toc-text">打字机效果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B9%B3%E6%BB%91%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C"><span class="toc-text">平滑显示效果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5css%E5%92%8Cjs"><span class="toc-text">引入css和js</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":[],"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js","envId":"https://twikoo.bambooo.top"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "dark" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script>
+</div></body></html>
