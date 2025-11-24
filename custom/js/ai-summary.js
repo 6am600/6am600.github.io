@@ -1,8 +1,8 @@
 // 打字机效果
 function typeTextMachineStyle(text, targetSelector, options = {}) {
     const {
-        delay = 50,
-        startDelay = 2000,
+        delay = 30,
+        startDelay = 500,
         onComplete = null,
         clearBefore = false,
         eraseBefore = false, // 新增：是否以打字机方式清除原文本
@@ -57,6 +57,8 @@ function renderAISummary() {
 
     const summaryText = summaryEl.getAttribute('data-summary');
     if (summaryText) {
+        // 先显示元素，再开始打字
+        summaryEl.style.display = 'block';
         typeTextMachineStyle(summaryText, ".ai-summary .ai-explanation"); // 如果需要切换，在这里调用另一个函数即可
     }
 }
