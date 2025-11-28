@@ -36,7 +36,7 @@
 /* 暗色模式适配 */
 @media (prefers-color-scheme: dark) {
     .ai-summary {
-        --ai-bg-color: #1e293b;
+        --ai-bg-color: #000000;
         --ai-text-color: #e2e8f0;
         --ai-secondary-text: #94a3b8;
         --ai-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -56,7 +56,7 @@
 .hexo-theme-dark .ai-summary,
 .dark-mode .ai-summary,
 [data-theme="dark"] .ai-summary {
-    --ai-bg-color: #1e293b;
+    --ai-bg-color: #000000;
     --ai-text-color: #e2e8f0;
     --ai-secondary-text: #94a3b8;
     --ai-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
