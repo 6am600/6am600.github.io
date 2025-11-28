@@ -8659,16 +8659,16 @@ details.toc[open] >div.body section .header+.doc_tree {
   font-weight: 500;
 }
 .l_body[type='tech'] article.content h2 >a:first-child:before {
-  content: '#';
+  content: '';
 }
 .l_body[type='tech'] article.content h3 >a:first-child:before {
-  content: '=';
+  content: '';
 }
 .l_body[type='tech'] article.content h4 >a:first-child:before {
-  content: '|';
+  content: '';
 }
 .l_body[type='tech'] article.content h5 >a:first-child:before {
-  content: ':';
+  content: '';
 }
 .md-text.error-page {
   text-align: center;
