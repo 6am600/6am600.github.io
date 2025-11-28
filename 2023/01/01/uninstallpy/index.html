@@ -129,16 +129,15 @@
 <p>最近卸载旧版python时发现这么一个错误</p>
 </blockquote>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:460/162;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251116090518572.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251116090518572.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
-<p>大致能看出来是权限问题或者文件被锁定，Config.MSI 目录是 Windows Installer 用于存放安装回滚脚本（<em>.rbf&#x2F;</em>.rbs）的隐藏系统文件夹。安装程序完成后会自动删除这些文件，但如果安装中途失败或缺乏权限，文件可能残留未被清理。此外，如果相关的 Python 安装程序或其它程序（如 Windows Installer 服务自身）正在使用这些 *.rbf 文件，则直接删除时会提示“拒绝访问”。因此常见原因包括：</p>
+<p>大致能看出来是权限问题或者文件被锁定，Config.MSI 目录是 Windows Installer 用于存放安装回滚脚本（<em>.rbf/</em>.rbs）的隐藏系统文件夹。安装程序完成后会自动删除这些文件，但如果安装中途失败或缺乏权限，文件可能残留未被清理。此外，如果相关的 Python 安装程序或其它程序（如 Windows Installer 服务自身）正在使用这些 *.rbf 文件，则直接删除时会提示“拒绝访问”。因此常见原因包括：</p>
 <ul>
 <li>Config.MSI 文件夹默认隐藏且标记为受保护系统文件，需要管理员权限才能修改。</li>
-<li>之前的安装&#x2F;卸载未正常完成，回滚文件遗留在 Config.MSI 中未被删除。</li>
+<li>之前的安装/卸载未正常完成，回滚文件遗留在 Config.MSI 中未被删除。</li>
 <li>目标文件正被系统或其它进程占用（例如 Windows Installer 进程还在运行），导致无法删除。</li>
 <li>用户权限不足（未以管理员身份运行），无法修改或删除该文件。</li>
 </ul>
 <h3 id="权限不足不让删除的话，那手动删除是否安全呢"><a href="#权限不足不让删除的话，那手动删除是否安全呢" class="headerlink" title="权限不足不让删除的话，那手动删除是否安全呢"></a>权限不足不让删除的话，那手动删除是否安全呢</h3><p>网上答案众说纷纭，但结论是没啥影响</p>
-<p>GPT给出的答案是：Config.MSI 文件夹中的 <em>.rbf 文件只是安装时的回滚脚本备份，不会影响正常系统运行。多位技术专家指出，如果这些文件在卸载后未被自动删除，是可以手动删除或忽略的[superuser.com](<a target="_blank" rel="noopener" href="https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files">https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files</a> from your hard drive)[cnblogs.com](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=%E5%9C%A8Windows%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%B0%86%E4%BA%A7%E7%94%9F%E8%BF%94%E5%9B%9E%E8%84%9A%E6%9C%AC%EF%BC%88rollback">https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=在Windows的安装过程中将产生返回脚本（rollback</a> scriptS）以实现返回功能，在这些文件中包含了已执行的操作序列，文件和注册表的更新信息以及其他操作信息。脚本文件包括,则包含在操作系统所在的驱动器中。)。例如，superuser 上的回答引用技术博客指出：</em>“配置文件夹包含安装时的备份脚本，成功安装后应自动删除…如果安装程序没有清除它们，你可以安全删除该文件夹和文件”<em>[superuser.com](<a target="_blank" rel="noopener" href="https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files">https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files</a> from your hard drive)。中文技术博客也说明：Windows 安装过程中产生的 Config.MSI 文件夹可以自行删除以释放空间[cnblogs.com](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=%E5%9C%A8Windows%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%B0%86%E4%BA%A7%E7%94%9F%E8%BF%94%E5%9B%9E%E8%84%9A%E6%9C%AC%EF%BC%88rollback">https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=在Windows的安装过程中将产生返回脚本（rollback</a> scriptS）以实现返回功能，在这些文件中包含了已执行的操作序列，文件和注册表的更新信息以及其他操作信息。脚本文件包括,则包含在操作系统所在的驱动器中。)。因此，一般情况下*<em>直接删除 Config.MSI 文件夹及其中的 *.rbf 文件是安全的</em></em>，这不会破坏系统，只是移除了无用的回滚备份。</p>
+<p>GPT给出的答案是：Config.MSI 文件夹中的 <em>.rbf 文件只是安装时的回滚脚本备份，不会影响正常系统运行。多位技术专家指出，如果这些文件在卸载后未被自动删除，是可以手动删除或忽略的<a target="_blank" rel="noopener" href="https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files from your hard drive">superuser.com</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=在Windows的安装过程中将产生返回脚本（rollback scriptS）以实现返回功能，在这些文件中包含了已执行的操作序列，文件和注册表的更新信息以及其他操作信息。脚本文件包括,则包含在操作系统所在的驱动器中。">cnblogs.com</a>。例如，superuser 上的回答引用技术博客指出：</em>“配置文件夹包含安装时的备份脚本，成功安装后应自动删除…如果安装程序没有清除它们，你可以安全删除该文件夹和文件”<em><a target="_blank" rel="noopener" href="https://superuser.com/questions/8012/what-is-the-hidden-system-config-msi-folder#:~:text=,files from your hard drive">superuser.com</a>。中文技术博客也说明：Windows 安装过程中产生的 Config.MSI 文件夹可以自行删除以释放空间<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjoch/archive/2010/05/05/1728106.html#:~:text=在Windows的安装过程中将产生返回脚本（rollback scriptS）以实现返回功能，在这些文件中包含了已执行的操作序列，文件和注册表的更新信息以及其他操作信息。脚本文件包括,则包含在操作系统所在的驱动器中。">cnblogs.com</a>。因此，一般情况下**直接删除 Config.MSI 文件夹及其中的 \</em>.rbf 文件是安全的**，这不会破坏系统，只是移除了无用的回滚备份。</p>
 <p>OK，既然这样，那就用管理员权限给它删掉吧</p>
 <h3 id="隐藏文件展示"><a href="#隐藏文件展示" class="headerlink" title="隐藏文件展示"></a>隐藏文件展示</h3><p>这类文件默认不会展示</p>
 <h4 id="方法一：通过控制面板进入“文件夹选项”"><a href="#方法一：通过控制面板进入“文件夹选项”" class="headerlink" title="方法一：通过控制面板进入“文件夹选项”"></a>方法一：通过控制面板进入“文件夹选项”</h4><p>这是 Win11 中最稳定、最通用的方式。</p>
@@ -147,7 +146,6 @@
 </li>
 <li><p>输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">control folders</span><br></pre></td></tr></table></figure>
-
 <p>然后回车<br> 👉 会直接打开 <strong>“文件夹选项”窗口</strong>（老界面）</p>
 </li>
 <li><p>切换到 <strong>查看(View)</strong> 选项卡</p>
@@ -172,11 +170,9 @@
 <p>操作完后应该就可以再D盘看到Config.MSI文件夹</p>
 <h4 id="删除Config-MSI"><a href="#删除Config-MSI" class="headerlink" title="删除Config.MSI"></a>删除Config.MSI</h4><p>管理员权限打开CMD，运行下面命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">takeown /F <span class="string">&quot;D:\Config.MSI&quot;</span> /R /D Y</span><br><span class="line">icacls <span class="string">&quot;D:\Config.MSI&quot;</span> /grant Administrators:F /T</span><br></pre></td></tr></table></figure>
-
 <p>以上命令将把 <code>D:\Config.MSI</code> 文件夹及子文件的所有权授给管理员组，让你拥有完全控制权</p>
 <p>然后执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rd /S /Q <span class="string">&quot;D:\Config.MSI&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>操作完后查看D盘就没有Config.MSI文件夹，此时再去尝试卸载旧版本python，如果删掉了，恭喜</p>
 <p>如果没删掉，按照下面操作来</p>
 <h3 id="通过安装包卸载"><a href="#通过安装包卸载" class="headerlink" title="通过安装包卸载"></a>通过安装包卸载</h3><blockquote>

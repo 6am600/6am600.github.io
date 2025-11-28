@@ -126,19 +126,20 @@
     </div>
 </div>
 <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><blockquote>
-<p>encoder-decoder模型同时使用编码器和解码器. 它将每个task视作序列到序列的转换&#x2F;生成（比如，文本到文本，文本到图像或者图像到文本的多模态任务）.Encoder-decoder模型通常用于需要内容理解和生成的任务，比如机器翻译</p>
+<p>encoder-decoder模型同时使用编码器和解码器. 它将每个task视作序列到序列的转换/生成（比如，文本到文本，文本到图像或者图像到文本的多模态任务）.Encoder-decoder模型通常用于需要内容理解和生成的任务，比如机器翻译</p>
 </blockquote>
 <h3 id="代表模型T5"><a href="#代表模型T5" class="headerlink" title="代表模型T5"></a>代表模型T5</h3><p>T5模型结构与原始的Transformer基本一致,除了做了以下几点改动</p>
 <ul>
 <li>采用了一种简化版的Layer Normalization，去除了Layer Norm的bias，将Layer Norm放在残差连接外面</li>
 <li>位置编码：T5使用了一种简化版的相对位置编码，每个位置编码都是一个标量，被加到logits上用于计算注意力权重。各层共享位置编码，但是同一层内，不同的注意力头的位置编码都是独立学习的</li>
 </ul>
-<p>​	</p>
+<p>​    </p>
 <h4 id="自监督预训练"><a href="#自监督预训练" class="headerlink" title="自监督预训练"></a>自监督预训练</h4><p>T5 在预训练阶段采用了类似于 BERT 和 GPT 的大规模自监督学习策略，但与这两个模型的设计不同的是，T5 使用了“文本到文本”的格式来处理任务。</p>
 <p>预训练任务包括两种类型：Causal Language Modeling（因果语言建模）和 填空任务（Masked Language Modeling）</p>
 <h4 id="多任务微调"><a href="#多任务微调" class="headerlink" title="多任务微调"></a>多任务微调</h4><p>除了使用大规模数据进行无监督预训练，T5模型还可以利用不同任务的标注数据进行有监督的多任务预训练，例如SQuAD问答和机器翻译等任务</p>
 <h3 id="数据集和参数"><a href="#数据集和参数" class="headerlink" title="数据集和参数"></a>数据集和参数</h3><p>作者对公开爬取的网页数据集Common Crawl进行了过滤，去掉一些重复的、低质量的，看着像代码的</p>
 <p>文本等，并且最后只保留英文文本，得到数据集<strong>C4: the Colossal Clean Crawled Corpus</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -146,7 +147,8 @@
 <th>取值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>transformer层数</td>
 <td>24</td>
 </tr>
@@ -162,7 +164,9 @@
 <td>总参数量</td>
 <td>2.2亿</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="大模型主流架构"><a href="#大模型主流架构" class="headerlink" title="大模型主流架构"></a>大模型主流架构</h3><p><strong>Decoder-only</strong></p>
 <ul>
 <li>LLM之所以主要都用Decoder-only架构，除了训练效率和工程实现上的优势外，在理论上是因为Encoder的双向注意力会存在<span class="hint--info hint--rounded hint--top" data-hint="数据或模型的本质维度不足，导致信息冗余、矩阵退化、表达能力下降、训练不稳定" ontouchstart>低秩问题</span>，这可能会削弱模型表达能力，就生成任务而言，引入双向注意力并无实质好处</li>

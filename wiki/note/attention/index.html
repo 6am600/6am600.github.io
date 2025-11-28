@@ -103,11 +103,10 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><div class="tag-plugin quot p"><p class="content"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg><span class="text">为什么需要注意力机制</span><span class="empty"></span></p></div>
-
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><div class="tag-plugin quot p"><p class="content"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg><span class="text">为什么需要注意力机制</span><span class="empty"></span></p></div>
 <p>Transformer出现之前, 对于NLP任务的主力模型是:</p>
 <p>RNN</p>
-<p>LSTM&#x2F;GRU</p>
+<p>LSTM/GRU</p>
 <p>这些模型都承担着一个艰难任务：</p>
 <blockquote>
 <p><strong>在一个长序列中，理解词与词之间的关系，尤其是远距离的关系。</strong></p>
@@ -119,9 +118,8 @@
 <li>训练难以并行，效率低下</li>
 </ul>
 <p><code>注意力机制</code>正是为了解决这些根本性问题而诞生的。</p>
-<h2 id="为什么RNN-LSTM处理不好全局依赖"><a href="#为什么RNN-LSTM处理不好全局依赖" class="headerlink" title="为什么RNN&#x2F;LSTM处理不好全局依赖"></a>为什么RNN&#x2F;LSTM处理不好全局依赖</h2><h3 id="单向传递信息"><a href="#单向传递信息" class="headerlink" title="单向传递信息"></a>单向传递信息</h3><p>RNN&#x2F;LSTM 的信息流是链式的：</p>
+<h2 id="为什么RNN-LSTM处理不好全局依赖"><a href="#为什么RNN-LSTM处理不好全局依赖" class="headerlink" title="为什么RNN/LSTM处理不好全局依赖"></a>为什么RNN/LSTM处理不好全局依赖</h2><h3 id="单向传递信息"><a href="#单向传递信息" class="headerlink" title="单向传递信息"></a>单向传递信息</h3><p>RNN/LSTM 的信息流是链式的：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 → x2 → x3 → x4 → ...</span><br></pre></td></tr></table></figure>
-
 <p>这意味着：</p>
 <ul>
 <li>x5 想知道 x1 的信息，要经过 x2 → x3 → x4 的层层传递</li>
@@ -133,19 +131,17 @@
 <p>“我昨天看了一部电影，电影主角是….剧情非常的跌宕起伏,….它非常好看。”</p>
 </blockquote>
 <p><strong>“它”</strong> 与 <strong>“电影”</strong> 的距离太远，RNN 容易“忘”。</p>
-<h3 id="梯度消失-梯度爆炸"><a href="#梯度消失-梯度爆炸" class="headerlink" title="梯度消失&#x2F;梯度爆炸"></a>梯度消失&#x2F;梯度爆炸</h3><p>链式结构导致反向传播也需要一层层回传。</p>
+<h3 id="梯度消失-梯度爆炸"><a href="#梯度消失-梯度爆炸" class="headerlink" title="梯度消失/梯度爆炸"></a>梯度消失/梯度爆炸</h3><p>链式结构导致反向传播也需要一层层回传。</p>
 <p>传统 RNN 的隐藏状态更新公式：</p>
-<p>$$ht&#x3D;tanh(Wht−1+Uxt)$$</p>
-<p>反向传播时梯度会不断乘以权重矩阵 WWW 和 tanh 的导数</p>
-<p>$$Dn&#x3D;σ′(z1)w1⋅σ′(z2)w2⋅⋯⋅σ′(zn)wn$$</p>
-<p>不难发现, 梯度的计算呈<strong>连乘</strong>形式</p>
+<script type="math/tex; mode=display">ht=tanh(Wht−1+Uxt)</script><p>反向传播时梯度会不断乘以权重矩阵 WWW 和 tanh 的导数</p>
+<script type="math/tex; mode=display">Dn=σ′(z1)w1⋅σ′(z2)w2⋅⋯⋅σ′(zn)wn</script><p>不难发现, 梯度的计算呈<strong>连乘</strong>形式</p>
 <p>当序列很长时：</p>
 <ul>
 <li>梯度不断变小 → 消失</li>
 <li>或不断变大 → 爆炸</li>
 </ul>
 <p>这让模型学不到长期关系。</p>
-<p>当然,LSTM&#x2F;GRU 在梯度消失&#x2F;爆炸问题已经做了优化, 通过门控机制控制信息流, 使一部分状态以近似线性方式在序列中传播，从而避免梯度在时间维度上的指数级衰减或爆炸，解决传统 RNN 的长期依赖问题</p>
+<p>当然,LSTM/GRU 在梯度消失/爆炸问题已经做了优化, 通过门控机制控制信息流, 使一部分状态以近似线性方式在序列中传播，从而避免梯度在时间维度上的指数级衰减或爆炸，解决传统 RNN 的长期依赖问题</p>
 <h3 id="串行计算"><a href="#串行计算" class="headerlink" title="串行计算"></a>串行计算</h3><p>RNN系列模型的特点:</p>
 <blockquote>
 <p>当前时间步必须等上一时间步走完才能开始</p>
@@ -162,10 +158,8 @@
 <p>训练难度非常大。</p>
 <h3 id="隐藏状态是对信息的强压缩"><a href="#隐藏状态是对信息的强压缩" class="headerlink" title="隐藏状态是对信息的强压缩"></a><strong>隐藏状态是对信息的强压缩</strong></h3><p>RNN 把之前所有词的信息压进一个固定维度的张量：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h_t = f(x_t, h_&#123;t-1&#125;)</span><br></pre></td></tr></table></figure>
-
 <p>无论你前面说了 100 个词，还是 1000 个词，最终信息都必须塞进一个固定长度的 h。</p>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1630/494;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110192132166.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251110192132166.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>上图是seq2seq架构处理翻译任务, seq2seq架构包括三部分, encoder(编码器), decoder(解码器), 中间语义张量c</p>
 <p>对于图中的案例, 编码器首先处理中文输入 “欢迎 来 北京”, 通过GRU模型获得每个时间步的输出张量, 最后将它们拼接成一个中间语义张量c, 接着解码器将使用这个中间语义张量c以及每一个时间步的隐层张量, 逐个生成对应的翻译语言</p>
 <p>decoder只能依赖固定长度的中间语义张量c</p>
@@ -178,7 +172,6 @@
 <h2 id="注意力机制如何解决这些痛点"><a href="#注意力机制如何解决这些痛点" class="headerlink" title="注意力机制如何解决这些痛点"></a>注意力机制如何解决这些痛点</h2><h3 id="每个词直接看到所有词"><a href="#每个词直接看到所有词" class="headerlink" title="每个词直接看到所有词"></a>每个词直接看到所有词</h3><p>在注意力里，一个词无需通过第 2、3、4、5 个词才能知道第 1 个词的信息。</p>
 <p>它可以直接算：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相关性 = Query(当前词) · Key(所有词)</span><br></pre></td></tr></table></figure>
-
 <p>这是 <strong>完全平等的全局视野</strong>。</p>
 <h3 id="不存在梯度消失问题"><a href="#不存在梯度消失问题" class="headerlink" title="不存在梯度消失问题"></a>不存在梯度消失问题</h3><p>因为注意力不依赖链式结构，反向传播只会经过几层矩阵运算，梯度非常稳定。</p>
 <h3 id="完全可并行化（压倒-RNN-的关键优势）"><a href="#完全可并行化（压倒-RNN-的关键优势）" class="headerlink" title="完全可并行化（压倒 RNN 的关键优势）"></a>完全可并行化（压倒 RNN 的关键优势）</h3><p>RNN 每一步都依赖上一部 ⇒ 只能串行<br> Attention 所有词之间的关系都可同时计算 ⇒ 一次矩阵乘法</p>
@@ -188,7 +181,6 @@
 <p>这里简要概括, 详细过程推荐知乎猛猿的一篇文章, 这里给出链接</p>
 </blockquote>
 <div class="tag-plugin link dis-select"><a class="link-card plain" title="Transformer学习笔记二：Self-Attention（自注意力机制）" href="https://zhuanlan.zhihu.com/p/455399791" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="icon"><div class="left"><span class="title">Transformer学习笔记二：Self-Attention（自注意力机制）</span><span class="cap link footnote">https://zhuanlan.zhihu.com/p/455399791</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
-
 <p>Transformer 使用的是<strong>缩放点积注意力(Scaled Dot-Prodcut Attention)</strong></p>
 <p>对于每个token, 产生三个矩阵 Query, Key, Value(下文简称 Q, K, V)</p>
 <ul>
@@ -196,20 +188,14 @@
 <li><strong>K（Key）</strong>：我有哪些信息？</li>
 <li><strong>V（Value）</strong>：对应的信息内容</li>
 </ul>
-<p>$$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right) V$$</p>
-<h3 id="1-Q-与-K-做点积：计算“匹配程度”"><a href="#1-Q-与-K-做点积：计算“匹配程度”" class="headerlink" title="(1) Q 与 K 做点积：计算“匹配程度”"></a>(1) Q 与 K 做点积：计算“匹配程度”</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = Q • Kᵀ</span><br></pre></td></tr></table></figure>
-
+<script type="math/tex; mode=display">\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right) V</script><h3 id="1-Q-与-K-做点积：计算“匹配程度”"><a href="#1-Q-与-K-做点积：计算“匹配程度”" class="headerlink" title="(1) Q 与 K 做点积：计算“匹配程度”"></a>(1) Q 与 K 做点积：计算“匹配程度”</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = Q • Kᵀ</span><br></pre></td></tr></table></figure>
 <p>相似度越高 → 代表 Query 认为这个 Key 更相关。</p>
 <h3 id="2-缩放（除以-√d）防止数值过大"><a href="#2-缩放（除以-√d）防止数值过大" class="headerlink" title="(2) 缩放（除以 √d）防止数值过大"></a>(2) 缩放（除以 √d）防止数值过大</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = score / √d</span><br></pre></td></tr></table></figure>
-
 <h3 id="3-Softmax-→-转成概率分布（注意力权重）"><a href="#3-Softmax-→-转成概率分布（注意力权重）" class="headerlink" title="(3) Softmax → 转成概率分布（注意力权重）"></a>(3) Softmax → 转成概率分布（注意力权重）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attention_weights = softmax(score)</span><br></pre></td></tr></table></figure>
-
 <h3 id="4-用权重加权求和-Value，得到最终输出"><a href="#4-用权重加权求和-Value，得到最终输出" class="headerlink" title="(4) 用权重加权求和 Value，得到最终输出"></a>(4) 用权重加权求和 Value，得到最终输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output = attention_weights × V</span><br></pre></td></tr></table></figure>
-
 <h3 id="自注意力机制"><a href="#自注意力机制" class="headerlink" title="自注意力机制"></a>自注意力机制</h3><p>对于一般情况下, Query来自decoder, Key, Value来自encoder</p>
 <p>自注意力则是一种特殊情况, Query, Key, Value均来自同一个序列, 即</p>
-<p>$$Q&#x3D;XW^Q,K&#x3D;XW^K,V&#x3D;XW^V$$</p>
-</article>
+<script type="math/tex; mode=display">Q=XW^Q,K=XW^K,V=XW^V</script></article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>许可协议</span></div>

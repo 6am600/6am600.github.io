@@ -126,7 +126,8 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="Hexo-内置字段"><a href="#Hexo-内置字段" class="headerlink" title="Hexo 内置字段"></a>Hexo 内置字段</h2><table>
+<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="Hexo-内置字段"><a href="#Hexo-内置字段" class="headerlink" title="Hexo 内置字段"></a>Hexo 内置字段</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>参数</th>
@@ -134,10 +135,11 @@
 <th>默认值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>layout</code></td>
 <td>布局</td>
-<td><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration#%E6%96%87%E7%AB%A0"><code>config.default_layout</code></a></td>
+<td><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration#文章"><code>config.default_layout</code></a></td>
 </tr>
 <tr>
 <td><code>title</code></td>
@@ -181,17 +183,17 @@
 </tr>
 <tr>
 <td><code>excerpt</code></td>
-<td>纯文本的页面摘要。使用 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/tag-plugins#%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81%E5%92%8C%E6%88%AA%E6%96%AD">该插件</a> 来格式化文本</td>
+<td>纯文本的页面摘要。使用 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/tag-plugins#文章摘要和截断">该插件</a> 来格式化文本</td>
 <td></td>
 </tr>
 <tr>
 <td><code>disableNunjucks</code></td>
-<td>启用时禁用 Nunjucks 标签 <code>&#123;&#123; &#125;&#125;</code>&#x2F;<code>&#123;% %&#125;</code> 和 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/tag-plugins">标签插件</a> 的渲染功能</td>
+<td>启用时禁用 Nunjucks 标签 <code>&#123;&#123; &#125;&#125;</code>/<code>&#123;% %&#125;</code> 和 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/tag-plugins">标签插件</a> 的渲染功能</td>
 <td>false</td>
 </tr>
 <tr>
 <td><code>lang</code></td>
-<td>设置语言以覆盖 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/internationalization#%E8%B7%AF%E5%BE%84">自动检测</a></td>
+<td>设置语言以覆盖 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/internationalization#路径">自动检测</a></td>
 <td>继承自 <code>_config.yml</code></td>
 </tr>
 <tr>
@@ -199,11 +201,14 @@
 <td>文章是否发布</td>
 <td>对于 <code>_posts</code> 下的文章为 <code>true</code>，对于 <code>_draft</code> 下的文章为 <code>false</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <blockquote>
 <p>详见：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">https://hexo.io/zh-cn/docs/front-matter</a></p>
 </blockquote>
-<h2 id="Stellar-特有字段"><a href="#Stellar-特有字段" class="headerlink" title="Stellar 特有字段"></a>Stellar 特有字段</h2><table>
+<h2 id="Stellar-特有字段"><a href="#Stellar-特有字段" class="headerlink" title="Stellar 特有字段"></a>Stellar 特有字段</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>参数</th>
@@ -212,7 +217,8 @@
 <th>可用版本</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>wiki</td>
 <td>该页面所属的 wiki 项目</td>
 <td></td>
@@ -250,7 +256,7 @@
 </tr>
 <tr>
 <td>poster</td>
-<td>文章封面，包含 topic&#x2F;headline&#x2F;caption&#x2F;color 子配置</td>
+<td>文章封面，包含 topic/headline/caption/color 子配置</td>
 <td></td>
 <td></td>
 </tr>
@@ -262,13 +268,13 @@
 </tr>
 <tr>
 <td>banner_info</td>
-<td>横幅信息，包含 avatar&#x2F;title&#x2F;subtitle 子配置</td>
+<td>横幅信息，包含 avatar/title/subtitle 子配置</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>logo</td>
-<td>左侧边栏顶部 logo 区域信息，包含 icon&#x2F;avatar&#x2F;title&#x2F;subtitle 子配置</td>
+<td>左侧边栏顶部 logo 区域信息，包含 icon/avatar/title/subtitle 子配置</td>
 <td></td>
 <td></td>
 </tr>
@@ -280,7 +286,7 @@
 </tr>
 <tr>
 <td>topic</td>
-<td>所属话题&#x2F;专栏</td>
+<td>所属话题/专栏</td>
 <td></td>
 <td>1.25.0 ~</td>
 </tr>
@@ -318,10 +324,12 @@
 <td>indexing</td>
 <td>页面能否是否能被搜索</td>
 <td>true</td>
-<td></td>
 </tr>
-</tbody></table>
-<h2 id="第三方插件"><a href="#第三方插件" class="headerlink" title="第三方插件"></a>第三方插件</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="第三方插件"><a href="#第三方插件" class="headerlink" title="第三方插件"></a>第三方插件</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>参数</th>
@@ -329,7 +337,8 @@
 <th>类型</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>mathjax</td>
 <td>渲染文章公式</td>
 <td>boolean</td>
@@ -344,7 +353,9 @@
 <td>渲染图表</td>
 <td>boolean</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 </article>
 <div class="article-footer">
     <section id="license">

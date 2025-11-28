@@ -103,22 +103,20 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><blockquote>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><blockquote>
 <p>首先抛出一个问题, 为什么<code>Transformer</code> 要有位置编码?</p>
-<p>– 对于任何一门语言, 单词在句子中的位置和顺序都极为重要, 语序正确, 才能表达出正确含义</p>
+<p>— 对于任何一门语言, 单词在句子中的位置和顺序都极为重要, 语序正确, 才能表达出正确含义</p>
 <blockquote>
 <p>I <strong>do not</strong> like the story of the movie, but I <strong>do</strong> like the cast.<br>I <strong>do</strong> like the story of the movie, but I <strong>do not</strong> like the cast.</p>
 </blockquote>
 <p>如上述两个句子, 仅是改变<code>not</code>位置, 表达的意思截然相反</p>
-<p>– <code>Transformer</code>抛弃了<code>RNN</code>和<code>CNN</code>作为序列学习的基本模型, 我们知道, 循环神经网络本身就是一种顺序结构, 天然包含了词在序列中的位置信息, 当抛弃循环神经网络结构, 完全采用<code>Attention</code>取而代之, 这些词序信息就会丢失, 模型就没有办法直到每个词在句子中的相对位置和绝对位置, 因此, 有必要把词序信息加到词向量上帮助模型学习这些信息, 位置编码(<code>Positional Encoding</code>)就是用来解决这个问题的办法</p>
+<p>— <code>Transformer</code>抛弃了<code>RNN</code>和<code>CNN</code>作为序列学习的基本模型, 我们知道, 循环神经网络本身就是一种顺序结构, 天然包含了词在序列中的位置信息, 当抛弃循环神经网络结构, 完全采用<code>Attention</code>取而代之, 这些词序信息就会丢失, 模型就没有办法直到每个词在句子中的相对位置和绝对位置, 因此, 有必要把词序信息加到词向量上帮助模型学习这些信息, 位置编码(<code>Positional Encoding</code>)就是用来解决这个问题的办法</p>
 </blockquote>
 <p>这里给出<code>huggingface</code>上的的一篇文章, 对于位置编码的讲解非常清晰透彻</p>
 <div class="tag-plugin link dis-select"><a class="link-card plain" title="设计位置编码" href="https://huggingface.co/blog/zh/designing-positional-encoding" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="icon"><div class="left"><span class="title">设计位置编码</span><span class="cap link footnote">https://huggingface.co/blog/zh/designing-positional-encoding</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
-
 <h2 id="一、什么是位置编码"><a href="#一、什么是位置编码" class="headerlink" title="一、什么是位置编码"></a>一、什么是位置编码</h2><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer%2C_full_architecture.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer%2C_full_architecture.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>在<code>transformer</code>的<code>encoder</code>和<code>decoder</code>中使用了<code>Positional Encoding</code>, 最终的输入就变为了:</p>
-<p><em>input &#x3D; word_embedding + positional_encoding</em></p>
+<p><em>input = word_embedding + positional_encoding</em></p>
 <p><strong>word_embedding</strong> : 词嵌入, 将<code>token</code>的维度从<code>vocab_size</code>映射到<code>d_model</code>(原论文中, <code>d_model</code>为512)</p>
 <p>最终的输入通过词嵌入后的向量和位置编码矩阵相加得到, 所以<code>positional_encoding</code>也是<code>d_model</code>维度的向量</p>
 <h2 id="二、位置编码构造方法"><a href="#二、位置编码构造方法" class="headerlink" title="二、位置编码构造方法"></a>二、位置编码构造方法</h2><h3 id="2-1-用增长数值标记位置"><a href="#2-1-用增长数值标记位置" class="headerlink" title="2.1 用增长数值标记位置"></a>2.1 用增长数值标记位置</h3><ul>
@@ -135,18 +133,16 @@
 <h3 id="2-3-用二进制向量标记位置"><a href="#2-3-用二进制向量标记位置" class="headerlink" title="2.3 用二进制向量标记位置"></a>2.3 用二进制向量标记位置</h3><blockquote>
 <p>由于位置信息最终会作用到<code>word_embedding</code>上, 比起用单一的数值, 更好的方式是使用和<code>word_embedding</code>同纬度的向量, 可以想到, 将数值转换成二进制形式</p>
 </blockquote>
-<p>假设<code>d_model</code> &#x3D; 3</p>
+<p>假设<code>d_model</code> = 3</p>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1536/1024;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bi_pe.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/bi_pe.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p><code>d_model</code>一般比较大(512, 1024…), 基本可以把每个<code>token</code>的位置都编码出来</p>
 <p>但这样也存在问题, 不同单词间的位置变化不连续, 难以推测相对位置信息</p>
 <h3 id="2-4-用sin和cos函数交替标记位置"><a href="#2-4-用sin和cos函数交替标记位置" class="headerlink" title="2.4 用sin和cos函数交替标记位置"></a>2.4 用sin和cos函数交替标记位置</h3><blockquote>
 <p>这是论文中提出的方法</p>
 <p>三角函数有界且连续, 可以满足目前的需要</p>
 </blockquote>
-<p>$$PE_{(pos, 2i)} &#x3D; \sin\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right)$$</p>
-<p>$$PE_{(pos, 2i+1)} &#x3D; \cos\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right)$$</p>
-<p><strong>参数说明:</strong></p>
+<script type="math/tex; mode=display">PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)</script><script type="math/tex; mode=display">PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)</script><p><strong>参数说明:</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -154,7 +150,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><em>pos</em></td>
 <td>当前位置（position index）</td>
 </tr>
@@ -170,17 +167,21 @@
 <td>PE</td>
 <td>位置编码矩阵（shape: <code>[seq_len, d_model]</code>）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>这里只给出计算公式, 数学推导网上优秀文章较多, 不再演示</p>
 <h2 id="三-为什么可以直接将词向量和位置编码进行相加"><a href="#三-为什么可以直接将词向量和位置编码进行相加" class="headerlink" title="三. 为什么可以直接将词向量和位置编码进行相加"></a>三. 为什么可以直接将词向量和位置编码进行相加</h2><blockquote>
 <p>这是一直困扰我的点, 仅是进行张量相加就可以达到添加位置信息的作用吗? 难道这样不会破坏词向量本身信息吗?</p>
 <p>网上浏览了一些博主的文章和视频, 但是答案也并没那么明确, 有点大力出奇迹的意思</p>
 </blockquote>
-<h3 id="3-1、公式复习"><a href="#3-1、公式复习" class="headerlink" title="3.1、公式复习"></a>3.1、公式复习</h3><p>Transformer 的输入是：<br>$$<br>X &#x3D; E_{\text{word}} + E_{\text{pos}}<br>$$<br>其中：</p>
+<h3 id="3-1、公式复习"><a href="#3-1、公式复习" class="headerlink" title="3.1、公式复习"></a>3.1、公式复习</h3><p>Transformer 的输入是：</p>
+<script type="math/tex; mode=display">
+X = E_{\text{word}} + E_{\text{pos}}</script><p>其中：</p>
 <ul>
 <li>$E_{word}$：词向量（表示词语语义）</li>
 <li>$E_{pos}$：位置编码（表示词语在句子中的位置）</li>
-<li>维度相同（例如都为 $d_{model}&#x3D;512$）</li>
+<li>维度相同（例如都为 $d_{model}=512$）</li>
 </ul>
 <hr>
 <h3 id="3-2、为什么相加就能引入位置信息？"><a href="#3-2、为什么相加就能引入位置信息？" class="headerlink" title="3.2、为什么相加就能引入位置信息？"></a>3.2、为什么相加就能引入位置信息？</h3><h4 id="1-向量加法在嵌入空间中表示“组合信息”"><a href="#1-向量加法在嵌入空间中表示“组合信息”" class="headerlink" title="1. 向量加法在嵌入空间中表示“组合信息”"></a>1. 向量加法在嵌入空间中表示“组合信息”</h4><p>在向量空间中，<strong>加法表示叠加不同的语义因素</strong>。</p>
@@ -196,18 +197,19 @@
 <p>也就是说，<strong>新的向量同时携带了词义和位置两种特征</strong>。</p>
 <hr>
 <h4 id="2-相加不会“覆盖”信息，而是“偏移”语义空间"><a href="#2-相加不会“覆盖”信息，而是“偏移”语义空间" class="headerlink" title="2. 相加不会“覆盖”信息，而是“偏移”语义空间"></a>2. 相加不会“覆盖”信息，而是“偏移”语义空间</h4><p>我们可以把每个词向量看成在一个高维语义空间中的点。<br> 加上位置编码后，等价于把它 <strong>沿着“位置维度方向”平移了一点</strong>：</p>
-<p>$$\text{new_embedding &#x3D; semantic_embedding + position_offset}$$</p>
-<p>所以模型看到的不是“词义被破坏”，而是“相同词在不同位置处于略微不同的方向”。<br> 这使得 Transformer 能区分：</p>
+<script type="math/tex; mode=display">\text{new\_embedding = semantic\_embedding + position\_offset}</script><p>所以模型看到的不是“词义被破坏”，而是“相同词在不同位置处于略微不同的方向”。<br> 这使得 Transformer 能区分：</p>
 <blockquote>
 <p>“I love you”和“You love I” 的区别。</p>
 </blockquote>
 <hr>
 <h4 id="3-注意力机制会自动学会利用这些位置差异"><a href="#3-注意力机制会自动学会利用这些位置差异" class="headerlink" title="3. 注意力机制会自动学会利用这些位置差异"></a>3. 注意力机制会自动学会利用这些位置差异</h4><p>在自注意力计算中，Q、K 向量都会从输入中线性变换得到：</p>
-<p>$$<br>Q &#x3D; XW_Q, \quad K &#x3D; XW_K<br>$$<br>因此，位置信息通过 $E_{pos}$ 影响了 Query-Key 相似度。</p>
+<script type="math/tex; mode=display">
+Q = XW_Q, \quad K = XW_K</script><p>因此，位置信息通过 $E_{pos}$ 影响了 Query-Key 相似度。</p>
 <p>当两个词位置不同、位置编码不同，它们的注意力权重分布也不同 → 模型能够学习“前后关系”。</p>
 <hr>
 <h3 id="3-3、为什么不会破坏词向量原始信息？"><a href="#3-3、为什么不会破坏词向量原始信息？" class="headerlink" title="3.3、为什么不会破坏词向量原始信息？"></a>3.3、为什么不会破坏词向量原始信息？</h3><h4 id="1-相加是线性可逆的（在一定程度上）"><a href="#1-相加是线性可逆的（在一定程度上）" class="headerlink" title="1. 相加是线性可逆的（在一定程度上）"></a>1. 相加是线性可逆的（在一定程度上）</h4><p>如果两个向量空间的分布相对独立，线性相加仍能被后续层（线性变换）分离：</p>
-<p>$$<br>W(E_{word}+E_{pos})&#x3D;WE_{word}+WE_{pos}<br>$$<br><code>Transformer</code> 的多层线性结构可以在后续层中重新分辨“语义部分”和“位置信息部分”。</p>
+<script type="math/tex; mode=display">
+W(E_{word}+E_{pos})=WE_{word}+WE_{pos}</script><p><code>Transformer</code> 的多层线性结构可以在后续层中重新分辨“语义部分”和“位置信息部分”。</p>
 <hr>
 <h4 id="2-位置编码的幅度较小，不会淹没词向量"><a href="#2-位置编码的幅度较小，不会淹没词向量" class="headerlink" title="2. 位置编码的幅度较小，不会淹没词向量"></a>2. 位置编码的幅度较小，不会淹没词向量</h4><p>在实现时，位置编码通常被归一化或初始化为较小值（例如在 [-1,1] 范围内）。<br> 这样词向量的主导语义仍然保留，只是轻微偏移 → 注入位置信息。</p>
 <hr>

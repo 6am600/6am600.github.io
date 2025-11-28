@@ -126,7 +126,6 @@
     </div>
 </div>
 <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><div class="tag-plugin quot p"><p class="content"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from BoxIcons Solid by Atisa - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M3.691 6.292C5.094 4.771 7.217 4 10 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 6.925 10H10a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2H3a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789M20 20h-6a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789C16.094 4.771 18.217 4 21 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 17.925 10H21a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2"/></svg><span class="text">自回归模型 Autoregressive model，AR</span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from BoxIcons Solid by Atisa - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.9 2.9 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292m-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.9 2.9 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292"/></svg></p></div>
-
 <p>本篇主要围绕GPT作为代表了解AR</p>
 <blockquote>
 <p>2018年6月, OpenAI公司发表了论文“Improving Language Understanding by Generative Pre-training”《用生成式预训练提高模型的语言理解力》, 推出了具有1.17亿个参数的GPT（Generative Pre-training , 生成式预训练）模型</p>
@@ -135,49 +134,39 @@
 <p>AR模型通常用于生成式任务，在长文本的生成能力很强，比如NLG领域的任务：摘要、翻译、抽象问答</p>
 </blockquote>
 <h3 id="GPT模型架构"><a href="#GPT模型架构" class="headerlink" title="GPT模型架构"></a>GPT模型架构</h3><div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:823/759;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763463941.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763463941.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <ul>
 <li>从上图可以很清楚的看到GPT采用的是单向Transformer模型, 例如给定一个句子[u1, u2, …, un], GPT在预测单词ui的时候只会利用[u1, u2, …, u(i-1)]的信息, 而BERT会同时利用上下文的信息[u1, u2, …, u(i-1),u(i+1), …, un]</li>
 </ul>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:568/1023;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763464083.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763464083.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>GPT采用了Transformer的decoder模块，但是做了修改</p>
 <ul>
 <li>GPT移除了第二个encoder-decoder attention子层，只保留Masked Multi-head Attention子层和Feed Forward子层</li>
 <li>对比经典Transformer采用6层decoder，GPT采用了12层</li>
 </ul>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:589/1101;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763464247.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763464247.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <h3 id="GPT训练过程"><a href="#GPT训练过程" class="headerlink" title="GPT训练过程"></a>GPT训练过程</h3><blockquote>
 <p>GPT训练过程包括两个阶段：1.无监督的预训练语言模型 2.有监督的下游任务fine-tuning</p>
 </blockquote>
-<h4 id="无监督的预训练语言模型"><a href="#无监督的预训练语言模型" class="headerlink" title="无监督的预训练语言模型"></a>无监督的预训练语言模型</h4><p>给定句子U &#x3D; [u1, u2, …, un], GPT训练语言模型时的目标是最大化下面的似然函数</p>
-<p>$$L_1(U) &#x3D; \sum_i \log P(u_i \mid u_{i-k}, \cdots, u_{i-1}; \Theta)$$</p>
-<ul>
-<li><p>上述公式具体来说是要预测每个词 $$u_i$$的概率，这个概率是基于它前面$$u_{i-k}$$到$$u_{i-1}$$个词，以及模型$$\Theta$$，这里的k表示上文的窗口大小，理论上k取值越大，模型所能获取的信息越充足，能力越强</p>
+<h4 id="无监督的预训练语言模型"><a href="#无监督的预训练语言模型" class="headerlink" title="无监督的预训练语言模型"></a>无监督的预训练语言模型</h4><p>给定句子U = [u1, u2, …, un], GPT训练语言模型时的目标是最大化下面的似然函数</p>
+<script type="math/tex; mode=display">L_1(U) = \sum_i \log P(u_i \mid u_{i-k}, \cdots, u_{i-1}; \Theta)</script><ul>
+<li><p>上述公式具体来说是要预测每个词 <script type="math/tex">u_i</script>的概率，这个概率是基于它前面<script type="math/tex">u_{i-k}</script>到<script type="math/tex">u_{i-1}</script>个词，以及模型<script type="math/tex">\Theta</script>，这里的k表示上文的窗口大小，理论上k取值越大，模型所能获取的信息越充足，能力越强</p>
 </li>
 <li><p>GPT是一个单向语言模型,模型对输入U 进行特征嵌入得到 transformer 第一层的输h0，再经过多层 transformer</p>
 <p>特征编码，使用最后一层的输出即可得到当前预测的概率分布，计算过程如下</p>
-<p>$$h_0&#x3D;UW_e+W_p$$</p>
-<p>$$W_p$$表示单词位置编码 → [max_seq_len, embedding_dim]，$$W_e$$可以看作是单位矩阵 → [vocab_size, embedding_dim]</p>
+<script type="math/tex; mode=display">h_0=UW_e+W_p</script><p><script type="math/tex">W_p</script>表示单词位置编码 → [max_seq_len, embedding_dim]，<script type="math/tex">W_e</script>可以看作是单位矩阵 → [vocab_size, embedding_dim]</p>
 </li>
 <li><p>得到输入张量h0后, 要将h0传入GPT的Decoder Block中, 依次得到ht</p>
-<p>$$h_t &#x3D; \text{transformer_block}(h_{l-1}) \quad l \in [1,t]$$</p>
-</li>
+<script type="math/tex; mode=display">h_t = \text{transformer\_block}(h_{l-1}) \quad l \in [1,t]</script></li>
 <li><p>最后通过得到的ht来预测下一个单词</p>
-<p>$$P(u) &#x3D; \text{softmax}(h_t W^T_e)$$</p>
-</li>
+<script type="math/tex; mode=display">P(u) = \text{softmax}(h_t W^T_e)</script></li>
 </ul>
 <h4 id="有监督的下游任务fine-tuning"><a href="#有监督的下游任务fine-tuning" class="headerlink" title="有监督的下游任务fine-tuning"></a>有监督的下游任务fine-tuning</h4><p>GPT预训练后, 会针对具体的下游任务对模型进行微调. 微调采用的是有监督学习, 训练样本包括单词序列[x1, x2, …, xn]和label y. GPT微调的目标任务是根据单词序列[x1, x2, …, xn]预测标签y</p>
-<p>$$P(y|x^1,…,x^m) &#x3D; \text{softmax}(h_l^m W_y)$$</p>
-<p>其中Wy表示预测输出的矩阵参数, 微调任务的目标是最大化下面的函数</p>
-<p>$$L_2 &#x3D; \sum_{(x,y)} \log P(y|x^1, \cdots, x^m)$$</p>
-<p>综合两个阶段的目标任务函数, 可知GPT的最终优化函数为：</p>
-<p>$$L_3&#x3D;L_2+λL_1$$</p>
-<p><strong>整体训练架构图：</strong></p>
+<script type="math/tex; mode=display">P(y|x^1,...,x^m) = \text{softmax}(h_l^m W_y)</script><p>其中Wy表示预测输出的矩阵参数, 微调任务的目标是最大化下面的函数</p>
+<script type="math/tex; mode=display">L_2 = \sum_{(x,y)} \log P(y|x^1, \cdots, x^m)</script><p>综合两个阶段的目标任务函数, 可知GPT的最终优化函数为：</p>
+<script type="math/tex; mode=display">L_3=L_2+λL_1</script><p><strong>整体训练架构图：</strong></p>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:2047/832;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763465461.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763465461.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
-<h3 id="数据集和参数"><a href="#数据集和参数" class="headerlink" title="数据集和参数"></a>数据集和参数</h3><p>GPT使用了BooksCorpus数据集,文本大小约<strong>5GB</strong>，包含<strong>7400w+<strong>的句子。这个数据集由</strong>7000</strong>本独立的、不同风格类型的书籍组成</p>
+<h3 id="数据集和参数"><a href="#数据集和参数" class="headerlink" title="数据集和参数"></a>数据集和参数</h3><p>GPT使用了BooksCorpus数据集,文本大小约<strong>5GB</strong>，包含<strong>7400w+</strong>的句子。这个数据集由<strong>7000</strong>本独立的、不同风格类型的书籍组成</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -185,7 +174,8 @@
 <th>取值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>transformer层数</td>
 <td>12</td>
 </tr>
@@ -201,7 +191,9 @@
 <td>总参数量</td>
 <td>1.17亿</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 </article>
 <div class="article-footer">
     <section id="license">

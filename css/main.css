@@ -5740,33 +5740,95 @@ p>strong>span.tag-plugin.icon {
 }
 .md-text .tag-plugin.note {
   position: relative;
-  padding: 0.25rem 1rem;
-  border-radius: 16px;
-  background: var(--theme-block);
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin: 1rem 0;
   overflow: hidden;
-  border: 1px solid var(--theme-border);
   color: var(--text-p1);
 }
 .md-text .tag-plugin.note >.title {
-  --fsp: calc(0.9375rem - 1px);
-  font-size: var(--fsp);
-  line-height: 1.5;
-  margin-top: var(--gap-p-compact);
-  font-weight: 500;
-  color: var(--text);
+  --fsp: calc(0.9375rem - 2px);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 0.4rem 0;
+  font-weight: 600;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+}
+.md-text .tag-plugin.note >.title:first-child {
+  margin-top: 0;
+}
+.md-text .tag-plugin.note >.title::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+  mask-size: contain;
+  flex-shrink: 0;
 }
 .md-text .tag-plugin.note >.body {
-  margin-top: var(--gap-p-compact);
-  margin-bottom: var(--gap-p-compact);
+  margin: 0;
+  color: #4a5568;
 }
 .md-text .tag-plugin.note >.body,
 .md-text .tag-plugin.note >.body p {
-  --fsp: calc(0.9375rem - 2px);
-  font-size: var(--fsp);
+  --fsp: calc(0.9375rem - 3px);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 .md-text .tag-plugin.note >.body:only-child {
-  margin: calc(var(--gap-p) - 0.25rem) 0;
+  margin: 0;
+}
+.md-text .tag-plugin.note[color="blue"] {
+  background: linear-gradient(135deg, #e8f4fe 0%, #fff 100%);
+}
+.md-text .tag-plugin.note[color="blue"] >.title {
+  color: #2196f3;
+}
+.md-text .tag-plugin.note[color="blue"] >.title::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E") no-repeat center;
+}
+.md-text .tag-plugin.note[color="yellow"] {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
+}
+.md-text .tag-plugin.note[color="yellow"] >.title {
+  color: #ffb300;
+}
+.md-text .tag-plugin.note[color="yellow"] >.title::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+}
+.md-text .tag-plugin.note[color="red"] {
+  background: linear-gradient(135deg, #ffeaea 0%, #fff 100%);
+}
+.md-text .tag-plugin.note[color="red"] >.title {
+  color: #f44336;
+}
+.md-text .tag-plugin.note[color="red"] >.title::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E") no-repeat center;
+}
+.md-text .tag-plugin.note[color="green"] {
+  background: linear-gradient(135deg, #e8f5e8 0%, #fff 100%);
+}
+.md-text .tag-plugin.note[color="green"] >.title {
+  color: #4caf50;
+}
+.md-text .tag-plugin.note[color="green"] >.title::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+}
+.md-text .tag-plugin.note[color="purple"] {
+  background: linear-gradient(135deg, #f3e8ff 0%, #fff 100%);
+}
+.md-text .tag-plugin.note[color="purple"] >.title {
+  color: #9c27b0;
+}
+.md-text .tag-plugin.note[color="purple"] >.title::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E") no-repeat center;
 }
 .md-text .tag-plugin.note[color] code {
   background: none;
@@ -5774,6 +5836,10 @@ p>strong>span.tag-plugin.icon {
 .md-text .tag-plugin.note[child=codeblock] {
   padding: 0;
   background: var(--theme-codeblock);
+  border-radius: 8px;
+}
+.md-text .tag-plugin.note[child=codeblock] >.title {
+  color: var(--text);
 }
 .md-text .tag-plugin.note[child=codeblock] >.title,
 .md-text .tag-plugin.note[child=codeblock] >.body:only-child {
@@ -5786,6 +5852,7 @@ p>strong>span.tag-plugin.icon {
   margin: 0;
   border: none;
   background: none;
+  border-radius: 0 0 8px 8px;
 }
 .md-text .tag-plugin.note[child=codeblock] .highlight figcaption span {
   background: var(--theme-block);
@@ -5795,26 +5862,56 @@ p>strong>span.tag-plugin.icon {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.md-text .tag-plugin.note[child=tabs] {
+  border-radius: 12px;
+}
 .md-text .tag-plugin.note[child=tabs] >.body {
   margin: 0;
 }
 .md-text .tag-plugin.note[child=tabs] >.body >.tabs {
   margin-top: 0.5rem;
+  border-radius: 0 0 12px 12px;
 }
 .md-text .tag-plugin.note[child=iframe] {
   padding: 0;
+  border-radius: 8px;
+}
+.md-text .tag-plugin.note[child=iframe] >.title {
+  color: var(--text);
 }
 .md-text .tag-plugin.note[child=iframe] >.body {
   margin: 0;
 }
 .md-text .tag-plugin.note[child=iframe] >.body iframe {
   margin: 0;
+  border-radius: 8px;
 }
 .md-text .tag-plugin .tag-plugin.note {
-  --gap-p: 1rem;
+  --gap-p: 0.75rem;
+  margin: 0.75rem 0;
+  border-radius: 10px;
 }
 .l_body[type=story] .tag-plugin.note .title p:not([class]) {
   text-indent: 0;
+}
+@media (max-width: 768px) {
+  .md-text .tag-plugin.note {
+    padding: 0.6rem 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 10px;
+  }
+  .md-text .tag-plugin.note >.title {
+    font-size: 0.9rem;
+  }
+  .md-text .tag-plugin.note >.title::before {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
+  .md-text .tag-plugin.note >.body,
+  .md-text .tag-plugin.note >.body p {
+    font-size: 0.85rem;
+  }
 }
 .md-text .tag-plugin.okr {
   position: relative;

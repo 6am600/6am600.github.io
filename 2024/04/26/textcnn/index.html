@@ -129,12 +129,11 @@
 <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="TextCNN中的卷积操作"><a href="#TextCNN中的卷积操作" class="headerlink" title="TextCNN中的卷积操作"></a>TextCNN中的卷积操作</h2><p>卷积神经网络的核心思想是 <strong>捕捉局部特征</strong>，对于文本来说，局部特征就是 <strong>由若干单词组成的滑动窗口</strong>，类似 <strong>N-gram</strong>。卷积神经网络的优势在于能够<strong>自动的对 N-gram特征进行组合和筛选，获取不同抽象层次的语义信息</strong></p>
 <p>在图像中，这些局部特征可以是 边缘、纹理、形状</p>
 <p>在文本中，这些局部特征可以是：</p>
-<p>​	情感短语：“太中了！“，“俺不中嘞”</p>
-<p>​	关键词组合：“股市 下跌”，“疫情 爆发”</p>
-<p>​	……</p>
+<p>​    情感短语：“太中了！“，“俺不中嘞”</p>
+<p>​    关键词组合：“股市 下跌”，“疫情 爆发”</p>
+<p>​    ……</p>
 <p><strong>句子可以看成由词向量组成的二维矩阵</strong></p>
-<p>$$X∈R^{n×d}$$</p>
-<p>n 表示句子长度</p>
+<script type="math/tex; mode=display">X∈R^{n×d}</script><p>n 表示句子长度</p>
 <p>d 表示词向量维度</p>
 <p>每一行就是一个词的embedding</p>
 <p>卷积核可以在这个矩阵上滑动，自动学习“哪些词组合表示什么语义”，从而达到文本分类目的</p>
@@ -146,24 +145,25 @@
 </ul>
 <h3 id="2-多尺寸卷积核提取-n-gram-特征"><a href="#2-多尺寸卷积核提取-n-gram-特征" class="headerlink" title="2. 多尺寸卷积核提取 n-gram 特征"></a>2. 多尺寸卷积核提取 n-gram 特征</h3><p>不同高度的卷积核对应不同 n-gram：</p>
 <ul>
-<li>宽度 &#x3D; embedding 维度（固定）</li>
-<li>高度 &#x3D; n-gram 大小，如 2、3、4</li>
+<li>宽度 = embedding 维度（固定）</li>
+<li>高度 = n-gram 大小，如 2、3、4</li>
 </ul>
 <p>例如，3×d 的卷积核可以捕捉 “三词短语” 模式。</p>
 <p>卷积运算公式如下：</p>
-<p>$$c_i &#x3D; f(W * X_{i:i+h-1} + b)$$</p>
-<p>得到长度为 $$n−h+1$$ 的 feature map。</p>
+<script type="math/tex; mode=display">c_i = f(W * X_{i:i+h-1} + b)</script><p>得到长度为 <script type="math/tex">n−h+1</script> 的 feature map。</p>
 <h3 id="3-最大池化（max-over-time-pooling）"><a href="#3-最大池化（max-over-time-pooling）" class="headerlink" title="3. 最大池化（max-over-time pooling）"></a>3. 最大池化（max-over-time pooling）</h3><p>对每个 feature map 取最大值</p>
 <p>含义：保留该卷积核在整个句子中最强的激活，代表最重要的 n-gram 模式。</p>
 <h3 id="4-全连接层-Softmax-分类"><a href="#4-全连接层-Softmax-分类" class="headerlink" title="4. 全连接层 + Softmax 分类"></a>4. 全连接层 + Softmax 分类</h3><p>多个卷积核的池化结果拼接成向量，再输入全连接层实现分类。</p>
-<h2 id="TextCNN的超参数调参"><a href="#TextCNN的超参数调参" class="headerlink" title="TextCNN的超参数调参"></a>TextCNN的超参数调参</h2><table>
+<h2 id="TextCNN的超参数调参"><a href="#TextCNN的超参数调参" class="headerlink" title="TextCNN的超参数调参"></a>TextCNN的超参数调参</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>参数名称</th>
 <th>参数值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>输入词向量</td>
 <td>word2vec</td>
 </tr>
@@ -191,17 +191,18 @@
 <td>L2正则化</td>
 <td>3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ol>
 <li>输入词向量表征：词向量表征的选取(如选word2vec还是GloVe)</li>
 <li>卷积核大小：一个合理的值范围在1~10。若语料中的句子较长，可以考虑使用更大的卷积核。另外，可以在寻找到了最佳的单个filter的大小后，尝试在该filter的尺寸值附近寻找其他合适值来进行组合。实践证明这样的组合效果往往比单个最佳filter表现更出色</li>
 <li>feature map特征图个数：主要考虑的是当增加特征图个数时，训练时间也会加长，因此需要权衡好。当特征图数量增加到将性能降低时，可以加强正则化效果，如将dropout率提高过0.5</li>
 <li>激活函数：ReLU和tanh是最佳候选者</li>
 <li>池化策略：1-max pooling表现最佳</li>
-<li>正则化项(dropout&#x2F;L2)：相对于其他超参数来说，影响较小点</li>
+<li>正则化项(dropout/L2)：相对于其他超参数来说，影响较小点</li>
 </ol>
 <h2 id="使用Pytorch简单实现"><a href="#使用Pytorch简单实现" class="headerlink" title="使用Pytorch简单实现"></a>使用Pytorch简单实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">​</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Model</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, config</span>):</span><br><span class="line">        <span class="built_in">super</span>(Model, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.embedding = nn.Embedding(config.n_vocab, config.embed, padding_idx=config.n_vocab - <span class="number">1</span>) <span class="comment"># 词嵌入层</span></span><br><span class="line">        <span class="variable language_">self</span>.convs = nn.ModuleList(</span><br><span class="line">            [nn.Conv2d(<span class="number">1</span>, config.num_filters, (k, config.embed)) <span class="keyword">for</span> k <span class="keyword">in</span> config.filter_sizes]</span><br><span class="line">        )   <span class="comment"># 卷积层列表，包含不同卷积核大小的卷积层</span></span><br><span class="line">        <span class="variable language_">self</span>.dropout = nn.Dropout(config.dropout)  <span class="comment"># 随机失活层</span></span><br><span class="line">        <span class="variable language_">self</span>.fc = nn.Linear(config.num_filters * <span class="built_in">len</span>(config.filter_sizes), config.num_classes)   <span class="comment"># 全连接层</span></span><br><span class="line">​</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">conv_and_pool</span>(<span class="params">self, x, conv</span>):</span><br><span class="line">        <span class="comment"># 卷积和池化操作</span></span><br><span class="line">        x = F.relu(conv(x)).squeeze(<span class="number">3</span>)</span><br><span class="line">        x = F.max_pool1d(x, x.size(<span class="number">2</span>)).squeeze(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">​</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 前向传播</span></span><br><span class="line">        out = <span class="variable language_">self</span>.embedding(x[<span class="number">0</span>])</span><br><span class="line">        out = out.unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 对每个卷积层进行卷积和池化操作，然后拼接在一起</span></span><br><span class="line">        out = torch.cat([<span class="variable language_">self</span>.conv_and_pool(out, conv) <span class="keyword">for</span> conv <span class="keyword">in</span> <span class="variable language_">self</span>.convs], <span class="number">1</span>)</span><br><span class="line">        out = <span class="variable language_">self</span>.dropout(out)  <span class="comment"># 随机失活</span></span><br><span class="line">        out = <span class="variable language_">self</span>.fc(out)   <span class="comment"># 全连接层</span></span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
-
 </article>
 <div class="article-footer">
     <section id="license">

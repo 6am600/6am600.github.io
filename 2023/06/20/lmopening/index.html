@@ -93,41 +93,33 @@
     
   </div>
   </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><div class="tag-plugin quot p"><p class="content"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from BoxIcons Solid by Atisa - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M3.691 6.292C5.094 4.771 7.217 4 10 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 6.925 10H10a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2H3a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789M20 20h-6a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789C16.094 4.771 18.217 4 21 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.9 2.9 0 0 0 17.925 10H21a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2"/></svg><span class="text">大语言模型介绍</span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from BoxIcons Solid by Atisa - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.9 2.9 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292m-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.9 2.9 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292"/></svg></p></div>
-
 <p>这里先给出大语言模型的进化树</p>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1440/1162;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251118094049769.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251118094049769.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>不难看出，从左到右，分支模型架构大致可以分为 encoder-only，encoder-decoder，decoder-only</p>
-<p>**大语言模型（Large Language Model）：**一种人工智能模型，旨在理解和生成人类语言，大语言模型可以处理杜仲NLP任务 → 文本分类、文旦、翻译、对话等</p>
+<p><strong>大语言模型（Large Language Model）：</strong>一种人工智能模型，旨在理解和生成人类语言，大语言模型可以处理杜仲NLP任务 → 文本分类、文旦、翻译、对话等</p>
 <p>对于大预言模型的的<code>大</code>，主要体现在其参数量，一般认为，<strong>包含千亿级别以上参数的语言模型</strong>（目前定义参数量超过10B的模型为大语言模型）；当然，除了参数量，庞大的语料库也是其一大特点。</p>
 <h2 id="语言模型发展阶段"><a href="#语言模型发展阶段" class="headerlink" title="语言模型发展阶段"></a>语言模型发展阶段</h2><div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><span>第一阶段</span></div><div class="body fs14"><p>设计一系列的自监督训练目标（MLM、NSP等），设计新颖的模型架构（Transformer）, 遵循Pre-training和Fine-tuning范式. 典型代表是BERT、GPT、XLNet等;</p></div></div><div class="timenode" index="1"><div class="header"><span>第二阶段</span></div><div class="body fs14"><p>逐步扩大模型参数和训练语料规模，探索不同类型的架构。典型代表是BART、T5、GPT-3等;</p></div></div><div class="timenode" index="2"><div class="header"><span>第三阶段</span></div><div class="body fs14"><p>走向AIGC（Artificial Intelligent Generated Content）时代, 模型参数规模步入千万亿, 模型架构为自回归架构, 大模型走向对话式、生成式、多模态时代，更加注重与人类交互进行对齐，实现可靠、安全、无毒的模型. 典型代表是InstructionGPT、ChatGPT、Bard、GPT-4等.</p></div></div></div>
-
 <h2 id="语言模型技术发展"><a href="#语言模型技术发展" class="headerlink" title="语言模型技术发展"></a>语言模型技术发展</h2><div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><span>第一阶段</span></div><div class="body fs14"><p>基于规则和统计的语言模型 → N-gram模型</p></div></div><div class="timenode" index="1"><div class="header"><span>第二阶段</span></div><div class="body fs14"><p>神经网络语言模型</p></div></div><div class="timenode" index="2"><div class="header"><span>第三阶段</span></div><div class="body fs14"><p>预训练语言模型</p></div></div><div class="timenode" index="3"><div class="header"><span>第四阶段</span></div><div class="body fs14"><p>大语言模型</p></div></div></div>
-
 <h3 id="N-gram模型"><a href="#N-gram模型" class="headerlink" title="N-gram模型"></a>N-gram模型</h3><blockquote>
 <p>基于规则和统计的模型的典型或者可以说就是N-gram模型</p>
 </blockquote>
 <p>这里引入了马尔科夫假设：随意一个词出现的概率只与它前面出现的有限的一个或者几个词有关</p>
 <ul>
 <li><p><strong>如果一个词的出现与它周围的词是独立的，那么我们称之为 unigram，也就是一元语言模型。</strong></p>
-<p>$$P(S)&#x3D;P(W1)⋅P(W2)⋅…⋅P(Wn)$$</p>
-</li>
+<script type="math/tex; mode=display">P(S)=P(W1)⋅P(W2)⋅…⋅P(Wn)</script></li>
 </ul>
 <hr>
 <ul>
 <li><p><strong>如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为 bigram。</strong></p>
-<p>$$P(S)&#x3D;P(W1)⋅P(W2∣W1)⋅P(W3∣W2)⋯P(Wn∣Wn−1)$$</p>
-</li>
+<script type="math/tex; mode=display">P(S)=P(W1)⋅P(W2∣W1)⋅P(W3∣W2)⋯P(Wn∣Wn−1)</script></li>
 </ul>
 <hr>
 <ul>
 <li><p><strong>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为 trigram。</strong></p>
-<p>$$P(S)&#x3D;P(W1)⋅P(W2∣W1)⋅P(W3∣W2,W1)⋯P(Wn∣Wn−1,Wn−2)$$</p>
-</li>
+<script type="math/tex; mode=display">P(S)=P(W1)⋅P(W2∣W1)⋅P(W3∣W2,W1)⋯P(Wn∣Wn−1,Wn−2)</script></li>
 </ul>
 <p>一般来说，N元模型就是假设当前词的出现概率只与它前面的N-1个词有关，而这些概率参数都是可以通过大规模语料库来计算，比如三元概率：</p>
-<p>$$P(Wi|Wi-2)&#x3D;Count(Wi-2Wi-1Wi)&#x2F;Count(Wi-2Wi-1)$$</p>
-<p>简单理解上述公式，在语料库中，出现 <strong>我爱你</strong> 的次数比上 <strong>我爱</strong> 出现的次数</p>
+<script type="math/tex; mode=display">P(Wi|Wi-2)=Count(Wi-2Wi-1Wi)/Count(Wi-2Wi-1)</script><p>简单理解上述公式，在语料库中，出现 <strong>我爱你</strong> 的次数比上 <strong>我爱</strong> 出现的次数</p>
 <p><strong>N-gram模型特点</strong></p>
 <ul>
 <li>采用极大似然估计，参数易训练</li>
@@ -145,7 +137,6 @@
 <p>基于N-gram语言模型以上的问题，以及随着神经网络技术的发展，人们开始尝试使用神经网络来建立语言模型</p>
 </blockquote>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1227/1036;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251118101805014.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251118101805014.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <ul>
 <li>模型的输入: wt-n+1, …, wt-2, wt-1就是前n-1个词. 现在需要根据这已知的n-1个词预测下一个词 wt，C(w)表示单词w所对应的词向量</li>
 <li>网络的第一层: 是将C(wt-n+1),..,C(wt-2), C(wt-1)这n-1个向量首尾拼接起来形成一个(n-1)*m大小的向量</li>
@@ -154,7 +145,6 @@
 </ul>
 <p>相比于N-gram有更好的泛化能力，降低了数据稀疏带来的问题；但是对于长序列建模能力有限，可能会出现梯度消失问题。</p>
 <h3 id="基于Transformer的预训练语言模型"><a href="#基于Transformer的预训练语言模型" class="headerlink" title="基于Transformer的预训练语言模型"></a>基于Transformer的预训练语言模型</h3><div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:1426/1500;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/Transformer_full_architecture.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>基于Transformer的预训练模型：包括GPT、BERT、T5等.这些模型能够从大规模通用文本数据中学习大量的语言表示，并将这些知识运用到下游任务中，获得较好的效果</p>
 <p><strong>预训练模型的使用方式：</strong></p>
 <ul>
@@ -184,12 +174,12 @@
 <p>前三个相信都不陌生，机器学习就在使用了，涉及到的就是混淆矩阵中值得简单运算</p>
 <p>这里主要介绍后面三个</p>
 <h3 id="BLEU"><a href="#BLEU" class="headerlink" title="BLEU"></a>BLEU</h3><blockquote>
-<p>BLEU 根据<code>n-gram</code>可以划分成多种评价指标，其中<code>n-gram</code>指的是连续的单词个数为n，实践中，通常是取N&#x3D;1~4，然后对进行加权平均</p>
+<p>BLEU 根据<code>n-gram</code>可以划分成多种评价指标，其中<code>n-gram</code>指的是连续的单词个数为n，实践中，通常是取N=1~4，然后对进行加权平均</p>
 </blockquote>
 <p><strong>基本步骤：</strong></p>
 <ol>
 <li>分别计算candidate句和reference句的N-grams模型，然后统计其匹配的个数，计算匹配度</li>
-<li>公式：candidate和reference中匹配的 n−gram 的个数 &#x2F;candidate中n−gram 的个数</li>
+<li>公式：candidate和reference中匹配的 n−gram 的个数 /candidate中n−gram 的个数</li>
 </ol>
 <p>candidate 候选值，即模型预测值</p>
 <p>reference 参考值，即真实值</p>
@@ -200,14 +190,14 @@
 </li>
 <li><p>reference: {today, is, a, nice, day}</p>
 </li>
-<li><p>结果:其中{today, is, a, nice, day}匹配，所以匹配度为5&#x2F;6</p>
+<li><p>结果:其中{today, is, a, nice, day}匹配，所以匹配度为5/6</p>
 </li>
 </ul>
 <p><strong>使用2-gram进行匹配：</strong></p>
 <ul>
 <li>candidate: {it is, is a, a nice, nice day, day today}</li>
 <li>reference: {today is, is a, a nice, nice day}</li>
-<li>结果:其中{is a, a nice, nice day}匹配，所以匹配度为3&#x2F;5</li>
+<li>结果:其中{is a, a nice, nice day}匹配，所以匹配度为3/5</li>
 </ul>
 <p>以此类推，还是比较好理解的</p>
 <p><strong>不难发现，匹配个数越多，BLEU值越大，说明候选句子越好</strong></p>
@@ -217,14 +207,12 @@
 <li>reference: The cat is standing on the ground</li>
 <li>如果按照1-gram的方法进行匹配，则匹配度为1，显然是不合理的</li>
 </ul>
-<p>**解决办法就是：**首先，计算一个单词在任意一个参考句子出现的最大次数, 然后用每个（非重复）单词在参考句子中出现的最大</p>
-<p>次数来修剪–单词在候选句子的出现次数. 如下所示的公式</p>
-<p>$$count_k&#x3D;min(c_k,s_k)$$</p>
-<p>其中k表示在候选句子（candidate）中出现的第k个词语, ck则代表在候选句子中这个词语出现的次数，而sk则代表</p>
+<p><strong>解决办法就是：</strong>首先，计算一个单词在任意一个参考句子出现的最大次数, 然后用每个（非重复）单词在参考句子中出现的最大</p>
+<p>次数来修剪—单词在候选句子的出现次数. 如下所示的公式</p>
+<script type="math/tex; mode=display">count_k=min(c_k,s_k)</script><p>其中k表示在候选句子（candidate）中出现的第k个词语, ck则代表在候选句子中这个词语出现的次数，而sk则代表</p>
 <p>在参考文本（reference）中这个词语出现的次数</p>
 <h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>先安装工具包 <code>pip install nltk</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.translate.bleu_score <span class="keyword">import</span> sentence_bleu</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cumulative_bleu</span>(<span class="params">reference, candidate</span>):</span><br><span class="line">    bleu_1_gram = sentence_bleu(reference, candidate, weights=(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">    bleu_2_gram = sentence_bleu(reference, candidate, weights=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">    bleu_3_gram = sentence_bleu(reference, candidate, weights=(<span class="number">0.33</span>, <span class="number">0.33</span>, <span class="number">0.33</span>, <span class="number">0</span>))</span><br><span class="line">    bleu_4_gram = sentence_bleu(reference, candidate, weights=(<span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.25</span>))</span><br><span class="line">    <span class="keyword">return</span> bleu_1_gram, bleu_2_gram, bleu_3_gram, bleu_4_gram</span><br><span class="line"><span class="comment"># 生成文本</span></span><br><span class="line">generated_text = [<span class="string">&quot;This&quot;</span>, <span class="string">&quot;is&quot;</span>, <span class="string">&quot;some&quot;</span>, <span class="string">&quot;generated&quot;</span>, <span class="string">&quot;text&quot;</span>]</span><br><span class="line"><span class="comment"># 参考文本列表</span></span><br><span class="line">reference_texts = [[<span class="string">&quot;This&quot;</span>, <span class="string">&quot;is&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;reference&quot;</span>, <span class="string">&quot;text&quot;</span>]]</span><br><span class="line"><span class="comment"># 计算 Bleu 指标</span></span><br><span class="line">c_bleu = cumulative_bleu(reference_texts, generated_text)</span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The Bleu score is:&quot;</span>, c_bleu)</span><br><span class="line"><span class="comment">#The Bleu score is: (0.6, 0.387, 1.5e-102, 9.2e-155)</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="ROUGE"><a href="#ROUGE" class="headerlink" title="ROUGE"></a>ROUGE</h3><blockquote>
 <p>ROUGE指标与BLEU指标非常类似，均可用来衡量生成结果和标准结果的匹配程度，不同的是ROUGE基于召回率，BLEU更看重准确率。</p>
 <p>ROUGE也分为四种方法：ROUGE-N, ROUGE-L, ROUGE-W, ROUGE-S</p>
@@ -237,12 +225,11 @@
 </li>
 <li><p>reference: {today, is, a, nice, day}</p>
 </li>
-<li><p>结果:其中{today, is, a, nice, day}匹配，所以匹配度为5&#x2F;5&#x3D;1,这说明生成的内容完全覆盖了参考文本中的所有单词，质量较高</p>
+<li><p>结果:其中{today, is, a, nice, day}匹配，所以匹配度为5/5=1,这说明生成的内容完全覆盖了参考文本中的所有单词，质量较高</p>
 </li>
 </ul>
 <h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><p>先安装工具包<code>pip install rouge</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Rouge</span><br><span class="line"><span class="comment"># 生成文本</span></span><br><span class="line">generated_text = <span class="string">&quot;This is some generated text.&quot;</span></span><br><span class="line"><span class="comment"># 参考文本列表</span></span><br><span class="line">reference_texts = [<span class="string">&quot;This is another generated reference text.&quot;</span>]</span><br><span class="line"><span class="comment"># 计算 ROUGE 指标</span></span><br><span class="line">rouge = Rouge()</span><br><span class="line">scores = rouge.get_scores(generated_text, reference_texts[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ROUGE-1 precision:&quot;</span>, scores[<span class="number">0</span>][<span class="string">&quot;rouge-1&quot;</span>][<span class="string">&quot;p&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ROUGE-1 recall:&quot;</span>, scores[<span class="number">0</span>][<span class="string">&quot;rouge-1&quot;</span>][<span class="string">&quot;r&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ROUGE-1 F1 score:&quot;</span>, scores[<span class="number">0</span>][<span class="string">&quot;rouge-1&quot;</span>][<span class="string">&quot;f&quot;</span>])</span><br><span class="line"><span class="comment"># ROUGE-1 precision: 0.8</span></span><br><span class="line"><span class="comment"># ROUGE-1 recall: 0.6666666666666666</span></span><br><span class="line"><span class="comment"># ROUGE-1 F1 score: 0.7272727223140496</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="PPL"><a href="#PPL" class="headerlink" title="PPL"></a>PPL</h3><blockquote>
 <p>困惑都（perplexity）</p>
 <p>PPL用来度量一个概率分布或概率模型预测样本的好坏程度</p>
@@ -250,16 +237,12 @@
 <p>给测试集的句子赋予较高概率值的语言模型较好,当语言模型训练完之后，测试集中的句子都是正常的句子，那么训练好的模型就是在测试集上的概率越高越好</p>
 <p><strong>公式：</strong></p>
 <p>两种形式</p>
-<p>$${PPL}(S) ;&#x3D;; \frac{1}{\sqrt[N]{P(w_1w_2…w_N)}}$$</p>
-<p>$${PPL}(S) ;&#x3D;; 2^{-\frac{1}{N}\sum_{i&#x3D;1}^{N}\log_2 P(w_i)}$$</p>
-<p>从公式可以看出，句子概率越大，语言模型越好，困惑度越小</p>
+<script type="math/tex; mode=display">{PPL}(S) \;=\; \frac{1}{\sqrt[N]{P(w_1w_2...w_N)}}</script><script type="math/tex; mode=display">{PPL}(S) \;=\; 2^{-\frac{1}{N}\sum_{i=1}^{N}\log_2 P(w_i)}</script><p>从公式可以看出，句子概率越大，语言模型越好，困惑度越小</p>
 <h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="comment"># 定义语料库</span></span><br><span class="line">sentences = [</span><br><span class="line">    [<span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;have&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;pen&#x27;</span>],</span><br><span class="line">    [<span class="string">&#x27;He&#x27;</span>, <span class="string">&#x27;has&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;book&#x27;</span>],</span><br><span class="line">    [<span class="string">&#x27;She&#x27;</span>, <span class="string">&#x27;has&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>]</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 定义语言模型</span></span><br><span class="line">unigram = &#123;<span class="string">&#x27;I&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>, <span class="string">&#x27;have&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">3</span>/<span class="number">12</span>, <span class="string">&#x27;pen&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>,<span class="string">&#x27;He&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>, <span class="string">&#x27;has&#x27;</span>: <span class="number">2</span>/<span class="number">12</span>,<span class="string">&#x27;book&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>,<span class="string">&#x27;She&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>, <span class="string">&#x27;cat&#x27;</span>: <span class="number">1</span>/<span class="number">12</span>&#125;</span><br><span class="line"><span class="comment"># 计算困惑度</span></span><br><span class="line">perplexity = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> sentence <span class="keyword">in</span> sentences:</span><br><span class="line">    sentence_prob = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> sentence:</span><br><span class="line">    	sentence_prob *= unigram[word]</span><br><span class="line">    temp = -math.log(sentence_prob, <span class="number">2</span>)/<span class="built_in">len</span>(sentence)</span><br><span class="line">    perplexity+=<span class="number">2</span>**temp</span><br><span class="line">perplexity = perplexity/<span class="built_in">len</span>(sentences)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;困惑度为：&#x27;</span>, perplexity)</span><br><span class="line"><span class="comment"># 困惑度为： 8.15</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="LLM架构类别"><a href="#LLM架构类别" class="headerlink" title="LLM架构类别"></a>LLM架构类别</h2><p>这一块内容比较多，分开几章讲，这里简单介绍</p>
 <p>LLM本身基于Transformer架构，原始Transformer为不同领域模型提供了灵感和启发</p>
 <p>基于原始Transformer衍生出一系列模型，一些模型仅使用encoder，一些模型仅使用decoder，有些模型同时使用encoder和decoder</p>
 <div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:967/301;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/llmclass.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/llmclass.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-
 <p>LLM大致可以分为三种：自编码模型（encoder）、自回归模型（decoder）和序列到序列模型（encoder-decoder）</p>
 </article>
 <div class="article-footer">
