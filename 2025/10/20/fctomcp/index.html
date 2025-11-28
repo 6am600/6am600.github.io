@@ -1,0 +1,1259 @@
+
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 8.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>从Function Call 到 MCP - 扳布屋</title>
+
+  
+    <meta name="description" content="Function Callingok啊，直接步入正题，先来了解下什么是Function Calling Function Calling由OpenAI等公司推动，允许大语言模型与外部工具连接，将自然语言转换为API 调用。这解决了大模型在训练结束，就知识更新停滞的问题。 通俗解释就是：  大语言模型(像 ChatGPT)本身学到的知识是在训练时固定的，训练完它就不会自动“长新知识”但是，通过 Fu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Function Call 到 MCP">
+<meta property="og:url" content="https://bambooo.top/2025/10/20/fctomcp/">
+<meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="Function Callingok啊，直接步入正题，先来了解下什么是Function Calling Function Calling由OpenAI等公司推动，允许大语言模型与外部工具连接，将自然语言转换为API 调用。这解决了大模型在训练结束，就知识更新停滞的问题。 通俗解释就是：  大语言模型(像 ChatGPT)本身学到的知识是在训练时固定的，训练完它就不会自动“长新知识”但是，通过 Fu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta property="article:published_time" content="2025-10-20T02:38:58.000Z">
+<meta property="article:modified_time" content="2025-10-20T02:38:58.000Z">
+<meta property="article:author" content="Bamboo">
+<meta property="article:tag" content="FunctionCall">
+<meta property="article:tag" content="MCP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+  
+  
+  
+  <meta name="keywords" content="FunctionCall,MCP">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+    <link rel="shortcut icon" href="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/sun.png">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"dateCreated":"2025-10-20T10:38:58+08:00","dateModified":"2025-10-20T10:38:58+08:00","datePublished":"2025-10-20T10:38:58+08:00","description":"","headline":"从Function Call 到 MCP","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2025/10/20/fctomcp/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"}},"url":"https://bambooo.top/2025/10/20/fctomcp/","keywords":"FunctionCall, MCP","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251127181425797.png","image":1}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
+  if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.querySelector("html").id = "ZYDark";
+  }
+</script>
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css">
+</head>
+<body>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2024/08/01/ner/"><span class="title">命名实体识别</span></a><a class="item title" href="/2023/12/21/someskills/"><span class="title">小技巧</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251127181425797.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Agent/">Agent</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-10-20T02:38:58.000Z">2025-10-20</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-10-20T02:38:58.000Z">2025-10-20</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>从Function Call 到 MCP</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="Function-Calling"><a href="#Function-Calling" class="headerlink" title="Function Calling"></a>Function Calling</h2><p>ok啊，直接步入正题，先来了解下什么是Function Calling</p>
+<p><strong>Function Calling</strong>由OpenAI等公司推动，允许大语言模型与外部工具连接，将自然语言转换为API 调用。这解决了大模型在训练结束，就知识更新停滞的问题。</p>
+<p>通俗解释就是：</p>
+<blockquote>
+<p>大语言模型(像 ChatGPT)本身学到的知识是在训练时固定的，训练完它就不会自动“长新知识”但是，通过 Function Calling 这个机制，我们可以让模型在对话时，直接调用外部工具或接口(比如天气API、股票查询 API、数据库等)，实时获取最新信息，并把结果再返回给你。<br>就像:</p>
+<ul>
+<li>模型原来是一本“印刷好的书”，印好之后就不能改。</li>
+<li>现在给它配了一部“智能手机”，它可以在回答问题前，先去上网查、问工具拿数据，再告诉你最新的答案</li>
+</ul>
+<p>这样，它不仅能理解你的话，还能动手去查或做事，而不是只靠旧记忆说话。</p>
+</blockquote>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>Function Calling原理并不复杂，通过代码进行说明</p>
+<p>OpenAI的api需要收费，也比较麻烦，所以这里用智谱来演示，效果一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> zhipuai <span class="keyword">import</span> ZhipuAI</span><br><span class="line"><span class="keyword">from</span> env_config <span class="keyword">import</span> ZHIPU_API_KEY</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化zhipuai客户端</span></span><br><span class="line">client = ZhipuAI(api_key=ZHIPU_API_KEY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义工具参数</span></span><br><span class="line">tools = [&#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;web_search&#x27;</span>,  <span class="comment"># 网页搜索</span></span><br><span class="line">    <span class="string">&#x27;web_search&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;enable&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&#x27;search_engine&#x27;</span>: <span class="string">&#x27;search_pro_sogou&#x27;</span>,  <span class="comment"># 搜索引擎类型</span></span><br><span class="line">        <span class="string">&#x27;search_result&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&#x27;search_prompt&#x27;</span>: <span class="string">&#x27;你是一名财经分析师，请用简洁的语言总结网络搜索结果中：&#123;&#123;search_result&#125;&#125;中的关键信息，按重要性排序并标注来源日期&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义用户消息</span></span><br><span class="line">messages = [&#123;</span><br><span class="line">    <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;content&#x27;</span>: <span class="string">&#x27;2025年7月份重要财经事件、政策变化和市场数据&#x27;</span></span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用API获取响应</span></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&#x27;glm-4-air-250414&#x27;</span>,  <span class="comment"># 模型编码</span></span><br><span class="line">    messages=messages,</span><br><span class="line">    tools=tools</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(response)  # response是一个Completion对象，我们需要拿到它的choices</span></span><br><span class="line"><span class="keyword">for</span> choice <span class="keyword">in</span> response.choices:</span><br><span class="line">    <span class="built_in">print</span>(choice.message.content)</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">以下是2025年7月份的重要财经事件、政策变化和市场数据，按重要性排序并标注来源日期：</span><br><span class="line"></span><br><span class="line">### 1. **中国7月国民经济保持稳中有进发展态势**  </span><br><span class="line">   - **内容**：工业生产较快增长（规模以上工业增加值同比增长5.7%），装备制造业和高技术制造业增长显著（分别增长8.4%和9.3%）。服务业商务活动指数为50.0%，市场销售继续增长（社会消费品零售总额同比增长3.7%）。  </span><br><span class="line">   - **来源**：[ref_6]（7月新闻发布会）、[ref_7]（国家统计局答记者问）、[ref_9]（经济数据总结）。  </span><br><span class="line"></span><br><span class="line">### 2. **中国金融数据：M2增长8.8%，贷款投放稳健**  </span><br><span class="line">   - **内容**：7月末广义货币（M2）余额329.94万亿元，同比增长8.8%；前七个月人民币贷款增加12.87万亿元，存款增加18.44万亿元。  </span><br><span class="line">   - **来源**：[ref_5]（金融统计数据报告）。  </span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>可以看到，这些信息并不能及时作为语料给大模型训练，但是可以通过Function Call的方式调用外部接口拿到最新的数据，这就是Function Call强大之处。</p>
+<h3 id="ZhipuAI-Agent"><a href="#ZhipuAI-Agent" class="headerlink" title="ZhipuAI+Agent"></a>ZhipuAI+Agent</h3><p>再通过一个智能体案例引出agent</p>
+<p>这里想说一句，langchain版本更新后，包的位置都变了，函数也做了修改，调试起环境还是有点脑壳痛</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_tool_calling_agent, AgentExecutor</span><br><span class="line"><span class="keyword">from</span> langchain_core.chat_history <span class="keyword">import</span> BaseChatMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_community.chat_message_histories <span class="keyword">import</span> ChatMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"><span class="keyword">from</span> langchain_core.runnables <span class="keyword">import</span> RunnableWithMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field</span><br><span class="line"><span class="keyword">from</span> zhipuai <span class="keyword">import</span> ZhipuAI</span><br><span class="line"><span class="keyword">from</span> env_config <span class="keyword">import</span> ZHIPU_API_KEY</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建客户端</span></span><br><span class="line">zhipuai_client = ZhipuAI(api_key=ZHIPU_API_KEY)</span><br><span class="line">llm = ChatOpenAI(  <span class="comment"># zhipuai的</span></span><br><span class="line">    temperature=<span class="number">0</span>,</span><br><span class="line">    model=<span class="string">&#x27;glm-4-air-250414&#x27;</span>,</span><br><span class="line">    api_key=ZHIPU_API_KEY,</span><br><span class="line">    base_url=<span class="string">&quot;https://open.bigmodel.cn/api/paas/v4/&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义搜索输入的模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SearchInput</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    query: <span class="built_in">str</span> = Field(description=<span class="string">&#x27;需要搜索的内容或者关键词&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义搜索工具函数</span></span><br><span class="line"><span class="meta">@tool(<span class="params"><span class="string">&#x27;my_search_tool&#x27;</span>, args_schema=SearchInput</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">my_search</span>(<span class="params">query: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;搜索互联网上的内容&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 调用客户端进行网络搜索</span></span><br><span class="line">        response = zhipuai_client.web_search.web_search(</span><br><span class="line">            search_engine=<span class="string">&quot;search-std&quot;</span>,</span><br><span class="line">            search_query=query</span><br><span class="line">        )</span><br><span class="line">        <span class="comment"># 打印搜索结果</span></span><br><span class="line">        <span class="comment"># print(&quot;搜索内容：&quot;, response)</span></span><br><span class="line">        <span class="comment"># 如果搜索结果存在，返回结果内容</span></span><br><span class="line">        <span class="keyword">if</span> response.search_result:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;\n\n&quot;</span>.join([d.content <span class="keyword">for</span> d <span class="keyword">in</span> response.search_result])</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="comment"># 打印异常信息</span></span><br><span class="line">        <span class="built_in">print</span>(e)</span><br><span class="line">        <span class="comment"># 返回没有搜索到任何内容的提示</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;没有搜索到任何内容！&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义聊天提示模板</span></span><br><span class="line">prompt = ChatPromptTemplate.from_messages([</span><br><span class="line">    (<span class="string">&#x27;system&#x27;</span>, <span class="string">&#x27;你是一个智能助手，尽可能的调用工具回答用户的问题&#x27;</span>),</span><br><span class="line">    <span class="comment"># 占位符用于存储聊天历史</span></span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&#x27;chat_history&#x27;</span>, optional=<span class="literal">True</span>),</span><br><span class="line">    (<span class="string">&#x27;human&#x27;</span>, <span class="string">&#x27;&#123;input&#125;&#x27;</span>),</span><br><span class="line">    <span class="comment"># 占位符用于存储代理的临时信息</span></span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&#x27;agent_scratchpad&#x27;</span>, optional=<span class="literal">True</span>),</span><br><span class="line">])</span><br><span class="line"><span class="comment"># 定义工具列表</span></span><br><span class="line">tools = [my_search]</span><br><span class="line"><span class="comment"># 创建智能体</span></span><br><span class="line">agent = create_tool_calling_agent(llm, tools=tools, prompt=prompt)</span><br><span class="line"><span class="comment"># 创建智能体执行器</span></span><br><span class="line">executor = AgentExecutor(agent=agent, tools=[my_search])</span><br><span class="line"><span class="comment"># 定义存储会话历史的字典</span></span><br><span class="line">store = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取会话历史的方法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_session_history</span>(<span class="params">session_id: <span class="built_in">str</span></span>) -&gt; BaseChatMessageHistory:</span><br><span class="line">    <span class="comment"># 如果会话ID不在存储字典中，创建一个新聊天历史记录</span></span><br><span class="line">    <span class="keyword">if</span> session_id <span class="keyword">not</span> <span class="keyword">in</span> store:</span><br><span class="line">        store[session_id] = ChatMessageHistory()</span><br><span class="line">    <span class="comment"># 返回会话历史记录</span></span><br><span class="line">    <span class="keyword">return</span> store[session_id]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建带有会话历史的智能体</span></span><br><span class="line">agent_with_history = RunnableWithMessageHistory(</span><br><span class="line">    executor,</span><br><span class="line">    get_session_history,</span><br><span class="line">    input_messages_key=<span class="string">&#x27;input&#x27;</span>,</span><br><span class="line">    history_messages_key=<span class="string">&#x27;chat_history&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 调用代理处理用户输入</span></span><br><span class="line">resp1 = agent_with_history.invoke(</span><br><span class="line">    &#123;<span class="string">&#x27;input&#x27;</span>: <span class="string">&#x27;你好， 我是扳布，出生在2002年&#x27;</span>&#125;,</span><br><span class="line">    config=&#123;<span class="string">&#x27;configurable&#x27;</span>: &#123;<span class="string">&#x27;session_id&#x27;</span>: <span class="string">&#x27;bamboo&#x27;</span>&#125;&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 打印代理的响应</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;回答1：&quot;</span>, resp1[<span class="string">&#x27;output&#x27;</span>])</span><br><span class="line"><span class="comment"># 调用智能体处理用户输入</span></span><br><span class="line">resp2 = agent_with_history.invoke(</span><br><span class="line">    &#123;<span class="string">&#x27;input&#x27;</span>: <span class="string">&#x27;我出生的那一年，国际上发生哪些大事&#x27;</span>&#125;,</span><br><span class="line">    config=&#123;<span class="string">&#x27;configurable&#x27;</span>: &#123;<span class="string">&#x27;session_id&#x27;</span>: <span class="string">&#x27;bamboo&#x27;</span>&#125;&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 打印代理的响应</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;回答2：&quot;</span>, resp2[<span class="string">&quot;output&quot;</span>])</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">回答1： 你好，扳布！很高兴认识你。请问有什么我可以帮助你的吗？</span><br><span class="line">回答2： 2002年，国际上发生了一些重要的大事，包括：</span><br><span class="line"></span><br><span class="line">1. **伊拉克武器核查问题**：联合国与伊拉克达成一致，允许武器核查人员重返巴格达。</span><br><span class="line">2. **诺贝尔奖揭晓**：2002年诺贝尔奖在多个领域颁发，包括生理学或医学奖、物理学奖、经济学奖、化学奖、和平奖和文学奖。</span><br><span class="line">3. **印尼巴厘岛爆炸事件**：印度尼西亚旅游胜地巴厘岛发生针对外国人的系列爆炸事件，造成近190人死亡，320多人受伤。</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">这些事件对国际政治、经济和文化产生了深远的影响。如果你对其中某个事件有更详细的兴趣，我可以提供更多信息。</span><br></pre></td></tr></table></figure>
+<h4 id="重点分析"><a href="#重点分析" class="headerlink" title="重点分析"></a>重点分析</h4><p>上面代码有几个关键点需要进行说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt = ChatPromptTemplate.from_messages([</span><br><span class="line">    (<span class="string">&#x27;system&#x27;</span>, <span class="string">&#x27;你是一个智能助手，尽可能的调用工具回答用户的问题&#x27;</span>),</span><br><span class="line">    <span class="comment"># 占位符用于存储聊天历史</span></span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&#x27;chat_history&#x27;</span>, optional=<span class="literal">True</span>),</span><br><span class="line">    (<span class="string">&#x27;human&#x27;</span>, <span class="string">&#x27;&#123;input&#125;&#x27;</span>),</span><br><span class="line">    <span class="comment"># 占位符用于存储代理的临时信息</span></span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&#x27;agent_scratchpad&#x27;</span>, optional=<span class="literal">True</span>),</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>系统提示：告诉 Agent 要尽量调用工具来回答问题。</p>
+<ul>
+<li><code>MessagesPlaceholder</code><ul>
+<li><code>chat_history</code>:用来加载历史对话(记忆)</li>
+<li><code>agent_scratchpad</code>:用来记录 Agent 中间推理过程(ReAct 格式)</li>
+</ul>
+</li>
+<li><code>&#123;input&#125;</code>：替换为用户输入</li>
+</ul>
+<h5 id="agent-scratchpad"><a href="#agent-scratchpad" class="headerlink" title="agent_scratchpad"></a>agent_scratchpad</h5><p>这里需要重点讲一下agent_scratchpad</p>
+<ul>
+<li>直译就是“智能体的草稿本”</li>
+<li>它是 在 <strong>Agent 推理过程中用来记录中间思考步骤的一个地方</strong>。</li>
+<li>这个“中间步骤”对用户不可见(除非你把它打印出来)，它是给 Agent 自己用的。在 LangChain、Llamalndex等Agent 框架中，agent scratchpad 往往就是一个字符串变量，里面存放了:<ul>
+<li>Agent 之前调用工具的记录</li>
+<li>工具返回的结果</li>
+<li>Agent 的思考笔记(reasoning)</li>
+</ul>
+</li>
+</ul>
+<h5 id="为什么要记录中间推理过程"><a href="#为什么要记录中间推理过程" class="headerlink" title="为什么要记录中间推理过程"></a>为什么要记录中间推理过程</h5><p>想象你在解决一个问题</p>
+<ol>
+<li>先想一想需要什么信息</li>
+<li>去查资料(调用工具)</li>
+<li>得到资料后再思考下一步</li>
+<li>直到得出最终答案</li>
+</ol>
+<p>如果没有“草稿本”，Agent 每次都得从零推理，不记得自己之前做过什么。有了 agent_scratchpad，Agent 就像有了一个白板，可以写下</p>
+<ul>
+<li>“我上一步调用了 XXX 工具”</li>
+<li>“工具返回了 YYY 数据“</li>
+<li>”下一步我应该……“</li>
+</ul>
+<h5 id="ReAct格式"><a href="#ReAct格式" class="headerlink" title="ReAct格式"></a>ReAct格式</h5><p>ReAct = <strong>Reasoning</strong> + <strong>Acting</strong>(推理+行动)</p>
+<p>它是一种大模型 Agent 推理模式，步骤通常是这样:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Thought:</span> <span class="string">我需要先查一下北京的天气。</span></span><br><span class="line"><span class="attr">Action:</span> <span class="string">get_weather&#123;&quot;city&quot;:</span> <span class="string">&quot;北京&quot;</span><span class="string">&#125;</span></span><br><span class="line"><span class="attr">Observation:</span> &#123;<span class="string">&quot;weather&quot;</span><span class="string">:&quot;晴&quot;</span>,<span class="string">&quot;temp&quot;</span><span class="string">:12</span>&#125;</span><br><span class="line"><span class="attr">Thought:</span> <span class="string">已经拿到天气信息，可以回答用户了。</span></span><br><span class="line"><span class="attr">Final Answer:</span> <span class="string">北京今天晴，温度是12°C。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Thought</strong> →推理过程(写给自己看的)</li>
+<li><strong>Action</strong> → 调用工具</li>
+<li><strong>Observation</strong> →工具返回结果</li>
+<li><strong>Final Answer</strong>→最终给用户的答案</li>
+</ul>
+<h5 id="agent-scratchpad和ReAct关系"><a href="#agent-scratchpad和ReAct关系" class="headerlink" title="agent_scratchpad和ReAct关系"></a>agent_scratchpad和ReAct关系</h5><ul>
+<li><p><code>agent scratchpad</code> 就是存 <strong>Thought/Action/Observation</strong> 这些中间记录的地方</p>
+</li>
+<li><p>Agent 在下一步思考时，会把 <code>agent scratchpad</code> 里的内容作为上下文传给大模型，让它知道之前做过什么，从而决定下一步要做什么。</p>
+</li>
+</ul>
+<p><strong>总结一句话：</strong></p>
+<p><code>agent_scratchpad</code> 是 Agent 的推理笔记本，用 ReAct 格式记录中间的思考、工具调用和结果，帮助 Agent 在多步推理中记住自己之前做了什么。</p>
+<h2 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h2><h3 id="什么是AI-Agent"><a href="#什么是AI-Agent" class="headerlink" title="什么是AI Agent"></a>什么是AI Agent</h3><p><strong>将Agent视为人工智能大脑，它使用LLM进行推理、计划和采取行动。</strong></p>
+<p>AI Agent 被认为是 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234292598&amp;content_type=Article&amp;match_order=1&amp;q=OpenAI&amp;zhida_source=entity">OpenAI</a> 发力的下一个方向。OpenAI 联合创始人 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234292598&amp;content_type=Article&amp;match_order=1&amp;q=Andrej+Karpathy&amp;zhida_source=entity">Andrej Karpathy</a> 在近期的公开活动上说 “ 相比模型训练方法，OpenAI 内部目前更关注 Agent 领域的变化，每当有新的 AI Agents 论文出来的时候，内部都会很兴奋并且认真地讨论 ” 。</p>
+<blockquote>
+<p>在人工智能领域，这一术语被赋予了一层新的含义：具有自主性、反应性、积极性和社交能力特征的智能实体。</p>
+</blockquote>
+<p>AI Agent，它被设计为具有独立思考和行动能力的AI程序。你只需要提供一个目标，比如写一个游戏、开发一个网页，他就会根据环境的反应和独白的形式生成一个任务序列开始工作。就好像是人工智能可以自我提示反馈，不断发展和适应，以尽可能最好的方式来实现你给出的目标。</p>
+<p>NLP 到 AGI 的发展路线分为五级：语料库、互联网、感知、具身和社会属性，那么目前的大型语言模型已经来到了第二级，具有互联网规模的文本输入和输出。在这个基础上，如果赋予 LLM-based Agents 感知空间和行动空间，它们将达到第三、第四级。进一步地，多个代理通过互动、合作解决更复杂的任务，或者反映出现实世界的社会行为，则有潜力来到第五级 —— 代理社会。</p>
+<h3 id="为什么需要Agent"><a href="#为什么需要Agent" class="headerlink" title="为什么需要Agent"></a>为什么需要Agent</h3><p>这个问题其实和function call出现的原因类似，文章开头就给出了答案，这里给出几点补充</p>
+<p><strong>LLM缺点：</strong></p>
+<ul>
+<li>会产生幻觉。</li>
+<li>结果并不总是真实的。</li>
+<li>无法紧跟时事。</li>
+<li>难以应对复杂计算。</li>
+</ul>
+<p>而Agent可以利用外部工具克服这些问题。LangChain则是提供一种通用的框架通过大语言模型的指令来轻松地实现这些工具的调用。</p>
+<p>比如：</p>
+<ul>
+<li>Google搜索：获取最新信息</li>
+<li>Python REPL：执行代码</li>
+<li>Wolfram：进行复杂的计算</li>
+<li>外部API：获取特定信息</li>
+</ul>
+<div class="tag-plugin colorful note" color="green"><div class="body"><p>Agent在本篇文章不会占太多篇幅，详细内容可以看文章底部参考资料</p></div></div>
+<h2 id="MCP"><a href="#MCP" class="headerlink" title="MCP"></a>MCP</h2><blockquote>
+<p>MCP（Model Context Protocol，模型上下文协议） ，2024年11月底，由 Anthropic 推出的一种开放标准，旨在统一大型语言模型（LLM）与外部数据源和工具之间的通信协议。MCP 的主要目的在于解决当前 AI 模型因数据孤岛限制而无法充分发挥潜力的难题，MCP 使得 AI 应用能够安全地访问和操作本地及远程数据，为 AI 应用提供了连接万物的接口。</p>
+<p>对 Anthropic 可能没那么熟悉，但是 claude 一定听过，没错 Anthropic 就是 claude 的研发公司。</p>
+</blockquote>
+<h3 id="什么是MCP"><a href="#什么是MCP" class="headerlink" title="什么是MCP"></a>什么是MCP</h3><p>这里给出官方的定义：</p>
+<blockquote>
+<p>MCP（模型上下文协议）是一种用于将 AI 应用程序连接到外部系统的开源标准。使用 MCP，Claude 或 ChatGPT 等 AI 应用程序可以连接到数据源（例如本地文件、数据库）、工具（例如搜索引擎、计算器）和工作流程（例如专门的提示），从而使它们能够访问关键信息并执行任务。</p>
+<p>可以将MCP视为人工智能应用的USB-C接口。正如USB-C提供了一种连接电子设备的标准化方式一样，MCP也提供了一种将人工智能应用连接到外部系统的标准化方式。</p>
+</blockquote>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251128091340356.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251128091340356.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p><strong>MCP可以做什么</strong></p>
+<ul>
+<li>Agents 可以访问您的 Google 日历和 Notion，充当更加个性化的 AI 助手。</li>
+<li>Claude Code 可以使用 Figma 设计生成整个 Web 应用程序。</li>
+<li>企业聊天机器人可以连接到组织内的多个数据库，使用户能够通过聊天分析数据。</li>
+<li>AI模型可以在Blender上创建3D设计，并使用3D打印机将其打印出来。</li>
+</ul>
+<p>一句话概括，MCP “连接万物”</p>
+<p><strong>为什么MCP很重要？</strong></p>
+<p>根据你在生态系统中所处的位置，MCP 可以带来一系列好处。</p>
+<ul>
+<li><strong>开发者</strong>：MCP 可以减少构建 AI 应用程序或agent或与之集成时的开发时间和复杂性。</li>
+<li><strong>AI 应用或代理</strong>：MCP 提供对数据源、工具和应用程序生态系统的访问，这将增强功能并改善最终用户体验。</li>
+<li><strong>最终用户</strong>：MCP 可实现功能更强大的 AI 应用程序或agent，这些应用程序或代理可以访问您的数据并在必要时代表您采取行动。</li>
+</ul>
+<blockquote>
+<p>Function Calling是AI模型调用函数的机制，MCP是一个标准协议，使AI模型与API无缝交互，而AI Agent是一个自主运行的智能系统，利用Function Calling和MCP来分析和执行任务，实现特定目标。</p>
+</blockquote>
+<p>即使是最强大模型也会受到数据隔离的限制，形成信息孤岛，要做出更强大的模型，每个新数据源都需要自己重新定制实现，使真正互联的系统难以扩展，存在很多的局限性。</p>
+<p>现在，MCP 可以直接在 AI 与数据（包括本地数据和互联网数据）之间架起一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。</p>
+<p>有了MCP，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力，它的价值远不可估量。</p>
+<h3 id="对比MCP和Function-Calling"><a href="#对比MCP和Function-Calling" class="headerlink" title="对比MCP和Function Calling"></a>对比MCP和Function Calling</h3><blockquote>
+<p><strong>Function Calling = 大模型调用「一个进程内的函数」的方式</strong></p>
+<p><strong>MCP = 大模型与「外部世界服务 / 工具生态」通信的通用协议</strong></p>
+<p>换句话说：</p>
+<ul>
+<li><strong>Function Calling 是一个 LLM 的“单机本地函数调用能力”</strong></li>
+<li><strong>MCP 是一个跨系统、跨进程、跨语言的“插件协议 + 远程工具系统”</strong></li>
+</ul>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><strong>Function Calling</strong></th>
+<th><strong>MCP（Model Context Protocol）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定位</strong></td>
+<td>LLM 调用本地函数的机制</td>
+<td>跨系统、跨语言的 AI 工具协议（插件系统）</td>
+</tr>
+<tr>
+<td><strong>角色性质</strong></td>
+<td>调用方式</td>
+<td>协议 + 工具生态体系</td>
+</tr>
+<tr>
+<td><strong>主要解决问题</strong></td>
+<td>大模型选择函数、结构化输出、避免幻觉</td>
+<td>让模型能安全、标准化地访问外部工具 / 服务</td>
+</tr>
+<tr>
+<td><strong>工具所在位置</strong></td>
+<td>同一进程 / 同一代码库</td>
+<td>本地或远程、独立服务、甚至多工具中心</td>
+</tr>
+<tr>
+<td><strong>通信方式</strong></td>
+<td>无通信，仅 JSON 输出</td>
+<td>双向协议（WebSocket / STDIO）</td>
+</tr>
+<tr>
+<td><strong>工具自动发现</strong></td>
+<td>❌ 不支持</td>
+<td>✔️ 支持（工具可枚举、可描述）</td>
+</tr>
+<tr>
+<td><strong>工具权限管理</strong></td>
+<td>❌ 不支持</td>
+<td>✔️ 支持权限、会话管理</td>
+</tr>
+<tr>
+<td><strong>工具生命周期</strong></td>
+<td>无</td>
+<td>工具可以有 session、状态管理</td>
+</tr>
+<tr>
+<td><strong>多 Agent 共享工具</strong></td>
+<td>❌ 不支持</td>
+<td>✔️ 完全支持</td>
+</tr>
+<tr>
+<td><strong>多模型共享工具</strong></td>
+<td>❌ 不支持</td>
+<td>✔️ 支持（GPT / Claude / Llama 都能用同一个 MCP 工具）</td>
+</tr>
+<tr>
+<td><strong>多语言支持</strong></td>
+<td>工具必须使用宿主语言编写</td>
+<td>工具独立于语言，只要遵守 MCP 协议即可</td>
+</tr>
+<tr>
+<td><strong>扩展性</strong></td>
+<td>一次性函数集合</td>
+<td>插件式扩展（新增工具=新增一个 MCP Server）</td>
+</tr>
+<tr>
+<td><strong>文件 / 流式支持</strong></td>
+<td>❌ 几乎没有</td>
+<td>✔️ 支持文件操作、文件句柄、流式内容</td>
+</tr>
+<tr>
+<td><strong>典型场景</strong></td>
+<td>API 服务、单应用、小规模工具调用</td>
+<td>企业级 Agent、RAG 系统、自动化流程、跨系统编排</td>
+</tr>
+<tr>
+<td><strong>模型调用方式</strong></td>
+<td>由模型“选择函数 + 输出参数”</td>
+<td>模型按 MCP 协议与工具通信</td>
+</tr>
+<tr>
+<td><strong>返回值结构化</strong></td>
+<td>✔️ 强结构化 JSON</td>
+<td>✔️（JSON + 工具描述更强）</td>
+</tr>
+<tr>
+<td><strong>能否用于构建插件生态</strong></td>
+<td>❌ 不能</td>
+<td>✔️ 完整插件生态（类似 VSCode Extensions）</td>
+</tr>
+<tr>
+<td><strong>远程服务调用</strong></td>
+<td>❌ 无内置支持，需要自己写网络层</td>
+<td>✔️ 内置远程调用（协议层自带）</td>
+</tr>
+<tr>
+<td><strong>复杂任务 orchestration</strong></td>
+<td>❌ 靠开发者编写逻辑</td>
+<td>✔️ 工具层 + Agent 可自动编排</td>
+</tr>
+<tr>
+<td><strong>是否是行业标准</strong></td>
+<td>不是标准，各厂商各用各的</td>
+<td>✔️ 由 Anthropic 提出的规范，正成为统一标准</td>
+</tr>
+<tr>
+<td><strong>适合规模</strong></td>
+<td>小规模单体应用</td>
+<td>大规模、多 Agent、企业级系统</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h3><p>MCP 协议采用了一种独特的架构设计，它将 LLM 与资源之间的通信划分为三个主要部分：客户端、服务器和资源。</p>
+<p>客户端负责发送请求给 MCP 服务器，服务器则将这些请求转发给相应的资源。这种分层的设计使得MCP 协议能够更好地控制访问权限，确保只有经过授权的用户才能访问特定的资源。</p>
+<p>以下是 MCP 的基本工作流程：</p>
+<ul>
+<li>初始化连接：客户端向服务器发送连接请求，建立通信通道。</li>
+<li>发送请求：客户端根据需求构建请求消息，并发送给服务器。</li>
+<li>处理请求：服务器接收到请求后，解析请求内容，执行相应的操作（如查询数据库、读取文件</li>
+<li>等）。</li>
+<li>返回结果：服务器将处理结果封装成响应消息，发送回客户端。</li>
+<li>断开连接：任务完成后，客户端可以主动关闭连接或等待服务器超时关闭</li>
+</ul>
+<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p>MCP 协议支持两种主要的通信机制：基于标准输入输出的本地通信和基于<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search/3699993510263518305">SSE</a>（Server-Sent Events）的远程通信。</p>
+<p>这两种机制都使用 <a target="_blank" rel="noopener" href="https://www.jsonrpc.org/specification">JSON-RPC 2.0</a> 格式进行消息传输，确保了通信的标准化和可扩展性。</p>
+<ul>
+<li><p>本地通信 <strong>：</strong> 通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。</p>
+</li>
+<li><p>远程通信 <strong>：</strong> 利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
+</li>
+</ul>
+<h2 id="FastMCP"><a href="#FastMCP" class="headerlink" title="FastMCP"></a>FastMCP</h2><h3 id="什么是FastMCP"><a href="#什么是FastMCP" class="headerlink" title="什么是FastMCP"></a>什么是FastMCP</h3><blockquote>
+<p>以下内容均来自FastMCP官方文档</p>
+</blockquote>
+<p>构建 MCP 服务器和客户端的快速、Pythonic 方式。</p>
+<p><strong>FastMCP 是构建 MCP 应用程序的标准框架。</strong>模型<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/">上下文协议</a>(MCP) 提供了一种将 LLM 连接到工具和数据的标准化方法，而 FastMCP 通过简洁的 Python 代码使其能够用于生产环境：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastmcp <span class="keyword">import</span> FastMCP</span><br><span class="line"></span><br><span class="line">mcp = FastMCP(<span class="string">&quot;Demo 🚀&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@mcp.tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    mcp.run()</span><br></pre></td></tr></table></figure>
+<p>FastMCP 开创了 Python MCP 开发的先河，FastMCP 1.0 于 2024 年被纳入<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/python-sdk">官方 MCP SDK</a>。</p>
+<p><strong>这是 FastMCP 2.0，</strong>一个积极维护的版本，其功能远超基本的协议实现。SDK 提供核心功能，而 FastMCP 2.0 则提供生产环境所需的一切：高级 MCP 模式（服务器组合、代理、OpenAPI/FastAPI 生成、工具转换）、企业级身份验证（Google、GitHub、Azure、Auth0、WorkOS 等）、部署工具、测试框架和全面的客户端库。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><blockquote>
+<p>使用一个简单案例对FastMCP快速入门</p>
+</blockquote>
+<h4 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fastmcp</span><br></pre></td></tr></table></figure>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><p><code>mcp_server.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastmcp <span class="keyword">import</span> FastMCP</span><br><span class="line"></span><br><span class="line">mcp = FastMCP(<span class="string">&quot;My MCP Server&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@mcp.tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>(<span class="params">name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    mcp.run()</span><br></pre></td></tr></table></figure>
+<h5 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h5><p><strong>方式一：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python mcp_server.py</span><br></pre></td></tr></table></figure>
+<p>这种方式要求代码中有 <code>if __name__ == &quot;__main__&quot;</code> 代码块，对此，官方的解释是：</p>
+<div class="tag-plugin colorful note" color="green"><div class="title">我们为什么需要这个`if</div><div class="body"><p><strong>name</strong> == <strong>main</strong>:<code>模块？为了保持一致性和兼容性，建议添加此</code><strong>main</strong>`代码块，以确保您的服务器能够与所有将服务器文件作为脚本执行的 MCP 客户端兼容。如果用户仅使用 FastMCP CLI 运行服务器，则可以省略此代码块，因为 CLI 会直接导入服务器对象。</p></div></div>
+<p><strong>方式二：</strong></p>
+<p>使用默认 stdio 传输方式运行此服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastmcp run my_server.py:mcp</span><br></pre></td></tr></table></figure>
+<p><strong>方式三：</strong></p>
+<p>使用 HTTP 传输协议运行此服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastmcp run my_server.py:mcp --transport http --port 8000</span><br></pre></td></tr></table></figure>
+<p>我们使用方式三，执行后控制台会有以下输出表示成功：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251128110313580.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251128110313580.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p><code>mcp_client.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> fastmcp <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line">client = Client(<span class="string">&quot;http://localhost:8000/mcp&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">call_tool</span>(<span class="params">name: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> client:</span><br><span class="line">        result = <span class="keyword">await</span> client.call_tool(<span class="string">&quot;greet&quot;</span>, &#123;<span class="string">&quot;name&quot;</span>: name&#125;)</span><br><span class="line">        <span class="built_in">print</span>(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.run(call_tool(<span class="string">&quot;Ford&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CallToolResult(content=[TextContent(type=&#x27;text&#x27;, text=&#x27;Hello, Ford!&#x27;, annotations=None, meta=None)], structured_content=&#123;&#x27;result&#x27;: &#x27;Hello, Ford!&#x27;&#125;, meta=None, data=&#x27;Hello, Ford!&#x27;, is_error=False)</span><br></pre></td></tr></table></figure>
+<p>是一个 <code>CallToolResult</code> 对象，可以从中拿到自己所需的属性。</p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>ok，文章到这里就结束了，MCP是24年年底才发布的，相对来说还是比较新的东西，但是很多已经在工程化项目中用上了，技术发展确实是快啊。</p>
+</article>
+<div class="article-footer">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/657737603?utm_psn=1855315786048081920">https://zhuanlan.zhihu.com/p/657737603?utm_psn=1855315786048081920</a></p>
+
+        </li>
+        
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://bambooo.top/2025/10/20/fctomcp/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://bambooo.top/2025/10/20/fctomcp/&title=从Function Call 到 MCP - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251127181425797.png&summary=Function Callingok啊，直接步入正题，先来了解下什么是Function Calling
+Function Calling由OpenAI等公司推动，允许大语言模型与外部工具连接，将自然语言转换为API 调用。这解决了大模..."><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=从Function Call 到 MCP - 扳布屋&amp;body=https://bambooo.top/2025/10/20/fctomcp/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://bambooo.top/2025/10/20/fctomcp/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/11/24/aisummary/">文章添加AI摘要</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/10/11/fft&lora/">通俗理解全量微调和LoRA微调</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-Calling"><span class="toc-text">Function Calling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZhipuAI-Agent"><span class="toc-text">ZhipuAI+Agent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-text">重点分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#agent-scratchpad"><span class="toc-text">agent_scratchpad</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%B0%E5%BD%95%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B"><span class="toc-text">为什么要记录中间推理过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ReAct%E6%A0%BC%E5%BC%8F"><span class="toc-text">ReAct格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#agent-scratchpad%E5%92%8CReAct%E5%85%B3%E7%B3%BB"><span class="toc-text">agent_scratchpad和ReAct关系</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent"><span class="toc-text">Agent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFAI-Agent"><span class="toc-text">什么是AI Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Agent"><span class="toc-text">为什么需要Agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP"><span class="toc-text">MCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMCP"><span class="toc-text">什么是MCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94MCP%E5%92%8CFunction-Calling"><span class="toc-text">对比MCP和Function Calling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-1"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6"><span class="toc-text">通信机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FastMCP"><span class="toc-text">FastMCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFFastMCP"><span class="toc-text">什么是FastMCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85"><span class="toc-text">依赖安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">客户端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#End"><span class="toc-text">End</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":[],"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js","envId":"https://twikoo.bambooo.top"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "dark" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script>
+</div></body></html>
