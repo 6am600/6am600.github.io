@@ -1,67 +1,102 @@
+// 文件位置: blog/source/custom/js/news-loader.js
 document.addEventListener('DOMContentLoaded', function() {
     const newsContainer = document.getElementById('news-container');
     if (!newsContainer) return;
   
-    // 你的新闻API地址
-    const apiUrl = 'https://apis.tianapi.com/ai/index?key=a52ed92ccc8e42ea07796f1e8f870640&num=10';
-    
+    let currentNewsIndex = 0;
+    let newsList = [];
+  
     loadNews();
   
     async function loadNews() {
       try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+        console.log('开始加载新闻数据...');
         
-        if (data.code === 200 && data.result?.newslist) {
-          renderNews(data.result.newslist);
+        // 使用新的 JSON 文件路径
+        const response = await fetch('/news-data/index.json');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('新闻数据加载成功，共', data.data.length, '条新闻');
+        
+        if (data.data && data.data.length > 0) {
+          newsList = data.data;
+          renderNewsContainer();
+          showNews(currentNewsIndex);
         } else {
-          showError('暂无新闻数据');
+          showError('新闻数据为空');
         }
       } catch (error) {
-        console.error('获取新闻数据失败:', error);
-        showError('加载新闻失败，请稍后重试');
+        console.error('加载新闻失败:', error);
+        showError('新闻数据加载失败: ' + error.message);
       }
     }
   
-    function renderNews(newslist) {
-      const newsHTML = newslist.map(item => {
-        const formattedTime = formatTime(item.ctime);
-        
-        // 如果有链接，标题做成可点击的
-        const titleElement = item.url ? 
-          `<a href="${item.url}" target="_blank" class="stellar-news-title" rel="noopener noreferrer">${escapeHtml(item.title)}</a>` :
-          `<span class="stellar-news-title">${escapeHtml(item.title)}</span>`;
-        
-        return `
-          <article class="stellar-news-item">
-            ${titleElement}
-            
-            <div class="stellar-news-meta">
-              <span class="stellar-news-source">${escapeHtml(item.source)}</span>
-              <span class="stellar-news-time">${formattedTime}</span>
-            </div>
-            
-            <p class="stellar-news-description">${escapeHtml(item.description)}</p>
-          </article>
-        `;
-      }).join('');
+    function renderNewsContainer() {
+      const containerHTML = `
+        <div class="stellar-news-header">
+          <h2 class="stellar-news-main-title">最新AI资讯</h2>
+          <div class="stellar-news-controls">
+            <span class="stellar-news-counter">${currentNewsIndex + 1} / ${newsList.length}</span>
+            <button class="stellar-news-nav-btn" onclick="nextNews()">
+              <span>↻</span>
+            </button>
+          </div>
+        </div>
+        <div id="news-content"></div>
+      `;
       
-      newsContainer.innerHTML = newsHTML;
+      newsContainer.innerHTML = containerHTML;
     }
+  
+    function showNews(index) {
+      const item = newsList[index];
+      const formattedTime = formatTime(item.ctime);
+      
+      const titleElement = item.url ? 
+        `<a href="${item.url}" target="_blank" class="stellar-news-item-title" rel="noopener noreferrer">${escapeHtml(item.title)}</a>` :
+        `<span class="stellar-news-item-title">${escapeHtml(item.title)}</span>`;
+      
+      const newsHTML = `
+        <article class="stellar-news-item">
+          ${titleElement}
+          
+          <div class="stellar-news-meta">
+            <span class="stellar-news-source">${escapeHtml(item.source)}</span>
+            <span class="stellar-news-time">${formattedTime}</span>
+          </div>
+          
+          <p class="stellar-news-description">${escapeHtml(item.description)}</p>
+        </article>
+      `;
+      
+      const counter = newsContainer.querySelector('.stellar-news-counter');
+      if (counter) {
+        counter.textContent = `${index + 1} / ${newsList.length}`;
+      }
+      
+      const newsContent = document.getElementById('news-content');
+      if (newsContent) {
+        newsContent.innerHTML = newsHTML;
+      }
+    }
+  
+    window.nextNews = function() {
+      if (newsList.length === 0) return;
+      currentNewsIndex = (currentNewsIndex + 1) % newsList.length;
+      showNews(currentNewsIndex);
+    };
   
     function showError(message) {
       newsContainer.innerHTML = `
         <div class="news-error">
           <p>${message}</p>
-          <button onclick="location.reload()" style="
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #1890ff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-          ">重新加载</button>
+          <div style="margin-top: 1rem; font-size: 0.9em; color: #666;">
+            <p>请执行 <code>hexo clean && hexo generate</code> 重新生成数据</p>
+          </div>
         </div>
       `;
     }
@@ -74,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (diff < 24 * 60 * 60 * 1000) {
         const hours = Math.floor(diff / (60 * 60 * 1000));
         if (hours < 1) return '刚刚';
-        return `${hours}小时前`;
+        return `${hours}小时`;
       }
       
       return date.toLocaleDateString('zh-CN', {
