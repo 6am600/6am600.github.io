@@ -52,7 +52,7 @@
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css">
 </head>
 <body>
 
@@ -118,6 +118,14 @@ AndroidManifest.xml ...</p></div><div class="meta cap"><span class="cap" id="pos
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
+<widget class="widget-wrapper markdown"><div class="widget-header dis-select"><span class="name">🚀 最新AI资讯</span></div><div class="widget-body fs14"><div id="news-container">
+  <div class="news-loading">
+    <div class="loading-spinner"></div>
+    <p>正在加载最新资讯...</p>
+  </div>
+</div>
+</div></widget>
+
 <widget class="widget-wrapper timeline"><div class="widget-header dis-select"><span class="name">近期动态</span></div><div class="widget-body fs14"><div class="tag-plugin timeline data-service ds-memos" data-api="https://s.dusays.com/api/v1/memo?creatorId=141&limit=10"></div></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
@@ -830,5 +838,5 @@ AndroidManifest.xml ...</p></div><div class="meta cap"><span class="cap" id="pos
 
 
 <!-- inject -->
-<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script>
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script><script type="text/javascript" src="/custom/js/news-loader.js"></script>
 </div></body></html>

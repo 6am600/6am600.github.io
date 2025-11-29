@@ -1,0 +1,212 @@
+/* 文件位置: blog/source/_data/news-component.css */
+.stellar-news-container {
+    max-width: 100%;
+  }
+  
+  /* 基础卡片样式 */
+  .stellar-news-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    transition: background-color 0.2s ease;
+    border: 1px solid #f0f0f0;
+  }
+  
+  .stellar-news-item:hover {
+    background: #f8f9fa;
+  }
+  
+  /* 标题区域 - 可点击 */
+  .stellar-news-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin: 0 0 0.75rem 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .stellar-news-title:hover {
+    color: #1890ff;
+  }
+  
+  /* 时间和来源 */
+  .stellar-news-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.6em;
+  }
+  
+  .stellar-news-time {
+    color: #666;
+    background: #f8f9fa;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+  }
+  
+  .stellar-news-source {
+    color: #666;
+    background: #f8f9fa;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+  }
+  
+  /* 描述文本 */
+  .stellar-news-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0;
+    font-size: 1em;
+  }
+  
+  /* ==================== 暗色模式 ==================== */
+  .dark .stellar-news-item,
+  [data-theme="dark"] .stellar-news-item {
+    background: #1e1e1e;
+    border-color: #333;
+  }
+  
+  .dark .stellar-news-item:hover,
+  [data-theme="dark"] .stellar-news-item:hover {
+    background: #2a2a2a;
+  }
+  
+  .dark .stellar-news-title,
+  [data-theme="dark"] .stellar-news-title {
+    color: #ffffff;
+  }
+  
+  .dark .stellar-news-title:hover,
+  [data-theme="dark"] .stellar-news-title:hover {
+    color: #64b5f6;
+  }
+  
+  .dark .stellar-news-time,
+  [data-theme="dark"] .stellar-news-time,
+  .dark .stellar-news-source,
+  [data-theme="dark"] .stellar-news-source {
+    color: #cccccc;
+    background: #2d2d2d;
+  }
+  
+  .dark .stellar-news-description,
+  [data-theme="dark"] .stellar-news-description {
+    color: #cccccc;
+  }
+  
+  /* 系统级暗色模式 */
+  @media (prefers-color-scheme: dark) {
+    .stellar-news-item {
+      background: #1e1e1e;
+      border-color: #333;
+    }
+    
+    .stellar-news-item:hover {
+      background: #2a2a2a;
+    }
+    
+    .stellar-news-title {
+      color: #ffffff;
+    }
+    
+    .stellar-news-title:hover {
+      color: #64b5f6;
+    }
+    
+    .stellar-news-time,
+    .stellar-news-source {
+      color: #cccccc;
+      background: #2d2d2d;
+    }
+    
+    .stellar-news-description {
+      color: #cccccc;
+    }
+  }
+  
+  /* 加载状态 */
+  .news-loading {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+  }
+  
+  .dark .news-loading,
+  [data-theme="dark"] .news-loading {
+    color: #ccc;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f0f0f0;
+    border-top: 3px solid #1890ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  
+  .dark .loading-spinner,
+  [data-theme="dark"] .loading-spinner {
+    border-color: #333;
+    border-top-color: #64b5f6;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* 错误状态 */
+  .news-error {
+    text-align: center;
+    padding: 2rem;
+    background: #fff2f0;
+    border-radius: 8px;
+    color: #a8071a;
+  }
+  
+  .dark .news-error,
+  [data-theme="dark"] .news-error {
+    background: #2a1215;
+    color: #e84749;
+  }
+  
+  /* 空状态 */
+  .news-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+  }
+  
+  .dark .news-empty,
+  [data-theme="dark"] .news-empty {
+    color: #ccc;
+  }
+  
+  .news-empty::before {
+    content: '📰';
+    font-size: 3em;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .stellar-news-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .stellar-news-item {
+      padding: 1.25rem;
+    }
+  }
