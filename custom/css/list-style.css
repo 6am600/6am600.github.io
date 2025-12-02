@@ -1,0 +1,130 @@
+/* ==================== 通用文章样式 ==================== */
+/* 文章内容中的无序列表 */
+article ul,
+.post-content ul,
+.content ul,
+.markdown-body ul {
+  list-style-type: disc !important;
+  padding-left: 1.5em !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 文章内容中的有序列表 */
+article ol,
+.post-content ol,
+.content ol,
+.markdown-body ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5em !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 文章内容中的列表项 */
+article li,
+.post-content li,
+.content li,
+.markdown-body li {
+  margin: 0.25em 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* 文章内容中的引用块 */
+/* article blockquote,
+.post-content blockquote,
+.content blockquote,
+.markdown-body blockquote {
+  border-left: 3px solid #1890ff !important;
+  padding-left: 1em !important;
+  margin: 1em 0 !important;
+  color: #666 !important;
+  font-style: italic !important;
+} */
+
+/* 文章中的嵌套列表 */
+article ul ul,
+.post-content ul ul,
+.content ul ul,
+.markdown-body ul ul {
+  list-style-type: circle !important;
+}
+
+article ul ul ul,
+.post-content ul ul ul,
+.content ul ul ul,
+.markdown-body ul ul ul {
+  list-style-type: square !important;
+}
+
+/* ==================== note 组件样式（保持原有）==================== */
+/* 修复无序列表样式 */
+.tag-plugin .body ul,
+.note .body ul,
+.stellar-news-item ul {
+  list-style-type: disc !important; /* 实心圆点 */
+  padding-left: 1.5em !important;
+  margin: 0.5em 0 !important;
+}
+
+.tag-plugin .body li,
+.note .body li,
+.stellar-news-item li {
+  margin: 0.25em 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* 有序列表 */
+.tag-plugin .body ol,
+.note .body ol,
+.stellar-news-item ol {
+  list-style-type: decimal !important; /* 数字 */
+  padding-left: 1.5em !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 引用块 */
+/* .tag-plugin .body blockquote,
+.note .body blockquote,
+.stellar-news-item blockquote {
+  border-left: 3px solid #1890ff !important;
+  padding-left: 1em !important;
+  margin: 1em 0 !important;
+  color: #666 !important;
+  font-style: italic !important;
+} */
+
+/* 暗色模式适配 */
+/* .dark .tag-plugin .body blockquote,
+.dark .note .body blockquote,
+.dark .stellar-news-item blockquote,
+.dark article blockquote,
+.dark .post-content blockquote,
+.dark .content blockquote,
+.dark .markdown-body blockquote {
+  border-left-color: #64b5f6 !important;
+  color: #ccc !important;
+} */
+
+/* 确保列表在 note 组件中显示正常 */
+.tag-plugin.colorful.note .body ul,
+.tag-plugin.colorful.note .body ol {
+  list-style-position: outside !important;
+}
+
+/* 嵌套列表样式 */
+.tag-plugin .body ul ul,
+.note .body ul ul,
+article ul ul,
+.post-content ul ul,
+.content ul ul,
+.markdown-body ul ul {
+  list-style-type: circle !important; /* 二级空心圆 */
+}
+
+.tag-plugin .body ul ul ul,
+.note .body ul ul ul,
+article ul ul ul,
+.post-content ul ul ul,
+.content ul ul ul,
+.markdown-body ul ul ul {
+  list-style-type: square !important; /* 三级方点 */
+}

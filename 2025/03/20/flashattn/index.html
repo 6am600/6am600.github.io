@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
   
-  <meta name="robots" content="noindex,follow">
+  
   <meta name="generator" content="Hexo 8.1.1">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,22 +17,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>标签：张量 - 扳布屋</title>
+  <title>Flash Attention - 扳布屋</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="扳布屋">
-<meta property="og:url" content="https://bambooo.top/tags/%E5%BC%A0%E9%87%8F/">
+    <meta name="description" content="FA为何能加速大模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flash Attention">
+<meta property="og:url" content="https://bambooo.top/2025/03/20/flashattn/">
 <meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="FA为何能加速大模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta property="article:published_time" content="2025-03-20T02:38:58.000Z">
+<meta property="article:modified_time" content="2025-03-20T02:38:58.000Z">
 <meta property="article:author" content="Bamboo">
-<meta name="twitter:card" content="summary">
+<meta property="article:tag" content="注意力机制">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
   
   
   
-  
+  <meta name="keywords" content="注意力机制">
 
   <!-- feed -->
   
@@ -46,7 +51,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://bambooo.top","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"name":"扳布屋","description":"","url":"https://bambooo.top"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"dateCreated":"2025-03-20T10:38:58+08:00","dateModified":"2025-03-20T10:38:58+08:00","datePublished":"2025-03-20T10:38:58+08:00","description":"","headline":"Flash Attention","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2025/03/20/flashattn/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"}},"url":"https://bambooo.top/2025/03/20/flashattn/","keywords":"注意力机制","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png","image":1}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
   if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.querySelector("html").id = "ZYDark";
@@ -56,7 +61,7 @@
 </head>
 <body>
 
-<div class="l_body index" id="start" layout="undefined" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
@@ -68,31 +73,250 @@
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
-<widget class="widget-wrapper markdown"><div class="widget-header dis-select"><span class="name">🎉欢迎, 旅行者: </span></div><div class="widget-body fs14"><p>本站用于记录博主学习路上的困惑与心得,如果你来到了这里,希望你能有所收获.</p>
-</div></widget>
+
 
 <widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2025/03/20/flashattn/"><span class="title">Flash Attention</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
-
- 
 
 
 
 
-<div class="navbar top"><div class="navbar-blur"><div class="navbar-container"><nav class="post"><a href="/">近期发布</a><a href="/categories/">分类</a><a class="active" href="/tags/">标签：张量</a><a href="/topic/">专栏</a><a href="/archives/">归档</a></nav></div></div></div>
-<div class="post-list post"><div class="post-card-wrap"><a class="post-card post photo" href="/2024/02/21/tensor/">
-<div class="cover" position="bottom"><img src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763509784.png"/><div class="cover-info" position="bottom"><div class="text headline">张量索引切片操作</div></div></div>
-</a></div></div>
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-03-20T02:38:58.000Z">2025-03-20</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-03-20T02:38:58.000Z">2025-03-20</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Flash Attention</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="ai-summary">
+    <div class="ai-summary-header">
+        <div class="ai-head-left">
+        </div>
+        <a class="ai-about" href="/2025/11/24/aisummary/">关于AI</a>
+    </div>
+
+    <div class="ai-explanation" style="display: block;" data-summary="这里是扳布AI，这篇文章主要介绍了传统Attention机制在标准Transformer中的计算和内存瓶颈问题，重点分析了Self-Attention的核心计算步骤包括通过线性变换得到QKV矩阵后进行S=QKᵀ计算相似度得分矩阵、对S进行softmax归一化得到P以及最终的PV加权求和得到输出O，而其中最关键的瓶颈在于中间显存爆炸问题，由于S和P矩阵的大小为N²，当序列长度N很大时，如处理长文本或高分辨率图像，这些矩阵会变得极其巨大，以float32数据类型为例，N=1000时S矩阵就需约4GB显存，N=16000时更需约1TB显存，这直接限制了模型可处理的序列长度。">
+        <!-- 这里是扳布AI，这篇文章主要介绍了传统Attention机制在标准Transformer中的计算和内存瓶颈问题，重点分析了Self-Attention的核心计算步骤包括通过线性变换得到QKV矩阵后进行S=QKᵀ计算相似度得分矩阵、对S进行softmax归一化得到P以及最终的PV加权求和得到输出O，而其中最关键的瓶颈在于中间显存爆炸问题，由于S和P矩阵的大小为N²，当序列长度N很大时，如处理长文本或高分辨率图像，这些矩阵会变得极其巨大，以float32数据类型为例，N=1000时S矩阵就需约4GB显存，N=16000时更需约1TB显存，这直接限制了模型可处理的序列长度。 -->
+    </div>
+
+    <div class="ai-title">
+        <div class="ai-title-left">
+            <!-- 图标已替换为你要求的 Hexo icon 插件写法 -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg>
+            <div class="ai-title-text">
+                扳布的AI摘要
+            </div>
+        </div>
+
+        <div class="ai-tag" id="ai-tag">
+            HunYuan-turbos
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="传统-Attention-的瓶颈"><a href="#传统-Attention-的瓶颈" class="headerlink" title="传统 Attention 的瓶颈"></a>传统 Attention 的瓶颈</h2><p>要理解 Flash Attention，首先要明白标准 Transformer 中 <strong>Self-Attention 的计算和内存瓶颈</strong>。</p>
+<div class="tag-plugin colorful note" color="yellow"><div class="title">先验知识</div><div class="body"><p><strong>HBM（High Bandwidth Memory）和SRAM（Static Random-Access Memory）</strong></p>
+<ul>
+<li>HBM是一种高带宽内存接口，用于3D堆叠的SDRAM，具有较高的带宽和较低的功耗。</li>
+<li>SRAM是一种静态随机访问存储器，用于高速缓存等内部存储器，具有更快的访问速度和更低的延迟，但成本更高且占用更多芯片空间。</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:536/460;width:300px;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251202085119335.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251202085119335.png" alt="GPU A100内存分布" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div><div class="image-meta"><span class="image-caption center">GPU A100内存分布</span></div></div>
+
+<p><strong>MAC</strong></p>
+<ul>
+<li>MAC（Memory Access Cost，存储访问开销）是指在计算机系统中，访问内存或存储器所需的时间和资源开销。它是衡量计算机程序或算法性能的重要指标之一。 MAC的值取决于多个因素，包括内存层次结构、缓存命中率、内存带宽、存储器延迟等。较低的MAC值表示访问内存的开销较小，而较高的MAC值表示访问内存的开销较大。</li>
+</ul>
+</div></div>
+<h3 id="标准-Attention-的计算过程回顾"><a href="#标准-Attention-的计算过程回顾" class="headerlink" title="标准 Attention 的计算过程回顾"></a>标准 Attention 的计算过程回顾</h3><p>对于一个输入序列，经过线性变换得到 Q, K, V 矩阵。核心的 Attention 计算步骤：</p>
+<ol>
+<li><strong>S = QKᵀ</strong> (计算相似度得分矩阵，维度：[序列长度 N, 序列长度 N])</li>
+<li><strong>P = softmax(S / √dₖ)</strong></li>
+<li><strong>O = PV</strong> (加权求和，得到输出矩阵 O)</li>
+</ol>
+<h3 id="核心瓶颈"><a href="#核心瓶颈" class="headerlink" title="核心瓶颈"></a>核心瓶颈</h3><blockquote>
+<p><strong>中间显存爆炸 (Memory-Bound)</strong></p>
+</blockquote>
+<p>这是最关键的问题。注意 S 和 P 的大小是 <strong>N²</strong>。</p>
+<ul>
+<li><strong>当 N 很大时</strong>（例如长文本、高分辨率图像），这个矩阵会变得极其巨大。</li>
+<li>举例：N=1000, 数据类型 float32，仅 S 矩阵就需要 <code>1000 * 1000 * 4 Bytes ≈ 4GB</code> 的显存。N=16000 时，需要约 1TB 显存！这直接限制了模型可处理的序列长度。</li>
+</ul>
+<p>传统实现会：</p>
+<ul>
+<li>把 QKᵀ 写到显存</li>
+<li>softmax 时又读回来</li>
+<li>再写结果</li>
+<li>再读结果做与 V 的乘法</li>
+<li>…循环反复</li>
+</ul>
+<p>导致：</p>
+<ul>
+<li>显存 IO 占主导</li>
+<li>序列越长（例如几千几万 token），越慢、越吃显存</li>
+</ul>
+<p><strong>Attention 不是算力瓶颈，而是 IO 瓶颈。</strong></p>
+<p>这就是 FlashAttention 要解决的核心问题。</p>
+<h2 id="FlashAttention"><a href="#FlashAttention" class="headerlink" title="FlashAttention"></a>FlashAttention</h2><h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p><strong>Flash Attention 的核心思想是一种 <code>算法重排</code></strong>。它通过 <strong>“分块计算”</strong> 和 <strong>“增量更新”</strong> 的技术，<strong>在不显式生成和存储完整 S 和 P 矩阵的情况下，直接计算出正确的输出 O</strong>。</p>
+<p><strong>其目标非常明确：</strong></p>
+<ol>
+<li><strong>减少对 HBM 的访问次数</strong>（从 O(N²) 降到 O(N) 级别），让计算不再受限于内存带宽。</li>
+<li><strong>避免存储中间矩阵</strong>，从而支持超长序列。</li>
+</ol>
+<p><strong>采用的方法：</strong></p>
+<ol>
+<li>tiling</li>
+<li>recomputation</li>
+</ol>
+<h3 id="tiling（分块）"><a href="#tiling（分块）" class="headerlink" title="tiling（分块）"></a>tiling（分块）</h3><blockquote>
+<p>注意，attention的计算涉及到softmax，不能简单分块</p>
+</blockquote>
+<p>传统softmax计算方法：</p>
+<script type="math/tex; mode=display">\text{softmax}(x_j) = \frac{e^{x_j}}{\sum_{i=1}^k e^{x_i}} \tag{2}</script><p>softmax操作是row-wise的，即每行都算一次softmax，所以需要用到平铺算法来分块计算softmax。</p>
+<p>【<strong>safe softmax</strong>】 原始softmax数值不稳定，为了数值稳定性，FlashAttention采用safe softmax，向量 ∈ R 的safe softmax 计算如下：</p>
+<p>$m(x) := \max_i x_i\quad $，$f(x) := \begin{bmatrix} e^{x_1 - m(x)} &amp; \cdots &amp; e^{x_B - m(x)} \end{bmatrix}\quad $，$\ell(x) := \sum_i f(x)_i\tag{3}$</p>
+<p>$\text{softmax}(x) := \frac{f(x)}{\ell(x)}$</p>
+<p><strong>Flash Attention中的softmax可以看做online softmax</strong></p>
+<p>它维护两个额外的统计量，并允许我们 <strong>增量更新</strong> 这些统计量和输出。<br>假设我们把输入向量 x 分成两部分处理：$x = [x^{(1)}, x^{(2)}]$。</p>
+<p><strong>当看到第一部分 $x^{(1)}$ 时：</strong></p>
+<ol>
+<li>计算本地统计量：$m_1 = \max(x^{(1)})$， $\ell_1 = \sum e^{x^{(1)} - m_1}$。</li>
+<li>此时的最佳估计输出：$o_1 = \frac{e^{x^{(1)} - m_1}}{\ell_1}$。</li>
+</ol>
+<p><strong>当看到第二部分 $x^{(2)}$ 时：</strong></p>
+<ol>
+<li>计算本地统计量：$m_2 = \max(x^{(2)})$， $\ell_2 = \sum e^{x^{(2)} - m_2}$。</li>
+<li><strong>关键步骤：更新全局统计量</strong><ul>
+<li><strong>新的全局最大值</strong>：$m_{\text{new}} = \max(m_1, m_2)$</li>
+<li><strong>新的全局指数和</strong>：<ul>
+<li>对于旧的 $o<em>1$，它的指数是用旧的 $m_1$ 计算的，现在需要用新的 $m</em>{\text{new}}$ 来”修正”。</li>
+<li>修正因子是 $e^{m<em>1 - m</em>{\text{new}}}$。</li>
+<li>因此，旧的 $\ell<em>1$ 需要缩放为 $\ell_1 \cdot e^{m_1 - m</em>{\text{new}}}$。</li>
+<li>新的 $\ell<em>2$ 也需要用新最大值修正为 $\ell_2 \cdot e^{m_2 - m</em>{\text{new}}}$。</li>
+<li><strong>最终全局 $\ell<em>{\text{new}} = \ell_1 \cdot e^{m_1 - m</em>{\text{new}}} + \ell<em>2 \cdot e^{m_2 - m</em>{\text{new}}}$</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>更新输出</strong><ul>
+<li><strong>修正旧的 $o_1$</strong>：$o<em>1 = o_1 \cdot e^{m_1 - m</em>{\text{new}}}$ (因为分母 $\ell_{\text{new}}$ 变了，分子也需要同步缩放)。</li>
+<li><strong>计算新的 $o_2$</strong>：$o<em>2 = \frac{e^{x^{(2)} - m</em>{\text{new}}}}{\ell_{\text{new}}}$。</li>
+<li><strong>最终输出</strong>：$o = \text{concat}(o_1, o_2)$</li>
+</ul>
+</li>
+</ol>
+<p>softmax分块计算完整公式推导：</p>
+<p>$m(x) = m(\begin{bmatrix} x^{(1)} &amp; x^{(2)} \end{bmatrix}) = \max(m(x^{(1)}), m(x^{(2)})),$</p>
+<p>$f(x) = \begin{bmatrix} e^{m(x^{(1)}) - m(x)} f(x^{(1)}) &amp; e^{m(x^{(2)}) - m(x)} f(x^{(2)}) \end{bmatrix},$</p>
+<p>$\ell(x) = \ell(\begin{bmatrix} x^{(1)} &amp; x^{(2)} \end{bmatrix}) = e^{m(x^{(1)}) - m(x)} \ell(x^{(1)}) + e^{m(x^{(2)}) - m(x)} \ell(x^{(2)}), \tag{4}$</p>
+<p>$\text{softmax}(x) = \frac{f(x)}{\ell(x)}$</p>
+<h3 id="recomputation（重新计算）"><a href="#recomputation（重新计算）" class="headerlink" title="recomputation（重新计算）"></a>recomputation（重新计算）</h3><p>FlashAttention算法的目标：在计算中减少显存占用，从 大小降低到线性，这样就可以把数据加载到SRAM中，提高IO速度。</p>
+<p><strong>解决方案</strong>：传统Attention在计算中需要用到Q，K，V去计算S，P两个矩阵，FlashAttention引入softmax中的统计量 ，结合output O和在SRAM中的Q，K，V块进行计算。</p>
+<p><strong>具体实现：</strong></p>
+<ol>
+<li><p><strong>反向传播需要什么？</strong><br>对于标准 Attention：$O = \text{softmax}(QK^\top / \sqrt{d}) V$，反向传播需要计算损失 $L$ 对 $Q, K, V$ 的梯度。<br>根据链式法则：</p>
+<p>$\frac{dL}{dV} = P^\top \cdot \frac{dL}{dO}$ （需要注意力矩阵 $P$）</p>
+<p>$\frac{dL}{dP} = \frac{dL}{dO} \cdot V^\top$ （需要 $V$）</p>
+<p>$\frac{dL}{dS} = \frac{dP}{dS} \cdot \frac{dL}{dP}$ （需要 $P$ 和 $\frac{dL}{dP}$，其中 $\frac{dP}{dS}$ 是 softmax 的局部梯度，计算它需要 $S$ 或 $P$）</p>
+<p>结论：要计算对 $Q, K$ 的梯度，至少需要 $S$ 或 $P$ 矩阵。 而我们在前向传播中恰恰没有存储它们。</p>
+</li>
+<li><p><strong>Flash Attention 的解决方案：从输出反推中间值</strong><br>既然前向没有存 $S$ 和 $P$，那就在反向传播需要的时候，当场重新算一遍。</p>
+<p>但这带来了新的挑战：重算 $S = QK^\top$ 仍然是 $O(N^2)$ 的 HBM 访问和计算，会拖慢反向传播。</p>
+<p>Flash Attention 的精妙之处在于，它利用了前向传播已经计算并存储下来的少量信息，使得重计算变得高效。这些信息就是：</p>
+<ul>
+<li>最终的输出 $O$</li>
+<li>每行（每个查询位置）的 softmax 统计量：$m$（最大值） 和 $l$（指数和）</li>
+</ul>
+<p><strong>重计算的过程（反向传播的双循环）：</strong><br>反向传播的数据流与前向传播完全镜像，也是一个外循环遍历 $Q$ 块，内循环遍历 $K/V$ 块。</p>
+<p>当需要计算某个 $Q_i$ 块和 $K_j, V_j$ 块相关的梯度时：</p>
+<ol>
+<li>重新加载 $Q_i, K_j, V_j$ 块到 SRAM（这些是输入，HBM 中一直有）。</li>
+<li>在 SRAM 中重算该分块的注意力分数 $S_{ij} = Q_i K_j^\top / \sqrt{d}$。</li>
+<li>利用存储的统计量 $m<em>i$ 和 $l_i$ 快速重算该分块的注意力概率矩阵 $P</em>{ij}$：<ul>
+<li>对于 $S_{ij}$ 的每一行 $s$，对应的 $m_i$ 是该行的全局最大值，$l_i$ 是该行的全局指数和。</li>
+<li>可以直接计算出正确的行归一化因子：$P_{ij}^{(\text{row})} = \frac{e^{s - m_i}}{l_i}$。</li>
+<li>注意：这里不需要再做一次完整的 Online Softmax，因为全局统计量 $m_i$ 和 $l_i$ 已知。这只是一个快速的逐元素指数和除法操作。</li>
+</ul>
+</li>
+<li>现在，我们在 SRAM 中有了 $P<em>{ij} 和重算的 S</em>{ij}$。</li>
+<li>结合从上游传递过来的梯度 $\frac{dL}{dO<em>i}$（也分块加载），我们就可以在 SRAM 中本地计算出对 $Q_i, K_j, V_j$ 分块的梯度 $\frac{dL}{dQ</em>{ij}}, \frac{dL}{dK_j}, \frac{dL}{dV_j}$。</li>
+<li>对这些局部梯度进行累加（例如，$\frac{dL}{dQ<em>i}$ 由所有 $j$ 对应的 $\frac{dL}{dQ</em>{ij}}$ 累加而成），最终得到完整的梯度。</li>
+</ol>
+</li>
+</ol>
+</article>
+<div class="article-footer">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/676655352">https://zhuanlan.zhihu.com/p/676655352</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://bambooo.top/2025/03/20/flashattn/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://bambooo.top/2025/03/20/flashattn/&title=Flash Attention - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png&summary=FA为何能加速大模型"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=Flash Attention - 扳布屋&amp;body=https://bambooo.top/2025/03/20/flashattn/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://bambooo.top/2025/03/20/flashattn/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/03/27/decodeapk/">反编译 APK</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/10/11/prompttuning/">Prompt Tuning</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
 
 
 <footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F-Attention-%E7%9A%84%E7%93%B6%E9%A2%88"><span class="toc-text">传统 Attention 的瓶颈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86-Attention-%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E5%9B%9E%E9%A1%BE"><span class="toc-text">标准 Attention 的计算过程回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%93%B6%E9%A2%88"><span class="toc-text">核心瓶颈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FlashAttention"><span class="toc-text">FlashAttention</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tiling%EF%BC%88%E5%88%86%E5%9D%97%EF%BC%89"><span class="toc-text">tiling（分块）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recomputation%EF%BC%88%E9%87%8D%E6%96%B0%E8%AE%A1%E7%AE%97%EF%BC%89"><span class="toc-text">recomputation（重新计算）</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -587,6 +811,22 @@
 
 <!-- optional -->
 
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js","envId":"https://twikoo.bambooo.top"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
 
 
 <script defer>
@@ -787,7 +1027,59 @@
     }
   });
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
 <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "dark" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
   document.addEventListener('DOMContentLoaded', function () {
     window.codeElements = document.querySelectorAll('.code');
     if (window.codeElements.length > 0) {

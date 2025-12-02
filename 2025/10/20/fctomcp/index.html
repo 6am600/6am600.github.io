@@ -58,7 +58,7 @@
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css">
 </head>
 <body>
 
@@ -76,7 +76,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2023/12/21/someskills/"><span class="title">小技巧</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2025/03/20/flashattn/"><span class="title">Flash Attention</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -222,7 +222,8 @@
 <li>Wolfram：进行复杂的计算</li>
 <li>外部API：获取特定信息</li>
 </ul>
-<div class="tag-plugin colorful note" color="blue"><div class="title">提示</div><div class="body"><p>Agent在本篇文章不会占太多篇幅，详细内容可以看文章底部参考资料</p></div></div>
+<div class="tag-plugin colorful note" color="blue"><div class="title">提示</div><div class="body"><p>Agent在本篇文章不会占太多篇幅，详细内容可以看文章底部参考资料 </p>
+</div></div>
 <h2 id="MCP"><a href="#MCP" class="headerlink" title="MCP"></a>MCP</h2><blockquote>
 <p>MCP（Model Context Protocol，模型上下文协议） ，2024年11月底，由 Anthropic 推出的一种开放标准，旨在统一大型语言模型（LLM）与外部数据源和工具之间的通信协议。MCP 的主要目的在于解决当前 AI 模型因数据孤岛限制而无法充分发挥潜力的难题，MCP 使得 AI 应用能够安全地访问和操作本地及远程数据，为 AI 应用提供了连接万物的接口。</p>
 <p>对 Anthropic 可能没那么熟悉，但是 claude 一定听过，没错 Anthropic 就是 claude 的研发公司。</p>
@@ -417,7 +418,8 @@
 <h5 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h5><p><strong>方式一：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python mcp_server.py</span><br></pre></td></tr></table></figure>
 <p>这种方式要求代码中有 <code>if __name__ == &quot;__main__&quot;</code> 代码块，对此，官方的解释是：</p>
-<div class="tag-plugin colorful note" color="green"><div class="title">说明</div><div class="body"><p>我们为什么需要这个<code>if __name__ == __main__:</code>模块？为了保持一致性和兼容性，建议添加此<code>__main__</code>代码块，以确保您的服务器能够与所有将服务器文件作为脚本执行的 MCP 客户端兼容。如果用户仅使用 FastMCP CLI 运行服务器，则可以省略此代码块，因为 CLI 会直接导入服务器对象。</p></div></div>
+<div class="tag-plugin colorful note" color="green"><div class="title">说明</div><div class="body"><p>我们为什么需要这个<code>if __name__ == &quot;__main__&quot;:</code>模块？为了保持一致性和兼容性，建议添加此<code>__main__</code>代码块，以确保您的服务器能够与所有将服务器文件作为脚本执行的 MCP 客户端兼容。如果用户仅使用 FastMCP CLI 运行服务器，则可以省略此代码块，因为 CLI 会直接导入服务器对象。 </p>
+</div></div>
 <p><strong>方式二：</strong></p>
 <p>使用默认 stdio 传输方式运行此服务器</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastmcp run my_server.py:mcp</span><br></pre></td></tr></table></figure>

@@ -58,7 +58,7 @@
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css">
 </head>
 <body>
 
@@ -76,7 +76,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2023/12/21/someskills/"><span class="title">小技巧</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a><a class="item title" href="/2025/05/01/hinttool/"><span class="title">Hexo-tag-hint</span></a><a class="item title" href="/2025/04/02/BM25/"><span class="title">BM25算法</span></a><a class="item title" href="/2025/03/20/flashattn/"><span class="title">Flash Attention</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -167,7 +167,8 @@
 <li><p><code>concurrency</code>：很多模型会限制并发，所以这里我利用p-limit插件实现了并发限制，降低失败请求的概率，经过调查，p-limit应该是hexo内已经有的一些包，所以也不需要担心需要重新安装之类的，直接使用即可。</p>
 </li>
 </ol>
-<h3 id="尝试运行"><a href="#尝试运行" class="headerlink" title="尝试运行"></a>尝试运行</h3><div class="tag-plugin colorful note" color="green"><div class="body"><p>注意备份。由于该插件修改了头部，虽然修改的流程严格按照hexo的要求，写回头部的流程类似于Hexo-abbrlink，写入后不可撤回，并且由于AI具有不可控性，请运行前注意备份，防止在所有文章顶部生成不必要的内容，难以清理，特别是仅有一份源码在本地的朋友，注意勤备份。</p></div></div>
+<h3 id="尝试运行"><a href="#尝试运行" class="headerlink" title="尝试运行"></a>尝试运行</h3><div class="tag-plugin colorful note" color="green"><div class="title">注意备份</div><div class="body"><p>由于该插件修改了头部，虽然修改的流程严格按照hexo的要求，写回头部的流程类似于Hexo-abbrlink，写入后不可撤回，并且由于AI具有不可控性，请运行前注意备份，防止在所有文章顶部生成不必要的内容，难以清理，特别是仅有一份源码在本地的朋友，注意勤备份。 </p>
+</div></div>
 <p>由于利用了hexo自带的钩子，所以，摘要数据可能会被缓存，如果直接执行hexo server，并没有任何效果，请尝试先执行hexo cl清理缓存，hexo cl不会删除任何已经生成了的摘要内容。</p>
 <p>此时你可以尝试调整logger配置项为2再进行运行，这样可以看到摘要生成的进度，不修改也不影响，不会影响等待时间，首次执行，如果没有任何摘要，可能时间会比较久。</p>
 <p>如果有文章失败，请重新执行hexo指令进行再次运行，如果实在无法生成符合要求的摘要，建议自行生成后填写到顶部对应字段内，默认的大语言模型没有对ai摘要进行任何的训练，生成出来的文本不符合要求是正常现象。</p>
@@ -231,7 +232,8 @@
 <p>注意各家都有自有api接口和OpenAI类型接口，我们这里选择OpenAI接口，输入完整的地址如混元的兼容接口：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.hunyuan.cloud.tencent.com/v1/chat/completions</span><br></pre></td></tr></table></figure>
 <p>申请token后正常使用即可。</p>
-<h3 id="Hexo适配"><a href="#Hexo适配" class="headerlink" title="Hexo适配"></a>Hexo适配</h3><div class="tag-plugin colorful note" color="green"><div class="body"><p>说在前面。有些主题已经有静态ai摘要的功能了，可以无需下面的步骤，使用插件向文件插入对应的字符串即可，下面的教程适用于butterfly或者类butterfly主题，如果是其他主题可能需要自行适配。</p></div></div>
+<h3 id="Hexo适配"><a href="#Hexo适配" class="headerlink" title="Hexo适配"></a>Hexo适配</h3><div class="tag-plugin colorful note" color="green"><div class="title">说在前面</div><div class="body"><p>有些主题已经有静态ai摘要的功能了，可以无需下面的步骤，使用插件向文件插入对应的字符串即可，下面的教程适用于butterfly或者类butterfly主题，如果是其他主题可能需要自行适配。 </p>
+</div></div>
 <h4 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h4><p>目前我们已经自动化了从AI中，喂我们的文章给AI，再生成摘要，再写到文件顶部的过程，下面我们开始进行从文件顶部渲染到网站页面上。</p>
 <p>首先在主题配置文件_config.stellar.yml文件中写入配置，方便我们进行控制摘要是否开启：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文章AI摘要是否开启，会自动检索文章色summary字段，若没有则不显示</span></span><br><span class="line"><span class="attr">ai_summary:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">扳布的AI摘要</span></span><br><span class="line">  <span class="attr">loadingText:</span> <span class="string">扳布AI正在绞尽脑汁想思路ING···</span></span><br><span class="line">  <span class="attr">modelName:</span> <span class="string">HunYuan-turbos</span></span><br></pre></td></tr></table></figure>
