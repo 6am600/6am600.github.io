@@ -28,6 +28,12 @@ article li,
   line-height: 1.6 !important;
 }
 
+.search-result-list ul,
+.search-result-list ol,
+.search-result-list li {
+  list-style-type: none;
+}
+
 /* 文章内容中的引用块 */
 /* article blockquote,
 .post-content blockquote,
