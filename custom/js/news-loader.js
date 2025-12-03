@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     async function loadNews() {
       try {
-        console.log('开始加载新闻数据...');
+        // console.log('开始加载新闻数据...');
         
         // 使用新的 JSON 文件路径
         const response = await fetch('/news-data/index.json');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const data = await response.json();
-        console.log('新闻数据加载成功，共', data.data.length, '条新闻');
+        // console.log('新闻数据加载成功，共', data.data.length, '条新闻');
         
         if (data.data && data.data.length > 0) {
           newsList = data.data;

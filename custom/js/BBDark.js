@@ -21,7 +21,7 @@ const ThemeChange = (theme) => {
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(4)").style.filter= 'grayscale(0%)';
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(3)").style.filter= 'grayscale(100%)';
     } else {
-        console.log("dark mode");
+        // console.log("dark mode");
         document.querySelector("html").setAttribute("data-theme", "dark");
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(3)").style.filter= 'grayscale(0%)';
         document.querySelector("#start > aside.l_left > div.leftbar-container > footer > div > a:nth-child(4)").style.filter= 'grayscale(100%)';
