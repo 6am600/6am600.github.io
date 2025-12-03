@@ -2,7 +2,7 @@
 /* 文章内容中的无序列表 */
 article ul,
 .post-content ul,
-.content ul,
+.content .l_main ul,
 .markdown-body ul {
   list-style-type: disc !important;
   padding-left: 1.5em !important;
@@ -12,7 +12,7 @@ article ul,
 /* 文章内容中的有序列表 */
 article ol,
 .post-content ol,
-.content ol,
+.content .l_main ol,
 .markdown-body ol {
   list-style-type: decimal !important;
   padding-left: 1.5em !important;
@@ -22,7 +22,7 @@ article ol,
 /* 文章内容中的列表项 */
 article li,
 .post-content li,
-.content li,
+.content .l_main li,
 .markdown-body li {
   margin: 0.25em 0 !important;
   line-height: 1.6 !important;
@@ -49,14 +49,14 @@ article li,
 /* 文章中的嵌套列表 */
 article ul ul,
 .post-content ul ul,
-.content ul ul,
+.content .l_main ul ul,
 .markdown-body ul ul {
   list-style-type: circle !important;
 }
 
 article ul ul ul,
 .post-content ul ul ul,
-.content ul ul ul,
+.content .l_main ul ul ul,
 .markdown-body ul ul ul {
   list-style-type: square !important;
 }
@@ -121,7 +121,7 @@ article ul ul ul,
 .note .body ul ul,
 article ul ul,
 .post-content ul ul,
-.content ul ul,
+.content .l_main ul ul,
 .markdown-body ul ul {
   list-style-type: circle !important; /* 二级空心圆 */
 }
@@ -130,7 +130,7 @@ article ul ul,
 .note .body ul ul ul,
 article ul ul ul,
 .post-content ul ul ul,
-.content ul ul ul,
+.content .l_main ul ul ul,
 .markdown-body ul ul ul {
   list-style-type: square !important; /* 三级方点 */
 }
