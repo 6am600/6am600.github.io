@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="扳布屋">
 <meta property="og:description" content="Android逆向反编译APK工具介绍如果只是想拿到apk中的图片资源，只需要将apk后缀改为zip然后解压缩，res目录中就包含了所有的资源文件  classes.dex 则包含了所有的代码，只是还无法查看 AndroidManifest.xml 文件打开会发现无法阅读，都是16进制数 此时就需要用到工具 —— ApkTool ApkTool下载ApkTool官网 安装 使用1apktool d">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
 <meta property="article:published_time" content="2025-03-27T07:02:58.000Z">
 <meta property="article:modified_time" content="2025-11-23T23:52:54.561Z">
 <meta property="article:author" content="Bamboo">
 <meta property="article:tag" content="Decode">
 <meta property="article:tag" content="安卓">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
   
   
   
@@ -52,7 +52,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"dateCreated":"2025-03-27T15:02:58+08:00","dateModified":"2025-11-24T07:52:54+08:00","datePublished":"2025-03-27T15:02:58+08:00","description":"","headline":"反编译 APK","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2025/03/27/decodeapk/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"}},"url":"https://bambooo.top/2025/03/27/decodeapk/","keywords":"Decode, 安卓","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763511242.png","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2025-03-27T15:02:58+08:00","dateModified":"2025-11-24T07:52:54+08:00","datePublished":"2025-03-27T15:02:58+08:00","description":"","headline":"反编译 APK","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2025/03/27/decodeapk/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2025/03/27/decodeapk/","keywords":"Decode, 安卓","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763511242.png","image":1}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
   if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.querySelector("html").id = "ZYDark";
@@ -65,7 +65,7 @@
 <div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
 
 <div class="nav-area">
 

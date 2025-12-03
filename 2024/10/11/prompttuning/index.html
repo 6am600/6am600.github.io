@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="扳布屋">
 <meta property="og:description" content="讲讲提示词微调">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
 <meta property="article:published_time" content="2024-10-11T02:38:58.000Z">
-<meta property="article:modified_time" content="2025-12-02T13:59:27.618Z">
+<meta property="article:modified_time" content="2025-12-03T00:11:35.224Z">
 <meta property="article:author" content="Bamboo">
 <meta property="article:tag" content="tuning">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
   
   
   
@@ -51,7 +51,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"},"dateCreated":"2024-10-11T10:38:58+08:00","dateModified":"2025-12-02T21:59:27+08:00","datePublished":"2024-10-11T10:38:58+08:00","description":"","headline":"Prompt Tuning","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2024/10/11/prompttuning/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg"}},"url":"https://bambooo.top/2024/10/11/prompttuning/","keywords":"tuning","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763683273.png","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2024-10-11T10:38:58+08:00","dateModified":"2025-12-03T08:11:35+08:00","datePublished":"2024-10-11T10:38:58+08:00","description":"","headline":"Prompt Tuning","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2024/10/11/prompttuning/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2024/10/11/prompttuning/","keywords":"tuning","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763683273.png","image":1}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
   if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.querySelector("html").id = "ZYDark";
@@ -64,7 +64,7 @@
 <div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
 
 <div class="nav-area">
 
@@ -88,7 +88,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%8F%90%E7%A4%BA%E8%AF%8D/">提示词</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E6%8F%90%E7%A4%BA%E8%AF%8D/%E5%BE%AE%E8%B0%83/">微调</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E6%8F%90%E7%A4%BA%E8%AF%8D/%E5%BE%AE%E8%B0%83/Tuning/">Tuning</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-10-11T02:38:58.000Z">2024-10-11</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-12-02T13:59:27.618Z">2025-12-02</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-10-11T02:38:58.000Z">2024-10-11</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-12-03T00:11:35.224Z">2025-12-03</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -125,7 +125,6 @@
     </div>
 </div>
 <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><blockquote>
-<p>文中部分内容参考：<a target="_blank" rel="noopener" href="https://wjn1996.blog.csdn.net/article/details/120607050">https://wjn1996.blog.csdn.net/article/details/120607050</a></p>
 <p>在说明什么是Prompt Tuning之前，先简单了解下NLP任务四范式</p>
 </blockquote>
 <h2 id="NLP任务四种范式"><a href="#NLP任务四种范式" class="headerlink" title="NLP任务四种范式"></a>NLP任务四种范式</h2><div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><span>第一范式</span></div><div class="body fs14"><p>基于「传统机器学习模型」的范式，如TF-IDF特征+朴素贝叶斯等机器算法</p></div></div><div class="timenode" index="1"><div class="header"><span>第二范式</span></div><div class="body fs14"><p>基于「深度学习模型」的范式，如word2vec特征+LSTM等深度学习算法，相比于第一范式，模型准确有所提高，特征工程的工作也有所减少</p></div></div><div class="timenode" index="2"><div class="header"><span>第三范式</span></div><div class="body fs14"><p>基于「预训练模型+fine-tuning」的范式，如Bert+fine-tuning的NLP任务，相比于第二范式，模型准确度显著提高，模型也随之变得更大，但小数据集就可训练出好模型</p></div></div><div class="timenode" index="3"><div class="header"><span>第四范式</span></div><div class="body fs14"><p>基于「预训练模型+Prompt+预测」的范式，如Bert+Prompt的范式相比于第三范式，模型训练所需的训练数据显著减少</p></div></div></div>
@@ -190,9 +189,7 @@
 <p>输入至预训练模型中，训练任务目标和MLM任务的目标一致，即识别被[MASK]掉的词</p></div></div></div>
 <blockquote>
 <p>Prompt-Oriented Fine-Tuning方法中，预训练模型参数是可变的, 本质是Prompt-Tuning+Fine-Tuning的结合体. </p>
-<p>该方法在Bert类相对较小的模型上表现较好，但是随着模型越来越大，如果每次针对下游任务，都需要更新预训练</p>
-<p>模型的参数，资源成本及时间成本都会很高，因此后续陆续提出了不更新预训练模型参数，单纯只针对prompt进行</p>
-<p>调优的方法</p>
+<p>该方法在Bert类相对较小的模型上表现较好，但是随着模型越来越大，如果每次针对下游任务，都需要更新预训练模型的参数，资源成本及时间成本都会很高，因此后续陆续提出了不更新预训练模型参数，单纯只针对prompt进行调优的方法</p>
 </blockquote>
 <p>针对Prompt调优方法的分类：<strong>Hard Prompt</strong> 和 <strong>Soft Prompt</strong></p>
 <p>常见下游任务Prompt设计：</p>
@@ -390,6 +387,18 @@
 <h2 id="PEFT发展时间线"><a href="#PEFT发展时间线" class="headerlink" title="PEFT发展时间线"></a>PEFT发展时间线</h2><div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><span>2019 -- Adapter 系列（PEFT 的起点）</span></div><div class="body fs14"><blockquote><p><strong>● 2019.06 — Adapter-BERT</strong><br>论文：<em>Parameter-Efficient Transfer Learning for NLP</em>  </p><p>核心思想：  </p><ul><li>在 Transformer 每层插入一个小瓶颈网络（Adapter）  </li><li>冻结原模型，只训练 Adapter  </li></ul><p>影响：  </p><ul><li>开启“只训练少量参数”的 PEFT 思路  </li></ul><hr><p><strong>● 2019.12 — AdapterFusion</strong><br>论文：<em>AdapterFusion: Non-destructive Task Composition…</em>  </p><p>作用：  </p><ul><li>可以组合多个任务的 Adapter  </li><li>实现多任务知识融合  </li></ul></blockquote></div></div><div class="timenode" index="1"><div class="header"><span>2020 -- Prompt 化 + 连续 Prompt 开始出现</span></div><div class="body fs14"><blockquote><p><strong>● 2020.12 — Prompt Tuning（离散提示）</strong><br>背景：  </p><ul><li>GPT-3 展示了 Prompt Learning 的强大能力  </li><li>人工设计 Prompt 不稳定，激发对可训练提示的需求  </li></ul><p>意义：  </p><ul><li>连续 Prompt（Soft Prompt）的研究开始萌芽  </li></ul></blockquote></div></div><div class="timenode" index="2"><div class="header"><span>2021 -- Prompt 变成可训练向量（Soft Prompt 时代）</span></div><div class="body fs14"><blockquote><p><strong>● 2021.02 — GPT Prompt Tuning（Soft Prompt）</strong><br>论文：<em>The Power of Scale for Parameter-Efficient Prompt Tuning</em>  </p><p>创新：  </p><ul><li>引入可训练的 Prompt Embedding（虚拟 token）  </li><li>只训练几十个 embedding 即可完成新任务  </li></ul><p>意义：  </p><ul><li>计算成本极低  </li><li>Soft Prompt 方法正式确立  </li></ul><hr><p><strong>● 2021.04 — P-Tuning v1</strong><br>论文：<em>P-Tuning: Prompt Tuning Can Be Comparable to Finetuning</em>  </p><p>核心创新：  </p><ul><li>使用“可训练连续 embedding + LSTM”生成 Prompt  </li><li>在 BERT 类 encoder 模型上效果稳定  </li></ul><p>意义：  </p><ul><li>Soft Prompt 被扩展到更多模型  </li></ul><hr><p><strong>● 2021.09 — Prefix Tuning（Prefix-Tuning）</strong><br>论文：<em>Prefix-Tuning: Optimizing Continuous Prompts for Generation</em>  </p><p>特点：  </p><ul><li>给 Transformer 所有层加入训练前缀参数  </li><li>性能优于浅层 Soft Prompt  </li></ul><p>用途：  </p><ul><li>翻译、摘要、生成任务  </li></ul><hr><p><strong>● 2021.10 — P-Tuning v2</strong><br>论文：<em>P-Tuning v2: Prompt Tuning Can Be Comparable to FT on Large Models</em>  </p><p>特点：  </p><ul><li>Prefix Prompt + 深层结构统一框架  </li><li>性能接近 Full Fine-Tuning  </li><li>适配 GPT / BERT / T5  </li></ul><p>行业影响：  </p><ul><li>Prompt-based PEFT 的黄金版本  </li></ul></blockquote></div></div><div class="timenode" index="3"><div class="header"><span>2021-2022 -- 真正的大爆发：LoRA</span></div><div class="body fs14"><blockquote><p><strong>● 2021.12（发布）/2022.02（论文）— LoRA</strong><br>论文：<em>LoRA: Low-Rank Adaptation of Large Language Models</em>  </p><p>核心思想：  </p><ul><li>将权重增量参数化为低秩分解：W + BA  </li><li>冻结原模型，只训练 A、B  </li></ul><p>效果：  </p><ul><li>训练成本降低 100 倍  </li><li>性能接近全参数微调  </li></ul><p>意义：  </p><ul><li>LoRA 成为 LLM 时代最主流的 PEFT 方法  </li></ul></blockquote></div></div><div class="timenode" index="4"><div class="header"><span>2022 -- Prompt/Adapter/LoRA 多方法融合与优化</span></div><div class="body fs14"><blockquote><p><strong>● 2022.05 — IA3</strong><br>论文：<em>IA3: Efficient Adaptation of Pretrained Transformers</em>  </p><p>方法：  </p><ul><li>为每层仅加入缩放向量（gating-like）  </li><li>参数量比 LoRA 更小  </li></ul><hr><p><strong>● 2022.07 — 大模型（LLaMA/BLOOM/GLM）兴起</strong><br>影响：  </p><ul><li>LoRA 成为这些模型的事实标准微调方式  </li></ul></blockquote></div></div><div class="timenode" index="5"><div class="header"><span>2023 -- SFT 大模型时代，新型 PEFT</span></div><div class="body fs14"><blockquote><p><strong>● 2023.03 — QLoRA</strong><br>论文：<em>QLoRA: Efficient Finetuning of Quantized LLMs</em>  </p><p>创新：  </p><ul><li>在 4-bit 量化模型上使用 LoRA  </li><li>显著节省显存，同时保持 Full FT 性能  </li></ul><p>意义：  </p><ul><li>单卡 3090/A10 就能训练 7B/13B 模型  </li><li>PEFT 真正走向大众  </li></ul><hr><p><strong>● 2023.08 — PETL（PEFT）系统性综述</strong><br>论文：<em>Parameter-Efficient Transfer Learning: A Survey</em>  </p><p>意义：  </p><ul><li>首次完整整理所有 PEFT 方法  </li></ul></blockquote></div></div><div class="timenode" index="6"><div class="header"><span>2024 -- LLM 后时代的 PEFT 优化方向</span></div><div class="body fs14"><blockquote><p><strong>● 2024 — DoRA（Decomposition of Rank-3）</strong>  </p><ul><li>LoRA 改进版，分解矩阵 + 方向  </li><li>稳定性更高、训练更可控  </li></ul><hr><p><strong>● 2024 — AdaLoRA</strong>  </p><ul><li>动态调整 LoRA 的秩  </li><li>提升参数效率  </li></ul><hr><p><strong>● 2024 — LongLoRA</strong>  </p><ul><li>针对长上下文模型的 LoRA 改进  </li><li>大幅提升长序列训练表现  </li></ul></blockquote></div></div></div>
 </article>
 <div class="article-footer">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://wjn1996.blog.csdn.net/article/details/120607050">https://wjn1996.blog.csdn.net/article/details/120607050</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
     <section id="license">
       <div class="header"><span>许可协议</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
