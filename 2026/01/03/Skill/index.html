@@ -1,0 +1,1083 @@
+
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 8.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>Agent Skills - 扳布屋</title>
+
+  
+    <meta name="description" content="了解Claude的Skills">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent Skills">
+<meta property="og:url" content="https://bambooo.top/2026/01/03/Skill/">
+<meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="了解Claude的Skills">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
+<meta property="article:published_time" content="2026-01-03T06:07:13.752Z">
+<meta property="article:modified_time" content="2026-01-10T08:24:11.751Z">
+<meta property="article:author" content="Bamboo">
+<meta property="article:tag" content="Skills">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
+  
+  
+  
+  <meta name="keywords" content="Skills">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+    <link rel="shortcut icon" href="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/sun.png">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2026-01-03T14:07:13+08:00","dateModified":"2026-01-10T16:24:11+08:00","datePublished":"2026-01-03T14:07:13+08:00","description":"","headline":"Agent Skills","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2026/01/03/Skill/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2026/01/03/Skill/","keywords":"Skills","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png","image":1}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
+  if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.querySelector("html").id = "ZYDark";
+  }
+</script>
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css">
+</head>
+<body>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a><a class="nav-item" title="社交" href="/friends/" style="color:##7f7f80"><span>社交</span></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/01/03/Skill/"><span class="title">Agent Skills</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/12/28/firstprinciples/"><span class="title">第一性原理</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/09/01/promptengineering/"><span class="title">提示词如何设计</span></a><a class="item title" href="/2025/05/12/noteupgrade/"><span class="title">Note标签美化</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Agent/">Agent</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-01-03T06:07:13.752Z">2026-01-03</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-01-10T08:24:11.751Z">2026-01-10</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Agent Skills</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="ai-summary">
+    <div class="ai-summary-header">
+        <div class="ai-head-left">
+        </div>
+        <a class="ai-about" href="/2025/11/24/aisummary/">关于AI</a>
+    </div>
+
+    <div class="ai-explanation" style="display: block;" data-summary="这里是扳布AI，这篇文章介绍了如何在Claude中创建并使用一个简单的Agent Skill，以“会议总结”为例，详细讲解了从技能目录的创建、核心文件SKILL.md的编写，到技能的验证与实际应用的全过程。首先需要在系统特定目录下建立技能文件夹，然后创建包含YAML元数据和Markdown正文的SKILL.md文件，定义技能名称、功能及处理逻辑。文章展示了如何通过结构化模板提取会议关键信息并生成总结，还介绍了技能的启用与测试方法，以及渐进式披露机制、reference和script等高级功能的应用。最后阐述了Agent Skill的本质与价值，解释了其作为可插拔专业模块如何提升大模型的任务执行能力与专业性，助力构建更智能的AI生态。">
+        <!-- 这里是扳布AI，这篇文章介绍了如何在Claude中创建并使用一个简单的Agent Skill，以“会议总结”为例，详细讲解了从技能目录的创建、核心文件SKILL.md的编写，到技能的验证与实际应用的全过程。首先需要在系统特定目录下建立技能文件夹，然后创建包含YAML元数据和Markdown正文的SKILL.md文件，定义技能名称、功能及处理逻辑。文章展示了如何通过结构化模板提取会议关键信息并生成总结，还介绍了技能的启用与测试方法，以及渐进式披露机制、reference和script等高级功能的应用。最后阐述了Agent Skill的本质与价值，解释了其作为可插拔专业模块如何提升大模型的任务执行能力与专业性，助力构建更智能的AI生态。 -->
+    </div>
+
+    <div class="ai-title">
+        <div class="ai-title-left">
+            <!-- 图标已替换为你要求的 Hexo icon 插件写法 -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg>
+            <div class="ai-title-text">
+                扳布的AI摘要
+            </div>
+        </div>
+
+        <div class="ai-tag" id="ai-tag">
+            HunYuan-turbos
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><blockquote>
+<p>以下只是一个最简单的skill使用，还有一些额外功能比如script、reference等未进行扩展，有兴趣可以自行搜索</p>
+</blockquote>
+<h3 id="第一步：在正确的目录创建Skill文件夹Claude-Code会在特定目录寻找技能。你需要在这个目录下工作。"><a href="#第一步：在正确的目录创建Skill文件夹Claude-Code会在特定目录寻找技能。你需要在这个目录下工作。" class="headerlink" title="第一步：在正确的目录创建Skill文件夹Claude Code会在特定目录寻找技能。你需要在这个目录下工作。"></a>第一步：在正确的目录创建Skill文件夹Claude Code会在特定目录寻找技能。你需要在这个目录下工作。</h3><ol>
+<li><p><strong>打开你系统的“技能根目录”</strong>：</p>
+<ul>
+<li><p>在<strong>Windows资源管理器</strong>的地址栏，直接输入以下路径并回车：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%USERPROFILE%\.claude\skills\</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>系统会定位到类似 <code>C:\Users\[你的用户名]\.claude\skills\</code> 的目录。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意，我是windows系统，所以一般会在这个目录，mac可以直接按照claude官方文档操作</p>
+</blockquote>
+</li>
+<li><p><strong>创建你的技能文件夹</strong>：</p>
+<ul>
+<li>在 <code>skills</code> （如果不存在的话创建一个skill）文件夹内，<strong>新建一个文件夹</strong>，并以你的技能名命名（建议使用小写字母和连字符，例如 <code>meeting-summary</code>）。</li>
+</ul>
+</li>
+</ol>
+<p>这是你的<strong>技能目录</strong>，所有相关文件都将放在这里。</p>
+<h3 id="第二步：创建核心文件-SKILL-md"><a href="#第二步：创建核心文件-SKILL-md" class="headerlink" title="第二步：创建核心文件 SKILL.md"></a>第二步：创建核心文件 <code>SKILL.md</code></h3><p>这是技能的灵魂，是一个包含 <strong>YAML头部（元数据）</strong> 和 <strong>Markdown正文（指令）</strong> 的文本文件。</p>
+<ol>
+<li>在 <code>meeting-summary</code> 文件夹内，<strong>新建一个文本文档</strong>。</li>
+<li>将其重命名为 <strong><code>SKILL.md</code></strong> （注意后缀是 <code>.md</code>）。</li>
+<li>用记事本或VS Code等编辑器打开它，并<strong>复制并修改以下模板</strong>：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">meeting-summarizer</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">快速会议总结助手。当我收到会议记录、对话转录或聊天文本时，自动生成包含关键决策、行动项和要点的结构化总结。</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">1.0</span><span class="number">.0</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="comment"># 快速会议总结助手</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 我的专长</span></span><br><span class="line"><span class="string">我是一个会议内容分析专家。你只需把会议记录粘贴给我，我就能**自动提取核心信息**，生成清晰可执行的总结，包含：</span></span><br><span class="line"><span class="number">1</span><span class="string">.</span>  <span class="string">**关键决策**</span> <span class="bullet">-</span> <span class="string">会上达成了哪些共识和决定</span></span><br><span class="line"><span class="number">2</span><span class="string">.</span>  <span class="string">**行动项**</span> <span class="bullet">-</span> <span class="string">谁需要做什么，何时完成（我会用表格整理）</span></span><br><span class="line"><span class="number">3</span><span class="string">.</span>  <span class="string">**讨论要点**</span> <span class="bullet">-</span> <span class="string">主要讨论了哪些话题</span></span><br><span class="line"><span class="number">4</span><span class="string">.</span>  <span class="string">**参与人员**</span> <span class="bullet">-</span> <span class="string">自动识别参会者（如果文本中包含）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 我的工作方式</span></span><br><span class="line"><span class="string">当你把会议文本发给我时，我会：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 第一步：分析文本结构</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">识别不同的发言人和对话轮次</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">标记出决策性语句（如&quot;我们决定&quot;、&quot;同意&quot;、&quot;通过&quot;）</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">找出任务分配表述（如&quot;由XX负责&quot;、&quot;需要完成&quot;）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 第二步：提取关键信息</span></span><br><span class="line"><span class="string">我会重点关注以下内容：</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">**任务描述**：需要完成的具体工作</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">**责任人**：明确提到的负责人</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">**时间节点**：截止日期、完成时间</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">**决策点**：达成的共识和结论</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">**待解决问题**：需要进一步讨论的事项</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 第三步：生成结构化总结</span></span><br><span class="line"><span class="string">我将按照以下模板组织信息：</span></span><br><span class="line"></span><br><span class="line"><span class="string">```markdown</span></span><br><span class="line"><span class="comment">## 📋 会议总结</span></span><br><span class="line"></span><br><span class="line"><span class="string">**分析时间**：&#123;当前日期&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 👥 参会人员（自动识别）</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">人员列表（从文本中提取）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### ✅ 达成的决策</span></span><br><span class="line"><span class="number">1</span><span class="string">.</span>  [<span class="string">决策点1</span>]</span><br><span class="line"><span class="number">2</span><span class="string">.</span>  [<span class="string">决策点2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">### 📝 行动项追踪</span></span><br><span class="line"><span class="string">|</span> <span class="string">任务描述</span> <span class="string">|</span> <span class="string">负责人</span> <span class="string">|</span> <span class="string">截止时间</span> <span class="string">|</span> <span class="string">状态</span> <span class="string">|</span></span><br><span class="line"><span class="string">|---------|--------|----------|------|</span></span><br><span class="line"><span class="string">|</span> [<span class="string">任务1</span>] <span class="string">|</span> [<span class="string">人员</span>] <span class="string">|</span> [<span class="string">时间</span>]   <span class="string">|</span> <span class="string">待开始</span> <span class="string">|</span></span><br><span class="line"><span class="string">|</span> [<span class="string">任务2</span>] <span class="string">|</span> [<span class="string">人员</span>] <span class="string">|</span> [<span class="string">时间</span>]   <span class="string">|</span> <span class="string">待开始</span> <span class="string">|</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 💡 讨论要点</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">要点1</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">要点2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">### 🔍 后续关注</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">待解决问题</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">下一步安排</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>关键点</strong>：</p>
+<ul>
+<li><strong><code>name</code></strong> 必须与<strong>文件夹名</strong>严格一致。</li>
+<li><strong><code>description</code></strong> 要清晰，这决定了Claude何时会调用此技能。</li>
+<li>正文部分是你的“AI说明书”，写得越详细、步骤越清晰，AI表现就越好。</li>
+</ul>
+<h3 id="第三步：验证skill是否生效"><a href="#第三步：验证skill是否生效" class="headerlink" title="第三步：验证skill是否生效"></a>第三步：验证skill是否生效</h3><p>简单一点，直接打开一个窗口，对claude进行询问，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你有哪些Agent Skill</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110155306008.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110155306008.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p>可以看到，claude能正确检测到我们刚刚创建的skill并且能正确识别它的功能</p>
+<h3 id="第四步：使用案例测试"><a href="#第四步：使用案例测试" class="headerlink" title="第四步：使用案例测试"></a>第四步：使用案例测试</h3><p>同样询问claude：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">帮我总结以下会议内容：</span><br><span class="line">王峰：开始会议。今天评审用户画像模块进度。李静同步技术进展？</span><br><span class="line">李静：后端API完成90%，但发现性能问题：数据量超百万时查询超3秒，超SLA要求。</span><br><span class="line">张涛：前端个人中心重构基本完成，可视化组件周三提测。但需要后端新接口获取标签权重。</span><br><span class="line">王峰：新接口要多久？</span><br><span class="line">李静：两天可完成，需详细需求。</span><br><span class="line">陈敏：市场部最需要“购买意向预测”标签，能按时上线吗？</span><br><span class="line">李静：该模块需增加两周。建议先上线准确率70%的基础版，完整版4月中旬交付。</span><br><span class="line">王峰：决策：基础版按原计划3月25日上线，完整版延期到4月15日。同意吗？（众人同意）</span><br><span class="line">赵琳：测试基础版的范围？要两套用例吗？</span><br><span class="line">李静：一套即可。测核心5个预测维度。</span><br><span class="line">王峰：赵琳负责周四前输出测试计划。李静解决性能问题方案？</span><br><span class="line">李静：方案一优化索引（需张涛配合，3天）；方案二加缓存层（5天）。建议先用方案一。</span><br><span class="line">张涛：可配合，但排期到下周一后。</span><br><span class="line">王峰：定案：采用方案一，李静主导，张涛下周一配合。陈敏同步市场部版本安排。</span><br><span class="line">陈敏：明天上午同步市场部。</span><br><span class="line">赵琳：风险：测试环境无百万级数据，性能测试可能不充分。</span><br><span class="line">李静：我周三前生成模拟数据解决。</span><br><span class="line">王峰：明确行动项：1李静周三前提供测试数据，周四前完成接口扩展；2张涛周三前提测组件，下周一配合优化；3赵琳周四前输出测试计划；4陈敏明天同步市场部；5我更新项目计划。散会！</span><br></pre></td></tr></table></figure>
+<p>claude会先向你请求调用会议总结skill工具：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110155952475.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110155952475.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p>回车同意</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110160037433.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110160037433.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p>claude就会按照我们设置好的规则生成会议总结</p>
+<h2 id="渐进式披露机制"><a href="#渐进式披露机制" class="headerlink" title="渐进式披露机制"></a>渐进式披露机制</h2><p>这个是Agent Skill的核心</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110161637406.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260110161637406.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
+<p>对于reference，可以理解为外部扩展文档，作为对补充上下文，让模型按需去读取，当然，这些需要自己在SKILL.md中说明好</p>
+<p>对于script，也就是脚本，可以理解为function call，让模型在执行某些操作时可以去调用脚本工具来完成，比如上传文件到服务器，这个脚本是我们写好的，同样也需要在SKILL.md中说明好，一般来说，script只会被调用，不会被读取，这也达到了节省上下文目的</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="什么是Agent-Skill"><a href="#什么是Agent-Skill" class="headerlink" title="什么是Agent Skill"></a>什么是Agent Skill</h3><p><strong>Agent Skill 的本质：AI 的「可插拔专业技能模块」</strong></p>
+<h4 id="1-核心定义"><a href="#1-核心定义" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h4><p>Agent Skill 是一个 <strong>标准化、可复用、自描述的AI能力包</strong>，它让大语言模型（如Claude）在需要时，能像专业人士一样执行特定领域的复杂任务。</p>
+<h4 id="2-三层本质解读"><a href="#2-三层本质解读" class="headerlink" title="2. 三层本质解读"></a>2. 三层本质解读</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">维度</th>
+<th style="text-align:left">技术视角</th>
+<th style="text-align:left">用户视角</th>
+<th style="text-align:left">生态视角</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>是什么</strong></td>
+<td style="text-align:left">结构化提示词+上下文+工具的封装</td>
+<td style="text-align:left">AI的「技能插件」或「专业顾问」</td>
+<td style="text-align:left">开放的AI能力交换单元</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>表现形式</strong></td>
+<td style="text-align:left">文件夹（含SKILL.md、脚本、参考资料）</td>
+<td style="text-align:left">对话中激活的「专家模式」</td>
+<td style="text-align:left">可分发、可共享的资产包</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>价值核心</strong></td>
+<td style="text-align:left">将非结构化知识转为可执行指令</td>
+<td style="text-align:left">让AI「学会」你的工作方式</td>
+<td style="text-align:left">构建协作式AI生态的基础</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="为什么-Claude-要设计-Agent-Skills？"><a href="#为什么-Claude-要设计-Agent-Skills？" class="headerlink" title="为什么 Claude 要设计 Agent Skills？"></a>为什么 Claude 要设计 Agent Skills？</h3><h3 id="1-解决大模型的核心局限性"><a href="#1-解决大模型的核心局限性" class="headerlink" title="1. 解决大模型的核心局限性"></a>1. <strong>解决大模型的核心局限性</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">问题</th>
+<th style="text-align:left">传统方式</th>
+<th style="text-align:left">Agent Skill 方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>语境长度限制</strong></td>
+<td style="text-align:left">长文档需反复粘贴</td>
+<td style="text-align:left">通过reference按需加载</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>任务一致性差</strong></td>
+<td style="text-align:left">每次需重新解释需求</td>
+<td style="text-align:left">固化最佳实践到工作流</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>缺乏专业知识</strong></td>
+<td style="text-align:left">依赖模型的训练数据</td>
+<td style="text-align:left">注入领域特定知识</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>无法执行操作</strong></td>
+<td style="text-align:left">只能给出建议</td>
+<td style="text-align:left">集成脚本执行实际任务</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-Claude-的战略布局思考"><a href="#2-Claude-的战略布局思考" class="headerlink" title="2. Claude 的战略布局思考"></a>2. <strong>Claude 的战略布局思考</strong></h3><h4 id="技术战略：从「对话模型」到「行动智能体」"><a href="#技术战略：从「对话模型」到「行动智能体」" class="headerlink" title="技术战略：从「对话模型」到「行动智能体」"></a><strong>技术战略：从「对话模型」到「行动智能体」</strong></h4><p>text</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Claude 1.0 → 2.0 → 3.0 的演进路径：</span><br><span class="line">文本理解 → 复杂推理 → 多模态 → 【行动执行】</span><br><span class="line">Agent Skills 是「行动执行」的关键载体</span><br></pre></td></tr></table></figure>
+<h4 id="产品战略：构建开发者生态"><a href="#产品战略：构建开发者生态" class="headerlink" title="产品战略：构建开发者生态"></a><strong>产品战略：构建开发者生态</strong></h4><ul>
+<li><strong>降低定制门槛</strong>：让非开发者也能为AI「编程」</li>
+<li><strong>促进生态贡献</strong>：用户创造的技能可共享，形成网络效应</li>
+<li><strong>防止碎片化</strong>：标准化格式避免每家公司的「私有技能格式」</li>
+</ul>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://bambooo.top/2026/01/03/Skill/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://bambooo.top/2026/01/03/Skill/&title=Agent Skills - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/clipboard-image-1763510820.png&summary=了解Claude的Skills"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=Agent Skills - 扳布屋&amp;body=https://bambooo.top/2026/01/03/Skill/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://bambooo.top/2026/01/03/Skill/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/12/28/firstprinciples/">第一性原理</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BASkill%E6%96%87%E4%BB%B6%E5%A4%B9Claude-Code%E4%BC%9A%E5%9C%A8%E7%89%B9%E5%AE%9A%E7%9B%AE%E5%BD%95%E5%AF%BB%E6%89%BE%E6%8A%80%E8%83%BD%E3%80%82%E4%BD%A0%E9%9C%80%E8%A6%81%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%B7%A5%E4%BD%9C%E3%80%82"><span class="toc-text">第一步：在正确的目录创建Skill文件夹Claude Code会在特定目录寻找技能。你需要在这个目录下工作。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6-SKILL-md"><span class="toc-text">第二步：创建核心文件 SKILL.md</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E9%AA%8C%E8%AF%81skill%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88"><span class="toc-text">第三步：验证skill是否生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B%E6%B5%8B%E8%AF%95"><span class="toc-text">第四步：使用案例测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%90%E8%BF%9B%E5%BC%8F%E6%8A%AB%E9%9C%B2%E6%9C%BA%E5%88%B6"><span class="toc-text">渐进式披露机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFAgent-Skill"><span class="toc-text">什么是Agent Skill</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 核心定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%89%E5%B1%82%E6%9C%AC%E8%B4%A8%E8%A7%A3%E8%AF%BB"><span class="toc-text">2. 三层本质解读</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Claude-%E8%A6%81%E8%AE%BE%E8%AE%A1-Agent-Skills%EF%BC%9F"><span class="toc-text">为什么 Claude 要设计 Agent Skills？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A7%A3%E5%86%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">1. 解决大模型的核心局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Claude-%E7%9A%84%E6%88%98%E7%95%A5%E5%B8%83%E5%B1%80%E6%80%9D%E8%80%83"><span class="toc-text">2. Claude 的战略布局思考</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%88%98%E7%95%A5%EF%BC%9A%E4%BB%8E%E3%80%8C%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B%E3%80%8D%E5%88%B0%E3%80%8C%E8%A1%8C%E5%8A%A8%E6%99%BA%E8%83%BD%E4%BD%93%E3%80%8D"><span class="toc-text">技术战略：从「对话模型」到「行动智能体」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E6%88%98%E7%95%A5%EF%BC%9A%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E8%80%85%E7%94%9F%E6%80%81"><span class="toc-text">产品战略：构建开发者生态</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":[],"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js","envId":"https://twikoo.bambooo.top"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "dark" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script><script type="text/javascript" src="/custom/js/news-loader.js"></script>
+</div></body></html>
