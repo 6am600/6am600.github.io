@@ -20,14 +20,16 @@
   <title>探索 - 扳布屋</title>
 
   
-    <meta property="og:type" content="website">
+    <meta name="description" content="旅行足迹                       地图加载中...        统计              📍         地点总数         -                   🌍         覆盖区域         -                   📅         最新更新         -        关于这里是我在世界各地的旅行记录，每一个">
+<meta property="og:type" content="website">
 <meta property="og:title" content="探索">
 <meta property="og:url" content="https://bambooo.top/explore/">
 <meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="旅行足迹                       地图加载中...        统计              📍         地点总数         -                   🌍         覆盖区域         -                   📅         最新更新         -        关于这里是我在世界各地的旅行记录，每一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
 <meta property="article:published_time" content="2022-09-14T19:38:58.000Z">
-<meta property="article:modified_time" content="2022-09-14T19:38:58.000Z">
+<meta property="article:modified_time" content="2025-01-30T20:00:00.000Z">
 <meta property="article:author" content="Bamboo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
@@ -48,13 +50,18 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://bambooo.top/explore/","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"name":"探索","description":"","url":"https://bambooo.top/explore/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://bambooo.top/explore/","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"name":"探索","description":"旅行足迹\n    \n        \n        地图加载中...\n    \n\n\n统计\n    \n        📍\n        地点总数\n        -\n    \n    \n        🌍\n        覆盖区域\n        -\n    \n    \n        📅\n        最新更新\n        -\n    \n\n\n关于这里是我在世界各地的旅行记录，...","url":"https://bambooo.top/explore/"}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
   if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.querySelector("html").id = "ZYDark";
   }
 </script>
-<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css">
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css"><link rel="stylesheet" href="/custom/css/travel-map.css"><script type="text/javascript">
+  window._AMapSecurityConfig = {
+    securityJsCode: '72a9bf35dd79548c88afd04038e797df'
+  };
+</script>
+<script src="https://webapi.amap.com/maps?v=2.0&key=1faf81107c16d056b8b580cc3ceec5aa"></script>
 </head>
 <body>
 
@@ -92,7 +99,36 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"></article>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h1 id="旅行足迹"><a href="#旅行足迹" class="headerlink" title="旅行足迹"></a>旅行足迹</h1><div id="travel-map-container">
+    <div class="travel-map-loading">
+        <div class="spinner"></div>
+        <p>地图加载中...</p>
+    </div>
+</div>
+
+<h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><div class="location-stats">
+    <div class="location-stats-item">
+        <div class="icon">📍</div>
+        <div class="label">地点总数</div>
+        <div class="value" id="total-locations">-</div>
+    </div>
+    <div class="location-stats-item">
+        <div class="icon">🌍</div>
+        <div class="label">覆盖区域</div>
+        <div class="value" id="total-countries">-</div>
+    </div>
+    <div class="location-stats-item">
+        <div class="icon">📅</div>
+        <div class="label">最新更新</div>
+        <div class="value" id="last-update">-</div>
+    </div>
+</div>
+
+<h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><p>这里是我在世界各地的旅行记录，每一个标记都代表着一段美好的回忆。通过地图，可以查看我去过的地方，每一张照片、每一段文字都记录着当时的感受和体验。</p>
+<blockquote>
+<p>世界那么大，我想去看看。</p>
+</blockquote>
+</article>
 
   <div class="related-wrap md-text" id="comments">
     <section class='header cmt-title cap theme'>
@@ -111,7 +147,10 @@
 <footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%85%E8%A1%8C%E8%B6%B3%E8%BF%B9"><span class="toc-text">旅行足迹</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1"><span class="toc-text">统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E"><span class="toc-text">关于</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -838,5 +877,5 @@
 
 
 <!-- inject -->
-<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script><script type="text/javascript" src="/custom/js/news-loader.js"></script>
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script><script type="text/javascript" src="/custom/js/news-loader.js"></script><script type="text/javascript" src="/custom/js/travel-map.js"></script>
 </div></body></html>
