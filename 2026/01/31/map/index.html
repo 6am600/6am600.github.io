@@ -28,8 +28,8 @@
 <meta property="og:description" content="在Hexo博客上实现足迹地图">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
-<meta property="article:published_time" content="2026-01-31T10:35:33.357Z">
-<meta property="article:modified_time" content="2026-01-31T11:50:08.921Z">
+<meta property="article:published_time" content="2026-01-31T11:58:58.420Z">
+<meta property="article:modified_time" content="2026-01-31T12:01:54.748Z">
 <meta property="article:author" content="Bamboo">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Stellar">
@@ -54,7 +54,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2026-01-31T18:35:33+08:00","dateModified":"2026-01-31T19:50:08+08:00","datePublished":"2026-01-31T18:35:33+08:00","description":"","headline":"足迹地图","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2026/01/31/map/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2026/01/31/map/","keywords":"Stellar, Hexo, 高德地图, 前端开发","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194804827.png","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2026-01-31T19:58:58+08:00","dateModified":"2026-01-31T20:01:54+08:00","datePublished":"2026-01-31T19:58:58+08:00","description":"","headline":"足迹地图","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2026/01/31/map/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2026/01/31/map/","keywords":"Stellar, Hexo, 高德地图, 前端开发","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194804827.png","image":1}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
   if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.querySelector("html").id = "ZYDark";
@@ -91,11 +91,11 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/2023/06/20/lmopening/">LM</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-01-31T10:35:33.357Z">2026-01-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-01-31T11:50:08.921Z">2026-01-31</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-01-31T11:58:58.420Z">2026-01-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-01-31T12:01:54.748Z">2026-01-31</time></span></div></div></div>
     
   </div>
   </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>先来看一下实现后的效果：</p>
-<p><img src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194956466.png" alt="旅行地图效果"></p>
+<div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:3200/1730;"><img class="lazy" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194956466.png" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194956466.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
 <h3 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h3><ul>
 <li>✨ <strong>现代化设计</strong>：精致的卡片式 UI，流畅的动画效果</li>
 <li>🗺️ <strong>交互式地图</strong>：基于高德地图 API，支持缩放、拖拽</li>

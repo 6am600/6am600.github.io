@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         locations: []
     };
 
+    // 当前打开的信息窗口
+    let currentInfoWindow = null;
+
     // 检查 Fancybox 状态
     const checkFancybox = () => {
         if (typeof Fancybox !== 'undefined') {
@@ -107,10 +110,32 @@ document.addEventListener('DOMContentLoaded', function() {
         // 添加地图控件
         addMapControls(map);
 
+        // 添加点击地图空白处关闭信息窗口的功能
+        map.on('click', function() {
+            closeInfoWindow();
+        });
+
+        // 添加键盘事件监听（ESC键关闭信息窗口）
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                closeInfoWindow();
+            }
+        });
+
         // 自动调整视野
         setTimeout(() => {
             map.setFitView();
         }, 500);
+    }
+
+    /**
+     * 关闭当前打开的信息窗口
+     */
+    function closeInfoWindow() {
+        if (currentInfoWindow) {
+            currentInfoWindow.close();
+            currentInfoWindow = null;
+        }
     }
 
     /**
@@ -137,7 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 点击事件
             marker.on('click', function() {
+                // 关闭当前打开的信息窗口
+                closeInfoWindow();
+
+                // 打开新的信息窗口并记录
                 infoWindow.open(map, marker.getPosition());
+                currentInfoWindow = infoWindow;
 
                 // 信息窗口打开后，重新绑定 Fancybox
                 setTimeout(() => {
