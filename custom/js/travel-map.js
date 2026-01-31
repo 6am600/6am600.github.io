@@ -10,6 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
         locations: []
     };
 
+    // 检查 Fancybox 状态
+    const checkFancybox = () => {
+        if (typeof Fancybox !== 'undefined') {
+            console.log('✅ Fancybox 已加载');
+            return true;
+        } else {
+            console.warn('⚠️ Fancybox 未加载，图片点击将使用默认行为');
+            return false;
+        }
+    };
+
+    // 延迟检查，确保所有脚本加载完成
+    setTimeout(() => {
+        checkFancybox();
+    }, 500);
+
     // 开始加载
     loadTravelData();
 
@@ -125,18 +141,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 信息窗口打开后，重新绑定 Fancybox
                 setTimeout(() => {
-                    if (typeof Fancybox !== 'undefined') {
+                    const images = document.querySelectorAll('[data-fancybox="travel-map"]');
+
+                    if (images.length > 0 && typeof Fancybox !== 'undefined') {
+                        // 先解绑之前的，避免重复绑定
+                        Fancybox.unbind('[data-fancybox="travel-map"]');
+                        // 重新绑定
                         Fancybox.bind('[data-fancybox="travel-map"]', {
                             hideScrollbar: false,
                             Thumbs: {
                                 autoStart: false,
                             },
                             caption: (fancybox, slide) => {
-                                return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+                                const alt = slide.triggerEl.alt || slide.triggerEl.dataset.caption || '';
+                                return alt;
                             }
                         });
+                        console.log('✅ Fancybox 已绑定到', images.length, '张图片');
+                    } else if (images.length > 0) {
+                        console.warn('⚠️ 找到', images.length, '张图片，但 Fancybox 未加载');
+                    } else {
+                        console.log('ℹ️ 信息窗口中没有图片');
                     }
-                }, 100);
+                }, 300);
             });
 
             markers.push(marker);

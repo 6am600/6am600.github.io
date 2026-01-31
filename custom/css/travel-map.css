@@ -1,238 +1,631 @@
 /* ========================================
-   旅行地图样式
+   旅行地图 - 精致的旅行日记风格
    ======================================== */
 
-/* 地图容器 */
+/* 引入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ========================================
+   CSS 变量定义
+   ======================================== */
+
+:root {
+  --travel-font-heading: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  --travel-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --travel-accent: var(--theme, #4caf50);
+  --travel-card-bg: var(--card, #ffffff);
+  --travel-text-primary: var(--text-p1, #1a1a1a);
+  --travel-text-secondary: var(--text-p2, #666666);
+  --travel-text-tertiary: var(--text-p3, #999999);
+  --travel-border: var(--theme-border, rgba(0, 0, 0, 0.08));
+  --travel-shadow: var(--card-border, 0 2px 12px rgba(0, 0, 0, 0.08));
+  --travel-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --travel-radius: 16px;
+  --travel-radius-sm: 8px;
+  --travel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   页面头部装饰
+   ======================================== */
+
+.explore-page {
+  position: relative;
+}
+
+.explore-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(135deg,
+    var(--travel-accent) 0%,
+    color-mix(in srgb, var(--travel-accent) 80%, transparent) 100%);
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   地图容器 - 现代卡片设计
+   ======================================== */
+
 #travel-map-container {
-    width: 100%;
-    height: 600px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    margin: 1.5rem 0;
-    background: #f5f5f5;
+  position: relative;
+  width: 100%;
+  height: 650px;
+  background: var(--travel-card-bg);
+  border-radius: var(--travel-radius);
+  overflow: hidden;
+  margin: 2rem 0;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--travel-border);
+  z-index: 1;
+  transition: var(--travel-transition);
+}
+
+#travel-map-container:hover {
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 地图内角装饰 */
+#travel-map-container::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--travel-accent);
+  opacity: 0.1;
+  border-radius: 50%;
+  z-index: 2;
+  transition: var(--travel-transition);
+}
+
+#travel-map-container:hover::before {
+  opacity: 0.15;
+  transform: scale(1.1);
 }
 
 #travel-map {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--travel-radius);
 }
 
 /* ========================================
-   信息窗口样式
+   旅程统计卡片 - 精致的一体化设计
+   ======================================== */
+
+.journey-stats-card {
+  position: relative;
+  max-width: 900px;
+  margin: 3rem auto;
+  background: var(--travel-card-bg);
+  border-radius: var(--travel-radius);
+  border: 1px solid var(--travel-border);
+  box-shadow: var(--travel-shadow);
+  overflow: hidden;
+  transition: var(--travel-transition);
+}
+
+.journey-stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(135deg,
+    var(--travel-accent) 0%,
+    color-mix(in srgb, var(--travel-accent) 70%, transparent) 50%,
+    transparent 100%);
+  opacity: 0.06;
+  z-index: 0;
+}
+
+.journey-stats-card:hover {
+  box-shadow: var(--travel-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* 卡片头部 */
+.journey-stats-header {
+  position: relative;
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.journey-stats-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.journey-stats-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--travel-text-primary);
+  font-family: var(--travel-font-heading);
+  letter-spacing: -0.5px;
+}
+
+.journey-stats-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--travel-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* 统计网格 */
+.journey-stats-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  padding: 1px;
+  background: var(--travel-border);
+  margin: 0 2rem 2rem 2rem;
+  border-radius: var(--travel-radius-sm);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.journey-stat-item {
+  position: relative;
+  background: var(--travel-card-bg);
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: var(--travel-transition);
+}
+
+.journey-stat-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--travel-accent);
+  border-radius: 2px 2px 0 0;
+  transition: width 0.3s ease;
+}
+
+.journey-stat-item:hover {
+  background: color-mix(in srgb, var(--travel-accent) 3%, var(--travel-card-bg));
+}
+
+.journey-stat-item:hover::after {
+  width: 60%;
+}
+
+.journey-stat-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  transition: var(--travel-transition);
+}
+
+.journey-stat-item:hover .journey-stat-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.journey-stat-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.journey-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--travel-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+  font-family: var(--travel-font-body);
+}
+
+.journey-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--travel-accent);
+  font-family: var(--travel-font-heading);
+  line-height: 1.2;
+  transition: var(--travel-transition);
+}
+
+.journey-stat-item:hover .journey-stat-value {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   关于区域 - 优雅的排版
+   ======================================== */
+
+.explore-about {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: var(--travel-card-bg);
+  border-radius: var(--travel-radius);
+  border: 1px solid var(--travel-border);
+  box-shadow: var(--travel-shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装饰性背景 */
+.explore-about::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: var(--travel-accent);
+  opacity: 0.03;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.explore-about p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--travel-text-primary);
+  font-family: var(--travel-font-heading);
+  margin-bottom: 1rem;
+}
+
+.explore-about blockquote {
+  margin: 1.5rem 0 0 0;
+  padding: 1rem 1.5rem;
+  background: color-mix(in srgb, var(--travel-accent) 8%, transparent);
+  border-left: 4px solid var(--travel-accent);
+  border-radius: 0 var(--travel-radius-sm) var(--travel-radius-sm) 0;
+  font-style: italic;
+  color: var(--travel-text-secondary);
+  font-family: var(--travel-font-heading);
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   地图信息窗口 - 精致的卡片设计
    ======================================== */
 
 .amap-info-content {
-    padding: 1rem;
-    max-width: 320px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding: 0;
+  max-width: 360px;
+  font-family: var(--travel-font-body);
+  background: transparent !important;
 }
 
+/* 信息窗口包装器 - 自定义高德地图样式 */
+.amap-info-content > div:first-child {
+  background: var(--travel-card-bg) !important;
+  border-radius: var(--travel-radius) !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 信息窗口内容区域 */
+.amap-info-window {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 地点标题 */
 .amap-info-content h3 {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    border-bottom: 2px solid var(--theme, #4caf50);
-    padding-bottom: 0.5rem;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--travel-text-primary);
+  font-family: var(--travel-font-heading);
+  border-bottom: 1px solid var(--travel-border);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--travel-accent) 5%, transparent) 0%,
+    transparent 100%);
+  position: relative;
+  line-height: 1.4;
 }
 
+/* 标题装饰线 */
+.amap-info-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  width: 40px;
+  height: 3px;
+  background: var(--travel-accent);
+  border-radius: 2px;
+}
+
+/* 信息元数据 */
 .location-date,
 .location-category {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  color: var(--travel-text-secondary);
+  font-weight: 500;
+}
+
+.location-date {
+  border-bottom: 1px solid var(--travel-border);
 }
 
 .location-icon {
-    font-size: 1rem;
+  font-size: 1rem;
+  opacity: 0.8;
 }
 
+/* 地点描述 */
 .location-description {
-    margin: 0.75rem 0;
-    line-height: 1.6;
-    color: #333;
-    font-size: 0.95rem;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  line-height: 1.7;
+  color: var(--travel-text-primary);
+  font-size: 0.95rem;
+  font-family: var(--travel-font-heading);
 }
 
-/* 图片样式 */
+/* ========================================
+   图片展示 - 精美的网格布局
+   ======================================== */
+
 .location-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 0.5rem;
-    margin: 0.75rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 0 1.5rem 1rem 1.5rem;
 }
 
 .location-images a {
-    display: block;
-    width: 100%;
-    height: 80px;
-    border-radius: 6px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  display: block;
+  aspect-ratio: 4/3;
+  border-radius: var(--travel-radius-sm);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--travel-accent) 10%, transparent);
+  transition: var(--travel-transition);
+}
+
+.location-images a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%);
+  opacity: 0;
+  transition: var(--travel-transition);
+  z-index: 1;
 }
 
 .location-images a:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.location-images a:hover::before {
+  opacity: 1;
 }
 
 .location-images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--travel-transition);
 }
 
-/* 标签样式 */
+.location-images a:hover img {
+  transform: scale(1.1);
+}
+
+/* 图片放大图标 */
+.location-images a::after {
+  content: '⤢';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0;
+  transition: var(--travel-transition);
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.location-images a:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ========================================
+   标签设计 - 精致的徽章风格
+   ======================================== */
+
 .location-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1.25rem 1.5rem;
 }
 
 .location-tags .tag {
-    background: var(--theme, #4caf50);
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.875rem;
+  background: color-mix(in srgb, var(--travel-accent) 12%, transparent);
+  color: var(--travel-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--travel-accent) 25%, transparent);
+  transition: var(--travel-transition);
+  font-family: var(--travel-font-body);
+  letter-spacing: 0.3px;
+}
+
+.location-tags .tag:hover {
+  background: var(--travel-accent);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--travel-accent) 40%, transparent);
 }
 
 /* ========================================
-   加载状态
+   加载状态 - 优雅的动画
    ======================================== */
 
 .travel-map-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 600px;
-    gap: 1rem;
-    color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 650px;
+  gap: 1.5rem;
+  color: var(--travel-text-secondary);
 }
 
 .travel-map-loading .spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid #f0f0f0;
-    border-top: 3px solid var(--theme, #4caf50);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
+.travel-map-loading .spinner::before,
+.travel-map-loading .spinner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.travel-map-loading .spinner::before {
+  border-top-color: var(--travel-accent);
+  animation: spin 1.2s linear infinite;
+}
+
+.travel-map-loading .spinner::after {
+  border-right-color: color-mix(in srgb, var(--travel-accent) 60%, transparent);
+  animation: spin 0.8s linear infinite reverse;
+}
+
+.travel-map-loading p {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--travel-text-tertiary);
+  letter-spacing: 0.5px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ========================================
-   错误提示
+   错误提示 - 友好的设计
    ======================================== */
 
 .travel-map-error {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: #fff2f0;
-    border-radius: 12px;
-    color: #a8071a;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: color-mix(in srgb, #f44336 8%, transparent);
+  border-radius: var(--travel-radius);
+  border: 1px solid color-mix(in srgb, #f44336 20%, transparent);
+  color: #d32f2f;
 }
 
 .travel-map-error p {
-    margin: 0.5rem 0;
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .travel-map-error .error-hint {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #666;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, #f44336 15%, transparent);
+  font-size: 0.9rem;
+  color: var(--travel-text-secondary);
 }
 
 .travel-map-error code {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 0.85rem;
+  display: inline-block;
+  margin: 0.25rem 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background: color-mix(in srgb, #f44336 12%, transparent);
+  border-radius: 6px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.85rem;
+  border: 1px solid color-mix(in srgb, #f44336 20%, transparent);
 }
 
 /* ========================================
    暗色模式适配
    ======================================== */
 
-.dark .amap-info-content h3,
-[data-theme="dark"] .amap-info-content h3 {
-    color: #ffffff;
+.dark #travel-map-container,
+[data-theme="dark"] #travel-map-container {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.dark .location-description,
-[data-theme="dark"] .location-description {
-    color: #cccccc;
+.dark #travel-map-container:hover,
+[data-theme="dark"] #travel-map-container:hover {
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.dark .location-date,
-.dark .location-category,
-[data-theme="dark"] .location-date,
-[data-theme="dark"] .location-category {
-    color: #aaaaaa;
+.dark .journey-stats-card,
+[data-theme="dark"] .journey-stats-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.dark .travel-map-error,
-[data-theme="dark"] .travel-map-error {
-    background: #2a1215;
-    color: #e84749;
+.dark .journey-stats-card:hover,
+[data-theme="dark"] .journey-stats-card:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 12px 28px rgba(0, 0, 0, 0.5);
 }
 
-.dark .travel-map-error .error-hint,
-[data-theme="dark"] .travel-map-error .error-hint {
-    color: #aaaaaa;
-}
-
-/* ========================================
-   统计信息样式
-   ======================================== */
-
-.location-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.location-stats-item {
-    background: var(--card, #ffffff);
-    padding: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.location-stats-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.location-stats-item .icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.location-stats-item .label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.location-stats-item .value {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--theme, #4caf50);
+.dark .explore-about,
+[data-theme="dark"] .explore-about {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ========================================
@@ -240,61 +633,141 @@
    ======================================== */
 
 @media (max-width: 768px) {
-    #travel-map-container {
-        height: 400px;
-        margin: 1rem 0;
-        border-radius: 8px;
-    }
+  :root {
+    --travel-radius: 12px;
+  }
 
-    .travel-map-loading {
-        height: 400px;
-    }
+  #travel-map-container,
+  .travel-map-loading {
+    height: 450px;
+    margin: 1.5rem 0;
+  }
 
-    .amap-info-content {
-        max-width: 280px;
-        padding: 0.75rem;
-    }
+  .journey-stats-card {
+    margin: 2rem 0;
+  }
 
-    .amap-info-content h3 {
-        font-size: 1rem;
-    }
+  .journey-stats-header {
+    padding: 2rem 1.5rem 1.25rem 1.5rem;
+  }
 
-    .location-images {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .journey-stats-icon {
+    font-size: 2.5rem;
+  }
 
-    .location-images img {
-        height: 60px;
-    }
+  .journey-stats-title {
+    font-size: 1.5rem;
+  }
 
-    .location-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+  .journey-stats-subtitle {
+    font-size: 0.875rem;
+  }
 
-    .location-stats-item {
-        padding: 1rem;
-    }
+  .journey-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+  }
 
-    .location-stats-item .value {
-        font-size: 1.5rem;
-    }
+  .journey-stat-item {
+    padding: 1.25rem 1rem;
+  }
+
+  .journey-stat-icon {
+    font-size: 1.75rem;
+  }
+
+  .journey-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .explore-about {
+    padding: 1.75rem 1.25rem;
+    margin: 2rem 0;
+  }
+
+  .explore-about p {
+    font-size: 1rem;
+  }
+
+  .explore-about blockquote {
+    font-size: 1rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .amap-info-content {
+    max-width: 300px;
+  }
+
+  .amap-info-content h3 {
+    font-size: 1.1rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .location-date,
+  .location-category {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+
+  .location-description {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .location-images {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.625rem;
+    padding: 0 1.25rem 0.875rem 1.25rem;
+  }
+
+  .location-tags {
+    padding: 0 1.25rem 1rem 1.25rem;
+  }
+
+  .location-tags .tag {
+    padding: 0.3125rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
-    #travel-map-container {
-        height: 350px;
-    }
+  #travel-map-container,
+  .travel-map-loading {
+    height: 380px;
+    border-radius: 10px;
+  }
 
-    .travel-map-loading {
-        height: 350px;
-    }
+  .location-images {
+    grid-template-columns: 1fr;
+  }
 
-    .amap-info-content {
-        max-width: 260px;
-    }
+  .amap-info-content {
+    max-width: 280px;
+  }
 
-    .location-images {
-        grid-template-columns: 1fr;
-    }
+  .amap-info-content h3 {
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .location-images a::after {
+    font-size: 1.25rem;
+  }
+}
+
+/* ========================================
+   打印样式
+   ======================================== */
+
+@media print {
+  #travel-map-container {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .location-stats {
+    page-break-inside: avoid;
+  }
 }

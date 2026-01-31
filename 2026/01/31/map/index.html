@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 8.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>足迹地图 - 扳布屋</title>
+
+  
+    <meta name="description" content="在Hexo博客上实现足迹地图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="足迹地图">
+<meta property="og:url" content="https://bambooo.top/2026/01/31/map/">
+<meta property="og:site_name" content="扳布屋">
+<meta property="og:description" content="在Hexo博客上实现足迹地图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
+<meta property="article:published_time" content="2026-01-31T10:35:33.357Z">
+<meta property="article:modified_time" content="2026-01-31T11:50:08.921Z">
+<meta property="article:author" content="Bamboo">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Stellar">
+<meta property="article:tag" content="前端开发">
+<meta property="article:tag" content="高德地图">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png">
+  
+  
+  
+  <meta name="keywords" content="Stellar,Hexo,高德地图,前端开发">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+    <link rel="shortcut icon" href="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/sun.png">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"},"dateCreated":"2026-01-31T18:35:33+08:00","dateModified":"2026-01-31T19:50:08+08:00","datePublished":"2026-01-31T18:35:33+08:00","description":"","headline":"足迹地图","mainEntityOfPage":{"@type":"WebPage","@id":"https://bambooo.top/2026/01/31/map/"},"publisher":{"@type":"Organization","name":"Bamboo","sameAs":[],"image":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png","logo":{"@type":"ImageObject","url":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png"}},"url":"https://bambooo.top/2026/01/31/map/","keywords":"Stellar, Hexo, 高德地图, 前端开发","thumbnailUrl":"https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194804827.png","image":1}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" /><script>
+  if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.querySelector("html").id = "ZYDark";
+  }
+</script>
+<link rel="stylesheet" href="/custom/css/BBDark.css"><link rel="stylesheet" href="/custom/css/ai-summary.css"><link rel="stylesheet" href="/custom/css/news-loader.css"><link rel="stylesheet" href="/custom/css/list-style.css"><link rel="stylesheet" href="/custom/css/travel-map.css">
+</head>
+<body>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20251203185209339.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">扳布屋</div><div class="sub normal cap">纵有疾风起</div><div class="sub hover cap" style="opacity:0"> 人生不言弃</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:##7f7f80"><span>博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:##7f7f80"><span>文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:##7f7f80"><span>探索</span></a><a class="nav-item" title="社交" href="/friends/" style="color:##7f7f80"><span>社交</span></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+<widget class="widget-wrapper related post-list"><div class="widget-header dis-select"><span class="name">专栏：LM</span></div><div class="widget-body"><a class="item" href="/2023/06/20/lmopening/"><span class="title">语言模型开篇</span></a><a class="item" href="/2023/06/26/autoencoder/"><span class="title">自编码模型</span></a><a class="item" href="/2023/06/27/autoregress/"><span class="title">自回归模型</span></a><a class="item" href="/2023/06/29/encoder-decoder/"><span class="title">序列到序列模型</span></a><a class="item active" href="/2026/01/31/map/"><span class="title">足迹地图</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/01/31/map/"><span class="title">足迹地图</span></a><a class="item title" href="/2026/01/03/Skill/"><span class="title">Agent Skills</span></a><a class="item title" href="/2024/01/10/nicetools/"><span class="title">好用的工具</span></a><a class="item title" href="/2025/12/28/firstprinciples/"><span class="title">第一性原理</span></a><a class="item title" href="/2024/10/11/prompttuning/"><span class="title">Prompt Tuning</span></a><a class="item title" href="/2025/10/11/fft&lora/"><span class="title">通俗理解全量微调和LoRA微调</span></a><a class="item title" href="/2025/11/24/aisummary/"><span class="title">文章添加AI摘要</span></a><a class="item title" href="/2025/03/27/decodeapk/"><span class="title">反编译 APK</span></a><a class="item title" href="/2025/10/20/fctomcp/"><span class="title">从Function Call 到 MCP</span></a><a class="item title" href="/2025/09/01/promptengineering/"><span class="title">提示词如何设计</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://music.163.com/#/user/home?id=1385723260" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder/social/3845874.svg"/></a><a class="social" href="javascript:util.scrollTop()" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"></path><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path></g></svg></a><a class="social" href="javaScript:void('永夜');" rel="noopener noreferrer"><img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/></a><a class="social" href="javaScript:void('永昼');" rel="noopener noreferrer"><img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/></a><a class="social" href="javaScript:void('跟随系统');" rel="noopener noreferrer"><img id="ThemeAI" src="https://upyun.thatcdn.cn/public/img/icon/AI.png"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="lazy bg" data-src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194804827.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/2023/06/20/lmopening/">LM</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-01-31T10:35:33.357Z">2026-01-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-01-31T11:50:08.921Z">2026-01-31</time></span></div></div></div>
+    
+  </div>
+  </div><article class="md-text content"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>先来看一下实现后的效果：</p>
+<p><img src="https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194956466.png" alt="旅行地图效果"></p>
+<h3 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h3><ul>
+<li>✨ <strong>现代化设计</strong>：精致的卡片式 UI，流畅的动画效果</li>
+<li>🗺️ <strong>交互式地图</strong>：基于高德地图 API，支持缩放、拖拽</li>
+<li>📍 <strong>标记点展示</strong>：点击标记查看地点详细信息</li>
+<li>🖼️ <strong>图片灯箱</strong>：集成 Fancybox 5.0，优雅的图片预览</li>
+<li>🌓 <strong>暗色模式</strong>：完美支持亮色/暗色模式切换</li>
+<li>📱 <strong>响应式</strong>：适配桌面端和移动端</li>
+<li>📊 <strong>统计卡片</strong>：一体化设计，展示旅行数据</li>
+</ul>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><h3 id="地图服务选择"><a href="#地图服务选择" class="headerlink" title="地图服务选择"></a>地图服务选择</h3><p>在实现旅行足迹功能时，我对比了几个地图服务：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>服务商</th>
+<th>优点</th>
+<th>缺点</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>高德地图</strong></td>
+<td>国内访问稳定、数据详细、API 文档完善</td>
+<td>需要注册 Key</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>Leaflet + OpenStreetMap</td>
+<td>开源免费、无需 API Key</td>
+<td>国内访问较慢、数据简单</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Google Maps</td>
+<td>功能强大、全球覆盖</td>
+<td>需要付费 API、国内需特殊网络</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>最终选择高德地图</strong>，原因如下：</p>
+<ol>
+<li><strong>访问速度快</strong>：国内服务器，加载速度快</li>
+<li><strong>数据准确</strong>：国内地图数据最为详细</li>
+<li><strong>免费额度充足</strong>：个人开发者每日 30 万次调用</li>
+<li><strong>API 文档完善</strong>：提供详细的开发文档和示例</li>
+</ol>
+<h3 id="UI-设计风格"><a href="#UI-设计风格" class="headerlink" title="UI 设计风格"></a>UI 设计风格</h3><p>在设计方面，我选择了<strong>“精致的旅行日记”</strong>风格：</p>
+<ul>
+<li><strong>字体系统</strong>：使用 Noto Serif SC（思源宋体）作为标题字体，Inter 作为正文字体</li>
+<li><strong>视觉层次</strong>：细腻的阴影、渐变装饰、流畅动画</li>
+<li><strong>卡片设计</strong>：现代化的卡片布局，统一的视觉语言</li>
+<li><strong>交互反馈</strong>：悬停动画、微妙的过渡效果</li>
+</ul>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="1-申请高德地图-API-Key"><a href="#1-申请高德地图-API-Key" class="headerlink" title="1. 申请高德地图 API Key"></a>1. 申请高德地图 API Key</h3><p>首先需要注册高德开放平台账号并申请 API Key：</p>
+<ol>
+<li>访问<a target="_blank" rel="noopener" href="https://lbs.amap.com/">高德开放平台</a>注册账号</li>
+<li>完成实名认证</li>
+<li>进入控制台，创建应用</li>
+<li>添加 Key，选择<strong>「Web端（JS API）」</strong></li>
+<li>记录下 <strong>Key</strong> 和 <strong>安全密钥</strong>（如果有的话）</li>
+</ol>
+<blockquote>
+<p>💡 <strong>提示</strong>：如果安全密钥显示为 <code>-</code>，说明不需要配置安全密钥，这是正常的。</p>
+</blockquote>
+<h3 id="2-准备数据文件"><a href="#2-准备数据文件" class="headerlink" title="2. 准备数据文件"></a>2. 准备数据文件</h3><p>创建 <code>source/travel-locations.json</code> 文件，用于存储旅行地点数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;updated&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2025-01-31T12:00:00+08:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;map_config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;center&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;lng&quot;</span><span class="punctuation">:</span> <span class="number">116.397428</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;lat&quot;</span><span class="punctuation">:</span> <span class="number">39.90923</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;zoom&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;map_style&quot;</span><span class="punctuation">:</span> <span class="string">&quot;normal&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;locations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;故宫博物院&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;lng&quot;</span><span class="punctuation">:</span> <span class="number">116.397428</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;lat&quot;</span><span class="punctuation">:</span> <span class="number">39.90923</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2023-05-01&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;中国明清两代的皇家宫殿，世界文化遗产。&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;images&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;图片URL&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;category&quot;</span><span class="punctuation">:</span> <span class="string">&quot;景点&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;tags&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;历史&quot;</span><span class="punctuation">,</span> <span class="string">&quot;文化&quot;</span><span class="punctuation">,</span> <span class="string">&quot;北京&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>数据字段说明</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Number</td>
+<td>是</td>
+<td>唯一标识符</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>是</td>
+<td>地点名称</td>
+</tr>
+<tr>
+<td><code>lng</code></td>
+<td>Number</td>
+<td>是</td>
+<td>经度（高德地图 GCJ-02 坐标）</td>
+</tr>
+<tr>
+<td><code>lat</code></td>
+<td>Number</td>
+<td>是</td>
+<td>纬度</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>String</td>
+<td>是</td>
+<td>到达日期</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>String</td>
+<td>否</td>
+<td>地点描述</td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td>Array</td>
+<td>否</td>
+<td>图片 URL 数组</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>String</td>
+<td>否</td>
+<td>分类</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Array</td>
+<td>否</td>
+<td>标签数组</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>获取坐标的方法</strong>：使用<a target="_blank" rel="noopener" href="https://lbs.amap.com/tools/picker">高德地图坐标拾取器</a>获取准确的经纬度。</p>
+<h3 id="3-创建样式文件"><a href="#3-创建样式文件" class="headerlink" title="3. 创建样式文件"></a>3. 创建样式文件</h3><p>创建 <code>source/custom/css/travel-map.css</code>，实现精美的 UI 设计。</p>
+<p>核心样式包括：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* CSS 变量定义 */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--travel-font-heading</span>: <span class="string">&#x27;Noto Serif SC&#x27;</span>, <span class="string">&#x27;Source Han Serif SC&#x27;</span>, serif;</span><br><span class="line">  <span class="attr">--travel-font-body</span>: <span class="string">&#x27;Inter&#x27;</span>, -apple-system, BlinkMacSystemFont, sans-serif;</span><br><span class="line">  <span class="attr">--travel-accent</span>: <span class="built_in">var</span>(--theme, <span class="number">#4caf50</span>);</span><br><span class="line">  <span class="attr">--travel-card-bg</span>: <span class="built_in">var</span>(--card, <span class="number">#ffffff</span>);</span><br><span class="line">  <span class="attr">--travel-radius</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attr">--travel-transition</span>: all <span class="number">0.3s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.4</span>, <span class="number">0</span>, <span class="number">0.2</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 地图容器 */</span></span><br><span class="line"><span class="selector-id">#travel-map-container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">650px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--travel-card-bg);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="built_in">var</span>(--travel-radius);</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">3px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.04</span>),</span><br><span class="line">              <span class="number">0</span> <span class="number">4px</span> <span class="number">12px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.08</span>);</span><br><span class="line">  <span class="attribute">transition</span>: <span class="built_in">var</span>(--travel-transition);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 统计卡片 */</span></span><br><span class="line"><span class="selector-class">.journey-stats-card</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">900px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">3rem</span> auto;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--travel-card-bg);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="built_in">var</span>(--travel-radius);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>设计亮点</strong>：</p>
+<ol>
+<li><strong>使用 CSS 变量</strong>：完美集成主题的 <code>--theme</code>、<code>--card</code> 等变量</li>
+<li><strong>现代化阴影</strong>：多层阴影叠加，营造立体感</li>
+<li><strong>流畅动画</strong>：使用 <code>cubic-bezier</code> 缓动函数</li>
+<li><strong>渐变装饰</strong>：微妙的渐变背景增加层次感</li>
+</ol>
+<h3 id="4-创建交互逻辑"><a href="#4-创建交互逻辑" class="headerlink" title="4. 创建交互逻辑"></a>4. 创建交互逻辑</h3><p>创建 <code>source/custom/js/travel-map.js</code>，实现地图的交互逻辑。</p>
+<p>核心功能：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载地图数据</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">loadTravelData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;/travel-locations.json&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="title function_">json</span>();</span><br><span class="line">  <span class="title function_">initMap</span>(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化地图</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">initMap</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Map</span>(<span class="string">&#x27;travel-map&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">zoom</span>: data.<span class="property">map_config</span>.<span class="property">zoom</span>,</span><br><span class="line">    <span class="attr">center</span>: [data.<span class="property">map_config</span>.<span class="property">center</span>.<span class="property">lng</span>, data.<span class="property">map_config</span>.<span class="property">center</span>.<span class="property">lat</span>]</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">addMarkers</span>(map, data.<span class="property">locations</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加标记点</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addMarkers</span>(<span class="params">map, locations</span>) &#123;</span><br><span class="line">  locations.<span class="title function_">forEach</span>(<span class="function"><span class="params">location</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> marker = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Marker</span>(&#123;</span><br><span class="line">      <span class="attr">position</span>: [location.<span class="property">lng</span>, location.<span class="property">lat</span>],</span><br><span class="line">      <span class="attr">title</span>: location.<span class="property">name</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> infoWindow = <span class="title function_">createInfoWindow</span>(location);</span><br><span class="line">    marker.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      infoWindow.<span class="title function_">open</span>(map, marker.<span class="title function_">getPosition</span>());</span><br><span class="line">      <span class="comment">// 重新绑定 Fancybox</span></span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title class_">Fancybox</span>.<span class="title function_">bind</span>(<span class="string">&#x27;[data-fancybox=&quot;travel-map&quot;]&#x27;</span>);</span><br><span class="line">      &#125;, <span class="number">300</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    map.<span class="title function_">add</span>(marker);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-更新配置文件"><a href="#5-更新配置文件" class="headerlink" title="5. 更新配置文件"></a>5. 更新配置文件</h3><p>在 <code>_config.yml</code> 中添加 CSS 和 JS 引用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/custom/css/travel-map.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">type=&quot;text/javascript&quot;</span> <span class="string">src=&quot;/custom/js/travel-map.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-更新探索页面"><a href="#6-更新探索页面" class="headerlink" title="6. 更新探索页面"></a>6. 更新探索页面</h3><p>编辑 <code>source/explore/index.md</code>，添加地图容器和 API Key 配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">探索</span></span><br><span class="line"><span class="attr">menu_id:</span> <span class="string">explore</span></span><br><span class="line"><span class="comment"># ... 其他配置</span></span><br><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://webapi.amap.com/maps?v=2.0&amp;key=您的Key&quot;&gt;&lt;/script&gt;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css&quot;&gt;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="comment"># 旅行足迹</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;div</span> <span class="string">id=&quot;travel-map-container&quot;&gt;</span></span><br><span class="line">  <span class="string">&lt;div</span> <span class="string">class=&quot;travel-map-loading&quot;&gt;</span></span><br><span class="line">    <span class="string">&lt;div</span> <span class="string">class=&quot;spinner&quot;&gt;&lt;/div&gt;</span></span><br><span class="line">    <span class="string">&lt;p&gt;地图加载中...&lt;/p&gt;</span></span><br><span class="line">  <span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 旅程统计</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;div</span> <span class="string">class=&quot;journey-stats-card&quot;&gt;</span></span><br><span class="line">  <span class="string">&lt;!--</span> <span class="string">统计内容</span> <span class="string">--&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><h3 id="问题-1：数据文件-404-错误"><a href="#问题-1：数据文件-404-错误" class="headerlink" title="问题 1：数据文件 404 错误"></a>问题 1：数据文件 404 错误</h3><p><strong>现象</strong>：页面报错 <code>HTTP error! status: 404</code></p>
+<p><strong>原因</strong>：数据文件放在 <code>source/_data/</code> 目录下，该目录用于存放数据源文件，不会被 Hexo 复制到生成的站点中。</p>
+<p><strong>解决方案</strong>：将数据文件移动到 <code>source/</code> 根目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> <span class="built_in">source</span>/_data/travel-locations.json <span class="built_in">source</span>/travel-locations.json</span><br></pre></td></tr></table></figure>
+<h3 id="问题-2：图片点击下载而不是打开灯箱"><a href="#问题-2：图片点击下载而不是打开灯箱" class="headerlink" title="问题 2：图片点击下载而不是打开灯箱"></a>问题 2：图片点击下载而不是打开灯箱</h3><p><strong>现象</strong>：点击信息窗口中的图片直接下载，没有 Fancybox 灯箱效果。</p>
+<p><strong>原因</strong>：地图信息窗口是动态生成的，Fancybox 在页面加载时已经初始化完成，没有自动绑定到后来添加的元素上。</p>
+<p><strong>解决方案</strong>：在信息窗口打开后，手动重新绑定 Fancybox。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">marker.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  infoWindow.<span class="title function_">open</span>(map, marker.<span class="title function_">getPosition</span>());</span><br><span class="line"></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="title class_">Fancybox</span> !== <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">      <span class="title class_">Fancybox</span>.<span class="title function_">unbind</span>(<span class="string">&#x27;[data-fancybox=&quot;travel-map&quot;]&#x27;</span>);</span><br><span class="line">      <span class="title class_">Fancybox</span>.<span class="title function_">bind</span>(<span class="string">&#x27;[data-fancybox=&quot;travel-map&quot;]&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">300</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="问题-3：Fancybox-未加载"><a href="#问题-3：Fancybox-未加载" class="headerlink" title="问题 3：Fancybox 未加载"></a>问题 3：Fancybox 未加载</h3><p><strong>现象</strong>：控制台显示 <code>Fancybox 未加载</code></p>
+<p><strong>原因</strong>：探索页面没有 <code>[data-fancybox]</code> 元素，主题的 Fancybox 加载逻辑跳过了该页面。</p>
+<p><strong>解决方案</strong>：在探索页面强制加载 Fancybox CSS 和 JS。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css&quot;&gt;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="问题-4：高德地图控件报错"><a href="#问题-4：高德地图控件报错" class="headerlink" title="问题 4：高德地图控件报错"></a>问题 4：高德地图控件报错</h3><p><strong>现象</strong>：控制台报错 <code>AMap.ToolBar is not a constructor</code></p>
+<p><strong>原因</strong>：高德地图 API 2.0 中，控件需要通过插件方式加载。</p>
+<p><strong>解决方案</strong>：暂时移除控件，保持地图简洁。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">addMapControls</span>(<span class="params">map</span>) &#123;</span><br><span class="line">  <span class="comment">// 暂时禁用控件以避免兼容性问题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="问题-5：YAML-格式错误"><a href="#问题-5：YAML-格式错误" class="headerlink" title="问题 5：YAML 格式错误"></a>问题 5：YAML 格式错误</h3><p><strong>现象</strong>：部署时报错 <code>bad indentation of a sequence entry</code></p>
+<p><strong>原因</strong>：YAML 中多行脚本需要使用正确的语法。</p>
+<p><strong>解决方案</strong>：使用 <code>|</code> 符号表示多行字符串。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">|</span></span><br><span class="line"><span class="string">      &lt;script type=&quot;text/javascript&quot;&gt;</span></span><br><span class="line"><span class="string">        window._AMapSecurityConfig = &#123;</span></span><br><span class="line"><span class="string">          securityJsCode: &#x27;xxx&#x27;</span></span><br><span class="line"><span class="string">        &#125;;</span></span><br><span class="line"><span class="string">      &lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="设计细节"><a href="#设计细节" class="headerlink" title="设计细节"></a>设计细节</h2><h3 id="字体选择"><a href="#字体选择" class="headerlink" title="字体选择"></a>字体选择</h3><p>为了营造”旅行日记”的氛围，我选择了：</p>
+<ul>
+<li><strong>标题字体</strong>：Noto Serif SC（思源宋体）- 优雅的衬线字体</li>
+<li><strong>正文字体</strong>：Inter - 现代无衬线字体</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(<span class="string">&#x27;https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--travel-font-heading</span>: <span class="string">&#x27;Noto Serif SC&#x27;</span>, serif;</span><br><span class="line">  <span class="attr">--travel-font-body</span>: <span class="string">&#x27;Inter&#x27;</span>, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><p>为统计卡片添加了浮动动画：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> float &#123;</span><br><span class="line">  <span class="number">0%</span>, <span class="number">100%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>); &#125;</span><br><span class="line">  <span class="number">50%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">10px</span>); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.journey-stats-icon</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: float <span class="number">3s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="暗色模式适配"><a href="#暗色模式适配" class="headerlink" title="暗色模式适配"></a>暗色模式适配</h3><p>使用主题变量自动适配：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.dark</span> <span class="selector-id">#travel-map-container</span>,</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-id">#travel-map-container</span> &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>:</span><br><span class="line">    <span class="number">0</span> <span class="number">1px</span> <span class="number">3px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>),</span><br><span class="line">    <span class="number">0</span> <span class="number">4px</span> <span class="number">12px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完整的文件结构"><a href="#完整的文件结构" class="headerlink" title="完整的文件结构"></a>完整的文件结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo-stellar/</span><br><span class="line">├── source/</span><br><span class="line">│   ├── custom/</span><br><span class="line">│   │   ├── css/</span><br><span class="line">│   │   │   └── travel-map.css      # 地图样式</span><br><span class="line">│   │   └── js/</span><br><span class="line">│   │       └── travel-map.js       # 地图交互逻辑</span><br><span class="line">│   ├── explore/</span><br><span class="line">│   │   └── index.md                # 探索页面</span><br><span class="line">│   └── travel-locations.json       # 旅行地点数据</span><br><span class="line">└── _config.yml                     # 全局配置（添加 inject）</span><br></pre></td></tr></table></figure>
+<h2 id="后续优化方向"><a href="#后续优化方向" class="headerlink" title="后续优化方向"></a>后续优化方向</h2><p>目前实现的功能已经比较完善，但还有一些可以优化的方向：</p>
+<ol>
+<li><strong>地点分类筛选</strong>：添加标签筛选功能，按类别显示地点</li>
+<li><strong>时间轴模式</strong>：按时间顺序展示旅行路线，绘制轨迹</li>
+<li><strong>数据可视化</strong>：添加统计图表，展示每年的旅行次数</li>
+<li><strong>自定义标记图标</strong>：使用自定义图标美化标记点</li>
+<li><strong>图片懒加载</strong>：优化图片加载性能</li>
+<li><strong>导出功能</strong>：支持导出 GPX 文件</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这次实践，我成功为博客添加了一个精美的旅行足迹功能。整个过程中，我学到了很多：</p>
+<ol>
+<li><strong>高德地图 API</strong> 的使用方法</li>
+<li><strong>Fancybox 5.0</strong> 的集成和动态绑定</li>
+<li><strong>Hexo</strong> 主题的定制和扩展</li>
+<li><strong>响应式设计</strong>的最佳实践</li>
+<li><strong>暗色模式</strong>的适配技巧</li>
+</ol>
+<p>这个功能不仅让博客更加个性化和有趣，也记录了我旅行中的美好回忆。如果你也想为你的博客添加类似功能，希望本文能对你有所帮助！</p>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/javascript-api-v2/getting-started">高德地图 JS API 2.0 文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://lbs.amap.com/tools/picker">高德地图坐标拾取器</a></li>
+<li><a target="_blank" rel="noopener" href="https://fancyapps.io/docs/">Fancybox 5.0 文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Hexo Stellar 主题</a></li>
+</ul>
+<hr>
+<p><strong>最后</strong>：如果你在实现过程中遇到问题，欢迎在评论区交流讨论！</p>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://bambooo.top/2026/01/31/map/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://bambooo.top/2026/01/31/map/&title=足迹地图 - 扳布屋&pics=https://blog-vanh.oss-cn-hangzhou.aliyuncs.com/image/20260131194804827.png&summary=在Hexo博客上实现足迹地图"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=足迹地图 - 扳布屋&amp;body=https://bambooo.top/2026/01/31/map/"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img  src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://bambooo.top/2026/01/31/map/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/01/03/Skill/">Agent Skills</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs15">社交</span><a target="_blank" rel="noopener" href="https://xaoxuu.com">xaoxuu</a></div></div><div class="text"><p>赣ICP备2025076167 | 基于<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar</a>创建<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="toc-text">最终效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9"><span class="toc-text">功能特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-text">技术选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%B0%E5%9B%BE%E6%9C%8D%E5%8A%A1%E9%80%89%E6%8B%A9"><span class="toc-text">地图服务选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UI-%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC"><span class="toc-text">UI 设计风格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">实现步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%B3%E8%AF%B7%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE-API-Key"><span class="toc-text">1. 申请高德地图 API Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2. 准备数据文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="toc-text">3. 创建样式文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91"><span class="toc-text">4. 创建交互逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">5. 更新配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%9B%B4%E6%96%B0%E6%8E%A2%E7%B4%A2%E9%A1%B5%E9%9D%A2"><span class="toc-text">6. 更新探索页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">遇到的问题和解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-1%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6-404-%E9%94%99%E8%AF%AF"><span class="toc-text">问题 1：数据文件 404 错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-2%EF%BC%9A%E5%9B%BE%E7%89%87%E7%82%B9%E5%87%BB%E4%B8%8B%E8%BD%BD%E8%80%8C%E4%B8%8D%E6%98%AF%E6%89%93%E5%BC%80%E7%81%AF%E7%AE%B1"><span class="toc-text">问题 2：图片点击下载而不是打开灯箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-3%EF%BC%9AFancybox-%E6%9C%AA%E5%8A%A0%E8%BD%BD"><span class="toc-text">问题 3：Fancybox 未加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-4%EF%BC%9A%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E6%8E%A7%E4%BB%B6%E6%8A%A5%E9%94%99"><span class="toc-text">问题 4：高德地图控件报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-5%EF%BC%9AYAML-%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF"><span class="toc-text">问题 5：YAML 格式错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BB%86%E8%8A%82"><span class="toc-text">设计细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E9%80%89%E6%8B%A9"><span class="toc-text">字体选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C"><span class="toc-text">动画效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%97%E8%89%B2%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D"><span class="toc-text">暗色模式适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">完整的文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">后续优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="toc-text">参考资源</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":[],"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.min.js","envId":"https://twikoo.bambooo.top"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0" crossorigin="anonymous">
+
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "dark" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script type="text/javascript" src="/custom/js/BBDark.js"></script><script type="text/javascript" src="/custom/js/ai-summary.js"></script><script type="text/javascript" src="/custom/js/news-loader.js"></script><script type="text/javascript" src="/custom/js/travel-map.js"></script>
+</div></body></html>
